@@ -543,8 +543,3 @@ You stand at the kitchen window with the phone. Down in the courtyard, the Hercu
 He hangs up before you can answer, as he always does, as if saying goodbye on the telephone were an extravagance from a richer age.
 
 * [Continue](s7-end)
-
-:: s8-open
-*Chapter 8, “Einschulung”, August, is still being written.*
-
-@tbc
