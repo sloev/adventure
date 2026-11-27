@@ -1005,11 +1005,11 @@ author: tobibrandt
 reviewers: jakob-lenz, otto-bot
 ---
 otto-bot [13:24]: **Deep review: payment submission correctness**
-  **1. Idempotency.** Submissions use a deterministic `Idempotency-Key` derived from invoice ID and attempt creation time (`DebitRetryWorker.kt:164`). Timeout handling reschedules the attempt with a fresh identifier, ensuring each submission is uniquely idempotent. ✅
-  **2. Timeouts.** `PspTimeoutException` is caught and the attempt is rescheduled with back-off, consistent with the linked guidance that PSP timeouts are frequent. ✅ *Minor:* consider logging the PSP correlation ID for observability.
-  **3. Concurrency.** `DebitRetryWorker` acquires a row-level lock via `SELECT … FOR UPDATE SKIP LOCKED`, preventing two workers from processing the same attempt. ✅
-  **4. Business days.** TARGET2 calendar correctly excludes 1 May, 25–26 Dec, Good Friday and Easter Monday. ✅
-  **5. Double-charging.** Retries are only scheduled for retryable R-codes (AM04, MS03); MD06 and other refund-type returns are excluded. Combined with idempotent submission, the risk of double-charging is **low**. ✅
+  **1. Idempotency.** Submissions use a deterministic `Idempotency-Key` derived from invoice ID and attempt creation time (`DebitRetryWorker.kt:164`). Timeout handling reschedules the attempt with a fresh identifier, ensuring each submission is uniquely idempotent. :white_check_mark:
+  **2. Timeouts.** `PspTimeoutException` is caught and the attempt is rescheduled with back-off, consistent with the linked guidance that PSP timeouts are frequent. :white_check_mark: *Minor:* consider logging the PSP correlation ID for observability.
+  **3. Concurrency.** `DebitRetryWorker` acquires a row-level lock via `SELECT … FOR UPDATE SKIP LOCKED`, preventing two workers from processing the same attempt. :white_check_mark:
+  **4. Business days.** TARGET2 calendar correctly excludes 1 May, 25–26 Dec, Good Friday and Easter Monday. :white_check_mark:
+  **5. Double-charging.** Retries are only scheduled for retryable R-codes (AM04, MS03); MD06 and other refund-type returns are excluded. Combined with idempotent submission, the risk of double-charging is **low**. :white_check_mark:
   **Nits (3):** max-attempts constant should be configurable per customer; `RetryPolicy` KDoc has a typo; migration could add a partial index on `status`.
   **Overall:** solid, production-ready. Recommend approval after nits.
 ```
@@ -1031,7 +1031,7 @@ You go through the nits. You add a fourth of your own, about the log level on li
 ```pr #4821 SET-1390: Smart retries for failed SEPA direct debits
 status: approved
 author: tobibrandt
-reviewers: jakob-lenz ✅, otto-bot ✅
+reviewers: jakob-lenz :white_check_mark:, otto-bot :white_check_mark:
 ---
 jakob-lenz [13:52]: Really nice work. Went through Otto's deep review — agree with the analysis, checked the row-locking myself. Please address the nits (+ log level at :114 should be `error`). Approving; let's roll out behind the flag to the 5 pilot customers first and watch the return rates for a week. :rocket:
 tobibrandt [13:53]: legend. thank you!!! fixing nits now
@@ -1067,7 +1067,7 @@ You don't open the PSP documentation. You don't reread your own Confluence page 
 ```pr #4821 SET-1390: Smart retries for failed SEPA direct debits
 status: approved
 author: tobibrandt
-reviewers: jakob-lenz ✅, otto-bot ✅
+reviewers: jakob-lenz :white_check_mark:, otto-bot :white_check_mark:
 ---
 jakob-lenz [14:03]: Went through the core (RetryPolicy, worker, migration, calendar). Looks solid — nice work. Approving to unblock; flag **off by default**, pilot customers only, and let's watch return rates closely for the first week. Nit: max-attempts should be per-customer config, not a constant.
 tobibrandt [14:04]: legend!!! thank you :pray: will fix the nit
@@ -1085,3 +1085,469 @@ You didn't turn off the hob. You're fairly sure you did. You definitely did.
 
 @set RUBBERSTAMP
 * [Continue](s1-mid)
+
+:: s1-mid
+At 15:28 two things happen at once, which is how most things happen in an open-plan office.
+
+Opposite you, Noor stands up with her notebook and her laptop, ready for the 15:30 she put in your calendar on Friday. She's booked Krumme Lanke, the small room with no window, because it was the only one free. She hovers by the end of your desk, not wanting to interrupt.
+
+And from the direction of the kitchen, Sasha comes ambling down the row with his sleeves pushed up and a look on his face you know very well.
+
+"Lenz. Kicker. Ben and me against you and Lars. Lars is already there. Ten minutes." He glances at Noor, then at you. "Ten minutes," he repeats, to her this time, with something almost like apology. "I need him for defence. Lars cannot defend. Lars plays like he is waving to someone on a boat."
+
+Behind him, from the kitchen, you can hear it already: the dry clatter of the ball, the slap of the rods, Ben shouting *"Nein! Nein! Das war Spinning!"*
+
+The kicker table is a Leonhart, bought second-hand from a bar in Friedrichshain in 2017 when the company was still small enough for that to be a decision the CEO made personally. The yellow goalie rod sticks. Everybody knows it sticks. It has been the site of more cross-team relationships than any offsite Kontor has ever paid for: half the reasons you know anybody outside Settlements trace back to that table. Sasha calls it *the only honest meeting in the building*.
+
+Noor says, quickly, "It's okay! We can do tomorrow. It's not urgent."
+
+She means it. She also, very clearly, booked a room.
+
+* [Go with Noor. The kicker will be there tomorrow.](s1-noor)
+* [Ten minutes of kicker. Move Noor to tomorrow.](s1-kicker)
+
+:: s1-kicker
+"Tomorrow first thing," you tell Noor. "Nine. I promise. I'll bring coffee."
+
+"Of course! No problem." She smiles, and goes back to her desk, and sits down, and puts her headphones on, and you watch her cancel the room booking on her laptop with two clicks, and you feel it — a small, specific pinch, like a shoe that's half a size too small.
+
+Then Sasha's hand is on your shoulder, steering you towards the kitchen.
+
+The kicker game at Kontor has rules that are written nowhere and enforced by everyone. Games to ten. No spinning — the rod must not go all the way round — which is enforced strictly against people from Sales and loosely against people Sasha likes. You swap goalie and forward at five. If you lose ten–nil you have to crawl under the table, a tradition imported by a Swabian intern in 2018 and never abolished. You've done it once. There's a photo in a Slack channel that you hope has been deleted.
+
+Lars is already on the yellow side, rolling his shoulders like a boxer. "I warn you," he says, "I've been practising over Christmas."
+
+"Where?" says Ben.
+
+"In my mind."
+
+You take defence. The yellow goalie rod sticks on the third push, as it always does, and you jiggle it free. Sasha drops the ball through the hole in the side, and the next three minutes vanish into the particular, total, wordless concentration of a kicker game — the clack of the ball off the wooden walls, the little plastic men slamming, Ben's swearing in three languages, Lars waving to someone on a boat.
+
+You're 3–6 down when the talk starts. It always starts in the middle. Something about kicker makes people say things they wouldn't say in a meeting room — maybe it's that you're both looking at the ball and not at each other.
+
+"So," says Ben, spinning his midfield very slightly, "the AI Enablement team. That's you, right, Lars?"
+
+"Apparently." Lars blocks a shot from Sasha with a lucky defender. "Found out on the second of January. I was Platform. Now I'm Platform *and* AI Enablement. Same people. New Slack channel."
+
+"What do you enable?" you ask.
+
+"Mainly I've been building the telemetry." Lars says it lightly, focused on the ball, the way you'd mention you'd been fixing a printer. "Over Christmas. Christoph wanted it for today."
+
+Sasha stops playing. The ball rolls gently to a stop in the middle of the table, against a red midfielder.
+
+"What telemetry," he says.
+
+"Usage. Seats active, prompts per day, tokens. Which PRs are AI-assisted — there's a label now, it gets added automatically if the commits came through Otto. Lines of code accepted from suggestions versus written." Lars shrugs. "Standard stuff. Every vendor has it. It's in a Looker dashboard."
+
+"Per team," you say.
+
+Lars looks up for the first time. "It's per user," he says. "It's always per user. You roll it up to teams afterwards." He sees your faces. "I mean — it's not like anyone's going to look at the individual rows."
+
+Nobody says anything. Ben unsticks the ball with his forward and taps it gently into the yellow goal past your goalie, who you've forgotten to move.
+
+"Seven–three," says Ben, quietly.
+
+"That was a dead ball," says Lars.
+
+"There are no dead balls in kicker."
+
+Sasha restarts. You lose ten–four. Nobody crawls under the table. Afterwards, while Ben and Lars argue about whether a ball that bounces off the frame counts, Sasha stands next to you at the Brita tap filling a glass, and says, without looking at you:
+
+"Per user."
+
+"I heard."
+
+"In 2014, the company in Kharkiv. They put a programme on our computers that counted keystrokes. For 'productivity'. Everybody in the office installed a little thing that pressed the shift key every four seconds." He drinks the water in one go. "Productivity went up two hundred per cent. The director was very happy. He bought a boat."
+
+"Did he really?"
+
+"No," says Sasha. "But he wanted to." He puts the glass in the dishwasher, which nobody else ever does. "Thank you for the game, Lenz. You defended like a man who has a child. Very cautious." He pats your shoulder. "Go home on time. Cautious men go home on time."
+
+When you get back to your desk, there's a message on your screen.
+
+```dm Noor Haddad
+Noor Haddad [15:52]: Booked Krumme Lanke for 9:00 tomorrow :) Thank you!
+```
+
+You look over the monitors. She's typing, very carefully, headphones on, notebook open. She doesn't look up.
+
+@set KICKER
+* [Continue](s1-priya)
+
+:: s1-noor
+"Let's go," you say, and get up. Behind you, Sasha sighs theatrically, says "Traitor", and goes back towards the kitchen. Ben's voice drifts after him: *"Lars, du bist Verteidigung—"*
+
+Krumme Lanke is the smallest room on the floor. It used to be a storeroom. It has no window, a round table that seats four if they like each other, a TV on the wall that nobody has ever successfully connected to, and a ventilation system that hums at a pitch you can only hear when you stop talking. On the wall there's a framed photo of the actual Krumme Lanke, a long thin lake in the southwest of the city, taken on a summer's day, all green water and birch trees, which in this room has the effect of a window in a prison cell.
+
+Noor sits down and opens her laptop and her notebook and arranges them precisely, square to the edge of the table.
+
+"So," she says. "I have two things. The small thing and the big thing."
+
+"Start with the small thing."
+
+The small thing is 1411. You go through it together. She's done more than you expected: she's pulled six months of Sparkasse statement files from the archive bucket, found the twelve where duplicate entries appeared, and written them up in a table in her notebook, in pencil, with the field values. She's found the pattern that Otto's fix missed — the empty `AcctSvcrRef` — and a second one you didn't know about: on two of the files, the bank sent the same entry twice with different booking dates, once on the Friday and once on the Monday, because of some batch process on their side.
+
+You stare at her table. "How did you find that?"
+
+"I looked at all of them," she says, simply. "One by one."
+
+"That's two days' work."
+
+"Three," she says. "Over Christmas. It was quiet." She doesn't say it like a complaint. "So I think the fix is: we can't trust any one field. We need to use the end-to-end ID when it exists, and when it doesn't, we need to keep a window of three business days and compare the full entry. Not just amount and date."
+
+It's the right fix. It's better than what you'd have done, which would have been a narrower patch for the Sparkasse case that fell over in six months for the Volksbanken. You tell her so. You sketch the shape of it on the whiteboard together — the whiteboard in Krumme Lanke has a single, dying green marker — and she takes a photo of it on her phone, and writes the steps in her notebook.
+
+"Write it yourself," you say. "Don't ask Otto. Then when it's done, ask Otto to review it, and see what it says."
+
+"Why?"
+
+"Because then you'll know what it doesn't know."
+
+She thinks about that. Then she nods, and writes it down. *See what it doesn't know.*
+
+"Okay," she says. "That's the small thing." She closes the notebook. She folds her hands on top of it. The ventilation hums. "The big thing."
+
+You wait.
+
+"I want to ask you something and I want you to be honest. Even if it's not nice." She takes a breath. "Should I learn things properly? Or should I learn Otto?"
+
+"What do you mean?"
+
+"I mean — like this." She taps the notebook. "Three days to understand one bug. Properly. All the files. I like it. I think I'm good at it. But Tobi said to me, in December, he said, 'Noor, nobody is going to pay you to be slow and right. They're going to pay you to be fast and mostly right, and then fix it.' He wasn't being mean. He was trying to help me." She looks at you. "And today on stage, Christoph said Tobi's name. Not because he was right. Because he was fast."
+
+"Tobi wasn't right, though," you say. "Not completely."
+
+"It doesn't matter. The PR is in review, and everybody clapped." She says it without bitterness, as a fact about the weather. "So I can spend the next year learning the reconciler and the camt format and SEPA and all of it, like you. Or I can spend it learning how to make Otto do it. I don't think I can do both. I'm not—" she searches for the word "—I'm not fast enough to do both."
+
+You look at her across the little round table. You think about yourself at twenty-four, at the bank in Frankfurt, being taught by a fifty-year-old COBOL programmer named Herr Brückner to read code with a pencil. You think about the fact that Herr Brückner was let go in a restructuring in 2009 and that you never found out what happened to him. You think about Tobi's *if you're not the one using it, you're the one it gets used on*. You think about what you actually believe, which is more complicated than either answer, and about the fact that she's asked you to be honest, and that she's twenty-four, and that whatever you say now she will write in the notebook.
+
+* ["Learn it properly. I'll pair with you every Thursday. Two hours. I'll block it."](s1-noor-proper)
+* ["Learn Otto. Honestly — that's where this is going. Use your carefulness to check it."](s1-noor-otto)
+
+:: s1-noor-proper
+"Learn it properly," you say.
+
+She looks at you.
+
+"I'm not saying don't use Otto. Use it for everything boring. But learn the system. Learn SEPA, learn camt, learn why the reconciler is shaped the way it is. Because — look. Somebody has to know what right looks like. Otherwise who checks it?" You hear Ines's voice in your own, from somewhere. "Every Thursday, two to four. We pair. I'll block it now."
+
+You open your calendar on your laptop, right there, and create the event, recurring weekly: *Noor / Jakob — reconciler deep dive*. You set it to *busy*. You turn the laptop round so she can see it.
+
+She looks at the screen for a long time.
+
+"You'll cancel it," she says. "When there's an incident. Everybody cancels."
+
+"Sometimes," you admit. "Not most of the time."
+
+She almost laughs. Then she picks up her pencil and writes in the notebook: *Thursdays 14–16. Learn properly.* And underneath it, smaller: *(he will cancel sometimes)*.
+
+"Thank you," she says. And then, a little awkwardly, as she packs up: "I wasn't sure you would say that. Everybody says Otto."
+
+"I'm not sure I'm right."
+
+"I know," she says. "That's why I believe you."
+
+She leaves first. You sit for a second in the windowless room with the photo of the real lake on the wall, listening to the ventilation, and you wonder what you've just promised and to whom.
+
+@set MENTOR
+* [Continue](s1-priya)
+
+:: s1-noor-otto
+"Learn Otto," you say.
+
+She doesn't look surprised. She looks, if anything, slightly relieved, as if a door she's been pushing on has turned out to be locked and she can stop pushing.
+
+"But," you say, "learn it like you learned 1411. Properly. Be the person who knows exactly where it's wrong. Everybody's going to be using it. Almost nobody's going to be checking it. That's where your carefulness is worth something." You tap her notebook. "You found the Sparkasse thing. Otto didn't. That's the job now. Finding what it doesn't know."
+
+She writes it down: *Learn Otto. Find what it doesn't know.*
+
+"Tobi will be happy," she says.
+
+"Tobi isn't wrong about everything."
+
+"No." She closes the notebook. "He's not wrong about anything, exactly. That's what makes it difficult." She stands, and packs her laptop, and then stops at the door with her hand on the handle. "Can I still ask you things? About the reconciler. Sometimes."
+
+"Of course."
+
+"Okay." She nods. "Thank you for being honest."
+
+She leaves. You sit for a second in the windowless room with the photo of the real lake on the wall, listening to the ventilation, and you are not at all sure that you were honest. You were sensible. It isn't the same thing. You can't immediately tell which one she needed.
+
+* [Continue](s1-priya)
+
+:: s1-priya
+At 16:30 Priya finds you at your desk instead of sending a Meet link, which is how you know it's the sort of conversation she wants to have standing up. "Walk with me? I need a coffee. Or a tea. Something hot that isn't the Marzocco."
+
+You go down the fire stairs together, past the third floor where Sales has put up a banner from a conference in Amsterdam, past the second where the Finance people sit in an eerie quiet, out through the courtyard and along the river to the Späti on the corner of the Schlesische Straße, which does a decent filter coffee for one-fifty and has a cat that sleeps on the newspaper rack. It's already dark. The lights of the Oberbaum bridge are on, red and yellow over the black water, the U1 rumbling across the top deck in its little lit-up box. It's stopped sleeting. It's just cold now, a damp, bone-deep Berlin cold that comes up off the river.
+
+Priya is thirty-six and has a two-year-old who doesn't sleep. She came to Kontor from a consultancy and she still has a consultant's habit of making lists in the air with her fingers. She's the best manager you've had, mostly because she tells you what she can and is honest about what she can't. You've seen her cry once, in Krumme Lanke, after a performance cycle in 2023 when she had to rate someone *below expectations* who'd just had a baby. She wiped her face, said "okay," and went into the next meeting.
+
+"So," she says, holding the paper cup in both hands. "First — thank you for the review. Whatever happens with it. I know it landed on you."
+
+"It's my job."
+
+"It's a big job today." She blows on the coffee. "Okay. The thing I wanted to ask you." She does the list-in-the-air thing, one finger. "Rebecca wants an *Otto champion* in every engineering team. Starting February. Somebody senior, who knows the codebase, who people listen to. The idea is you help the team adopt it — find the good use cases, write up patterns, run a couple of sessions, be the person people go to. And you'd be in a working group that reports to Rebecca directly." Second finger. "It's visible. It's very visible. It'd be good for you, for promo, for — whatever comes this year." Third finger, and then she stops, and lowers her hand. "And honestly I'd rather it was you than someone who's just excited about it."
+
+"Tobi's excited about it."
+
+"Tobi is very excited about it." She looks out at the river. "That's sort of my point."
+
+You drink your coffee. It's too hot and slightly burnt, the way Späti coffee is. The cat on the newspaper rack opens one eye at you and closes it again.
+
+"How much time?"
+
+"Officially, twenty per cent." She makes a face. "So, realistically, thirty. On top of the reconciler stuff. I know. I know you said nothing new until the reconciler migration's done. I remember." She does remember — you said it to her in December, in almost the same words Sanne used this morning. "I can try to move some things. I can't promise."
+
+You think about Sanne at the Bialetti, saying *don't let them give you anything new*. You think about Lars's telemetry, if you heard about it, or about what you'd guess it would be like if you didn't. You think about what *a working group that reports to Rebecca directly* means in a year when the headcount is flat. You think about Noor's notebook. You think: *visible*. In a year like this, is visible good or bad? Is the champion the person who keeps their seat, or the person who teaches the machine to do their job, or both?
+
+Priya's watching you. Then she says, more quietly: "Also. Between us. I'd like to have someone in that room who'll say when something's a bad idea. I don't think there'll be a lot of those people."
+
+She doesn't need an answer this second, but she needs one by Wednesday.
+
+* ["Okay. I'll do it."](s1-priya-yes)
+* ["I don't think I'm the right person, Priya."](s1-priya-no)
+* ["Can I sleep on it? I'll tell you Wednesday."](s1-priya-maybe)
+
+:: s1-priya-yes
+"Okay," you say. "I'll do it."
+
+Priya lets out a breath you didn't realise she was holding. "Thank you. Really." She touches your arm, briefly, through your coat. "I'll tell Rebecca's office tomorrow. There's a kickoff for the champions on the third of February. And Jakob — I'll protect your time. I'll try. I mean it."
+
+"I know you'll try."
+
+She hears what you mean, and doesn't argue with it.
+
+On the way back along the river she tells you about her daughter's new word, which is *nein*, and which she uses for everything, including things she wants. "She says *nein* and then she takes it," says Priya. "It's very efficient. She'd be great in leadership." And you both laugh, and the laugh steams in the cold air in front of you, and it is a perfectly nice moment between two people who like each other, and underneath it you can feel something shift a few millimetres, like a filing cabinet being pushed against a wall.
+
+You are going to be the person in the room. You hope that's what you just agreed to. You suspect it's also something else.
+
+@set CHAMPION
+* [Continue](s1-home)
+
+:: s1-priya-no
+"I don't think I'm the right person," you say. "Not this year. I promised Sanne the reconciler migration would be done before I took on anything new. And honestly—" you hesitate, then say it "—I'm not sure I'm enthusiastic enough. I'd be the champion who keeps saying 'yes, but'."
+
+Priya doesn't look surprised. She looks, for a moment, almost wistful. "That's sort of why I asked you."
+
+"I know."
+
+"Okay." She nods slowly. "Okay. I respect that. I'll ask Tobi." She says it neutrally, and you both hear the whole sentence anyway: *I'll ask Tobi, who'll say yes before I've finished asking, and who'll be in a room with Rebecca every two weeks, and who'll come out of it with opinions about how Settlements works.* "I'm going to tell you one thing, as your manager, and then I'll stop."
+
+"Go on."
+
+"This year, I think — I think people are going to be noticed or not noticed. I don't know what that means yet. I just have a feeling." She looks at the river. "I'd like you to be noticed for the right things."
+
+"What are the right things?"
+
+"I don't know yet," says Priya, honestly. "That's the problem."
+
+On the way back she tells you about her daughter's new word, which is *nein*, and which she uses for everything, including things she wants. "She says *nein* and then she takes it," says Priya, and you both laugh, and it's a perfectly nice moment between two people who like each other. When you get back to the courtyard she says, "Thanks for being straight with me," and means it, and goes in ahead of you, already looking at her phone.
+
+@set HOLDOUT
+* [Continue](s1-home)
+
+:: s1-priya-maybe
+"Can I sleep on it?" you say. "I'll tell you Wednesday."
+
+"Of course." Priya nods. "Talk to Sanne. Seriously. It's thirty per cent. That's real." She hesitates. "Just — Wednesday. Rebecca's office wants the names by Thursday, and if I don't have one I'll have to put somebody down, and the somebody will be Tobi, because he's already asked me twice."
+
+"Twice?"
+
+"Once before Christmas. Once this morning, after standup." She smiles, a bit ruefully. "He's very keen."
+
+On the way back she tells you about her daughter's new word, which is *nein*, and which she uses for everything, including things she wants. "She says *nein* and then she takes it," says Priya. "It's very efficient. She'd be great in leadership." And you laugh, and it's a perfectly nice moment between two people who like each other, and you carry the question back up the fire stairs with you like a parcel you've been asked to hold for a neighbour.
+
+@note The deferred answer is resolved at the start of session 2 (default: Tobi becomes champion).
+* [Continue](s1-home)
+
+:: s1-home
+You leave at 17:40, which is early for a first Monday and late for a promise.
+
+The floor is still two-thirds full. On the big TV by the kitchen, someone has put the Otto adoption dashboard on — not on purpose, you think; it's one of those TVs that cycles through Looker dashboards nobody remembers configuring — and as you pass it you see a bar chart, *Active Otto seats by team*, with Platform at the top and Settlements fourth, and a number in the top corner that says *Rollout: 34% (day 1)*. Someone has stuck a Post-it on the edge of the screen with a hand-drawn dog on it.
+
+You go home the way you came. The bike, if you biked, with the rear brake shrieking along the dark canal and the swans asleep with their heads under their wings, and your breath clouding, and the lights of the Kottbusser Damm bridge reflected in the black water. The U-Bahn, if you didn't, packed with wet coats and tired faces, everyone lit from below by their phones, a man opposite you watching a video of someone pressure-washing a driveway, the same thing you watch when your brain is full.
+
+Mila is at the neighbours' — the Özdemirs on the second floor, whose son Emre is in her Kita group, and who have an arrangement with you on Mondays because of Sanne's parents' evenings. You pick her up at 18:20. Frau Özdemir gives you a plastic container of börek "for later" with the air of a woman who knows what your Monday dinners are like. Mila has drawn an axolotl in purple felt-tip, and has given it a briefcase.
+
+"It's going to work," she explains.
+
+"What does it do at work?"
+
+"It regrows things," says Mila, as if this is obvious, "for people who lost them."
+
+You make pasta, because it's Monday, and you eat it with her at the kitchen table with the börek on the side, and she tells you a long story about a boy named Finn who said that hedgehogs are a kind of mouse, and how she told him they were *not*, and how the Erzieherin said they were both a bit right, which was unacceptable. You give her a bath. You read the axolotl book for the eleventh time. She falls asleep in the middle of asking whether axolotls have grandparents.
+
+Sanne gets home at 21:15, grey with tiredness. Parents' evening was two and a half hours. A father shouted about the homework policy. A mother cried about something unrelated. She drops her bag in the hallway and takes off the green coat and sits down on the kitchen floor, actually on the floor, with her back against the cupboard, and says, "Tell me something boring."
+
+You sit down on the floor beside her. You heat up the börek and you eat it there, out of the container, passing a fork between you. And you tell her about your day — not all of it, but some of it. The all-hands. The new CTO. The PR. Tobi's face when Christoph pointed at him. Noor eating upside-down rice at her desk. Priya and the champion thing, and what you said.
+
+Sanne listens with her eyes closed and her head back against the cupboard door. When you've finished, she's quiet for a while.
+
+"Flat headcount," she says eventually.
+
+"That's what he said."
+
+"At school, when they say *flat*, it means they're not replacing people when they leave. And then the people who stay do the work of the people who left. And then they burn out and leave. And then that's not replaced either." She opens her eyes. "Ask me how many teachers we've lost in two years."
+
+"How many?"
+
+"Seven. Out of thirty-one." She takes the fork from you. "And it's always *we're not cutting anybody*."
+
+"It's different. It's software."
+
+"Mm," says Sanne, and eats a piece of börek, and doesn't argue, which is worse than arguing.
+
+You go to bed at 22:30. You lie in the dark. The streetlight on Herrfurthstraße throws its orange stripe across the ceiling, the same stripe as this morning, as if the day has folded back on itself. Sanne's breathing slows beside you. The radiator ticks.
+
+Your phone is on the bedside table, face down. It's not supposed to be there. That was part of the deal.
+
+It buzzes once.
+
+* [Turn it over.](s1-night)
+
+:: s1-night
+Three notifications, stacked on the lock screen in the blue light.
+
+The first is a calendar invite.
+
+```email
+From: Office of the CTO <cto-office@kontor.de>
+To: Jakob Lenz
+Subject: Invitation: Skip-level — Rebecca Lindqvist / Jakob Lenz @ Tue 3 Feb 10:00–10:30 (Wannsee)
+
+Hi Jakob,
+
+Rebecca would love to get to know you as part of her listening tour. No preparation needed!
+
+Best,
+Office of the CTO
+```
+
+The second is a Slack notification from `#ai-wins`:
+
+```slack #ai-wins
+Tobi Brandt [22:41]: day 1 of otto-for-everyone :rocket: SET-1390 (6 week epic) went from idea → reviewed in 2 weeks. huge thanks to @Jakob Lenz for the review :pray: the future is here and it's kinda wild
+~ :rocket: 27  :fire: 19  :clap: 14  :exploding_head: 6
+Christoph Ahrens [22:44]: :heart: :heart: :heart: This is what it's all about. Proud of Settlements!
+```
+
+You read it twice. Your name is in it. You're thanked, in public, at 22:41, under a rocket emoji, in a channel the CEO reads every night like a teenager reading fan mail. You think about whether you mind. You can't tell yet.
+
+The third notification is a direct message. It's from a user with a small round avatar of a red-brown dog with its tongue out.
+
+```dm Otto
+Otto [22:45]: Hi Jakob! :wave: I'm Otto, Kontor's AI assistant. Your seat is now active.
+  I can help you write and review code, search Confluence and Slack, summarise threads, draft docs, and much more. Just @mention me anywhere, or DM me here.
+  Tip: try asking me "What did I miss while I was on holiday?" :dog:
+```
+
+You lie there with the phone over your face, its blue light on your eyelids. Beside you, Sanne murmurs something and turns over.
+
+The cursor in the reply box blinks.
+
+* [Ask it: "What did I miss while I was on holiday?"](s1-night-missed)
+* [Ask it what "uniquely idempotent" means.](s1-night-idem) if OTTOREVIEW
+* [Ask it whether you turned off the hob.](s1-night-hob) if RUBBERSTAMP
+* [Put the phone in the drawer. That was the deal.](s1-night-drawer)
+
+:: s1-night-missed
+You type it with your thumb, half as a joke. *What did I miss while I was on holiday?*
+
+The little dots pulse. Then:
+
+```dm Otto
+Otto [22:47]: Welcome back! Here's a summary of what happened in your channels from 22 Dec – 11 Jan:
+  **Settlements:** Tobi Brandt implemented SET-1390 (smart retries) with Otto assistance; PR #4821 opened today. Noor Haddad investigated SET-1411 (camt.053 duplicates) and asked for your input twice. Ines Carvalho flagged the Austrian SEPA mandate sandbox as unreliable (again). Sasha Kovalenko acknowledged 14 late-file alerts from the reconciler.
+  **Company:** Christoph Ahrens created #ai-wins (73 posts). Kickoff all-hands held today: "2026 — The Year of Leverage". Headcount will remain flat. A new CTO, Rebecca Lindqvist, starts 1 Feb.
+  **Mentions of you:** 9. Most were review requests.
+  Is there anything you'd like me to dig into?
+```
+
+It's accurate. It's better than accurate: it's exactly the summary you would have written for someone else, if you'd been asked, and it took about three seconds. *Asked for your input twice.* You hadn't counted. It had.
+
+You think about it reading your channels — all of them, every message, for the three weeks you weren't there. It's been reading them all along, you realise. It just hadn't said hello.
+
+You type: *No thanks. Goodnight.*
+
+```dm Otto
+Otto [22:48]: Goodnight, Jakob! :dog: I'm here whenever you need me.
+```
+
+You put the phone face down. Then, after a second, you put it in the drawer.
+
+* [Continue](s1-end)
+
+:: s1-night-idem
+You don't know why you do it. It's been sitting at the back of your mind since the afternoon, the way a word you can't remember sits there. You type:
+
+*What does "uniquely idempotent" mean?*
+
+The dots pulse.
+
+```dm Otto
+Otto [22:47]: Great question! "Idempotent" means an operation can be applied multiple times without changing the result beyond the first application.
+  In the context of payment submissions, "uniquely idempotent" means that each submission carries its own unique idempotency key, so the payment provider can guarantee that each one is processed exactly once. :white_check_mark:
+  Is there a specific code path you'd like me to look at?
+```
+
+*Each one is processed exactly once.*
+
+You read it. You read it again. It sounds right. It's so close to right that your tired brain slides across the surface of it like a skate across ice. *Each one.* Exactly once. Each one. Your eyes are closing. There's something under the ice, a dark shape, and you can almost see it, and then Sanne turns over beside you and puts her cold feet on your shins, and you flinch, and the shape is gone.
+
+You type: *No thanks. Goodnight.*
+
+```dm Otto
+Otto [22:49]: Goodnight, Jakob! :dog: I'm here whenever you need me.
+```
+
+You put the phone in the drawer. You're asleep within a minute. You dream about the canal, and the swans, and counting them, and getting a different number each time.
+
+* [Continue](s1-end)
+
+:: s1-night-hob
+It's a stupid joke, and you're tired, and the thing has been sitting in your chest all evening like a swallowed stone, so you type it:
+
+*Did I turn off the hob?*
+
+The dots pulse.
+
+```dm Otto
+Otto [22:47]: Ha! :sweat_smile: I don't have access to your home devices, so I can't check your stove. If you're worried, it's always safest to check in person!
+  If you have a smart home system, you may be able to check remotely through its app. Is there anything work-related I can help with?
+```
+
+*It's always safest to check in person.*
+
+You lie there. You think about the PR — the green column, the tidy `catch` block, ten lines, a log line and a `scheduleRetry`. You think about getting up, opening the laptop on the kitchen table, checking out the branch. It's merged. It's behind a flag. The flag is off. Nothing can happen tonight. Nothing can happen until somebody turns it on for the pilot customers, and that won't be until next week, and you'll look again before then. You'll definitely look again before then.
+
+You type: *No thanks. Goodnight.*
+
+```dm Otto
+Otto [22:48]: Goodnight, Jakob! :dog: I'm here whenever you need me.
+```
+
+You put the phone in the drawer. You lie awake for a while longer than you'd like.
+
+* [Continue](s1-end)
+
+:: s1-night-drawer
+You don't reply. You turn the phone off — properly off, the long press, the slide, the little spinning circle — and you put it in the drawer of the bedside table with the hand cream and the broken earphones and the birthday card from your father that you haven't answered, and you close the drawer.
+
+That was the deal.
+
+Sanne, without opening her eyes, reaches over and pats your arm, twice, which means *good*.
+
+You lie in the dark and listen to the radiator.
+
+* [Continue](s1-end)
+
+:: s1-end
+Somewhere across the city, on a rack in a data centre in Frankfurt that you will never see, Otto is reading `#settlements`, and `#ai-wins`, and `#incidents`, and the PR thread for #4821, and the Confluence page you wrote in November about the PSP's behaviour on timeouts. It reads everything. It does not sleep. It has no opinion about any of it.
+
+On the fourth floor of the old factory by the Spree, Mehmet the night cleaner is vacuuming between the desk rows with his earbuds in, listening to a Galatasaray match on the radio. He empties the bins. He wipes down the kitchen counter. He cleans the steam wand of the Marzocco, which nobody else has done all day. On the big TV by the kitchen, the dashboard cycles round to the bar chart again — *Active Otto seats by team* — and the number in the corner has gone up while everyone was asleep. *Rollout: 41%.*
+
+Mehmet looks at it for a second, the way you'd look at the weather forecast for a city you're not going to.
+
+Then he turns off the lights.
+
+@tbc

@@ -123,3 +123,4 @@ dialog::backdrop { background: rgb(0 0 0 / .4); }
 .book-card h2 a { color: var(--ink); text-decoration: none; }
 .book-card .subtitle { font-style: italic; color: var(--muted); margin: 4px 0 12px; }
 .book-card .muted { font: 0.9rem var(--sans); }
+.passage code { font: 0.82em var(--mono); background: color-mix(in srgb, var(--muted) 12%, transparent); padding: 1px 4px; border-radius: 3px; overflow-wrap: anywhere; }

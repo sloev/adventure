@@ -125,7 +125,24 @@ Any **Markdown**, including tables.
 ```
 npm run check     validate every book and print reading-time stats
 npm run stats     same, then build
-npm run build     build dist/ (web reader, print HTML, library page)
-npm run pdf       build, then render print editions to PDF (needs Playwright)
+npm run build     build dist/ (web reader, library page, LaTeX source)
+npm run pdf       build, then typeset the print editions with XeLaTeX
 npm run serve     serve dist/ on http://localhost:8080
 ```
+
+## Print edition (LaTeX)
+
+The book layout is done by LaTeX. `tools/lib/latex.mjs` turns passages and
+artifact blocks into macros (`\gbsec`, `\gbchoice`, `gbslack`, `gbpr`, …) that
+are defined in `tools/latex/template.tex`, which owns every typographic
+decision: A5 trim, TeX Gyre Pagella body text, section-range running heads,
+codeword sheet, in-world document boxes, emoji (via `twemojis`). To restyle a
+single book, copy the template to `books/<slug>/template.tex` and edit it.
+
+Sections are numbered in authored order. A choice that leads to the very next
+section prints as a quiet fleuron, so linear stretches read like a novel; real
+choices print as a dotted list with *turn to N*. In the PDF every section
+number is a link.
+
+Requirements (Debian/Ubuntu): `texlive-xetex texlive-latex-extra
+texlive-fonts-recommended tex-gyre fonts-texgyre fonts-dejavu`.

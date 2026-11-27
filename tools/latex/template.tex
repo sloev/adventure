@@ -1,0 +1,206 @@
+% ---------------------------------------------------------------------------
+%  Adventure — gamebook template (XeLaTeX)
+%
+%  This file owns every layout decision of the printed books. tools/lib/latex.mjs
+%  converts the Markdown sources into the macros defined here and replaces the
+%  %%PLACEHOLDERS%% below. Change the look of every book by editing this file;
+%  a book can override it by providing books/<slug>/template.tex.
+% ---------------------------------------------------------------------------
+\documentclass[10pt,twoside,openany]{book}
+
+% --- page: A5 trade paperback -----------------------------------------------
+\usepackage[paperwidth=148mm,paperheight=210mm,
+            inner=19mm,outer=15mm,top=19mm,bottom=21mm,
+            headheight=13pt,headsep=5mm,footskip=9mm]{geometry}
+
+% --- fonts ------------------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}[Ligatures=TeX]
+\setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]
+\setmonofont{DejaVu Sans Mono}[Scale=0.8]
+\newfontfamily\gbsymbols{DejaVu Sans}
+\usepackage[english]{babel}
+\usepackage[protrusion=true]{microtype}
+\usepackage{twemojis}
+
+% --- packages ---------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tabularx,booktabs,array}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage[hidelinks,pdftitle={%%TITLE%%},pdfauthor={%%AUTHOR%%}]{hyperref}
+
+\definecolor{ink}{gray}{0.08}
+\definecolor{muted}{gray}{0.42}
+\definecolor{rule}{gray}{0.72}
+\definecolor{boxbg}{gray}{0.975}
+\definecolor{boxhead}{gray}{0.92}
+\definecolor{termbg}{gray}{0.95}
+\definecolor{alarm}{gray}{0.18}
+
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\linespread{1.06}
+\widowpenalty=10000 \clubpenalty=10000
+\raggedbottom
+\emergencystretch=1.5em
+
+% --- running heads: section range on the outer edge, like a gamebook ---------
+% Every section inserts a mark in the "gbsec" class; the header shows the first
+% and last section that appear on the page (just "12" when it is only one).
+\NewMarkClass{gbsec}
+\newcommand\gbbooktitle{%%TITLE%%}
+\newcommand\gbsessiontitle{}
+\newcommand\gbrange{\IfMarksEqualTF{gbsec}{first-page}{last-page}
+  {\FirstMark{gbsec}}{\FirstMark{gbsec}–\LastMark{gbsec}}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\sffamily\small\bfseries\gbrange}
+\fancyhead[RO]{\sffamily\small\bfseries\gbrange}
+\fancyhead[CE]{\footnotesize\scshape\color{muted}\MakeLowercase{\gbbooktitle}}
+\fancyhead[CO]{\footnotesize\scshape\color{muted}\MakeLowercase{\gbsessiontitle}}
+\fancyfoot[C]{\footnotesize\color{muted}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\footnotesize\color{muted}\thepage}}
+
+% --- sessions ---------------------------------------------------------------
+% \gbsession{number}{of}{title}{subtitle}
+\newcommand\gbsession[4]{%
+  \cleardoublepage\thispagestyle{plain}%
+  \renewcommand\gbsessiontitle{#3}%
+  \vspace*{22mm}%
+  {\centering
+   {\sffamily\scriptsize\color{muted}\addfontfeature{LetterSpace=18}SESSION #1 OF #2\par}
+   \vspace{4mm}{\fontsize{24}{28}\selectfont #3\par}
+   \vspace{2mm}{\itshape #4\par}
+   \vspace{3mm}{\gbsymbols\color{muted}⁂}\par}%
+  \vspace{12mm}%
+  \phantomsection\addcontentsline{toc}{chapter}{#1.\ #3}%
+}
+
+% --- sections ---------------------------------------------------------------
+\newcommand\gbsec[1]{%
+  \par\needspace{5\baselineskip}\vspace{5mm plus 2mm}%
+  \phantomsection\hypertarget{sec#1}{}\InsertMark{gbsec}{#1}%
+  {\centering\sffamily\bfseries\large
+   {\color{rule}\rule[0.6ex]{7mm}{0.4pt}}\enspace #1\enspace{\color{rule}\rule[0.6ex]{7mm}{0.4pt}}\par}%
+  \nobreak\vspace{3mm}\noindent\ignorespaces}
+\newcommand\gbref[1]{\hyperlink{sec#1}{\sffamily\bfseries #1}}
+\newcommand\gbscenebreak{\par\vspace{2mm}{\centering\gbsymbols\color{muted}⁂\par}\vspace{2mm}\noindent}
+
+% --- choices ----------------------------------------------------------------
+\newenvironment{gbchoices}
+  {\par\vspace{3mm}\needspace{4\baselineskip}\noindent{\color{rule}\rule{\linewidth}{0.4pt}}\par
+   \begin{list}{{\gbsymbols\small\color{muted}▸}}{\leftmargin=1.1em\labelwidth=0.8em\labelsep=0.3em
+     \itemsep=1.2mm\parsep=0pt\topsep=1.5mm\rightmargin=0pt}\raggedright}
+  {\end{list}\vspace{2mm}}
+% \gbchoice{text}{section}
+\newcommand\gbchoice[2]{\item #1\nobreak\leaders\hbox to 0.7em{\hss{\color{rule}.}\hss}\hfill\nobreak
+  \mbox{\enspace\small turn to \gbref{#2}}}
+\newcommand\gbif[1]{{\itshape If you have #1:} }
+\newcommand\gbunless[1]{{\itshape If you do not have #1:} }
+\newcommand\gbcw[1]{\textsf{\bfseries\small #1}}
+\newcommand\gbcontinue{\par\vspace{1mm}{\centering\gbsymbols\small\color{muted}❧\par}}
+\newcommand\gbgoto[1]{\par\vspace{1mm}{\raggedleft\itshape Turn to \gbref{#1}.\par}}
+\newcommand\gbcodeword[1]{\par\vspace{2mm}\noindent
+  \fbox{\sffamily\small Note the codeword \textbf{#1} on your sheet.}\par\vspace{1mm}}
+\newcommand\gbclearcodeword[1]{\par\vspace{2mm}\noindent
+  \fbox{\sffamily\small Cross out the codeword \textbf{#1} if you have it.}\par\vspace{1mm}}
+\newcommand\gbending[1]{\par\vspace{8mm}{\centering\large\scshape #1\par}\vspace{8mm}}
+
+% --- in-world documents -----------------------------------------------------
+\tcbset{
+  gbbox/.style={enhanced,breakable,sharp corners=south,arc=1.5mm,
+    colback=boxbg,colframe=rule,boxrule=0.4pt,
+    left=2.5mm,right=2.5mm,top=1.5mm,bottom=1.5mm,
+    before skip=4mm plus 1mm,after skip=4mm plus 1mm,
+    fontupper=\sffamily\footnotesize\setlength{\parindent}{0pt}\linespread{1.0}\selectfont\raggedright,
+    coltitle=ink,colbacktitle=boxhead,fonttitle=\sffamily\footnotesize\bfseries,
+    titlerule=0.4pt,toptitle=0.8mm,bottomtitle=0.8mm},
+}
+\newtcolorbox{gbslack}[1]{gbbox,title={#1}}
+\newtcolorbox{gbdm}[1]{gbbox,title={{\gbsymbols\color{muted}●}\ #1}}
+\newtcolorbox{gbphone}[1]{gbbox,width=0.82\linewidth,center,arc=3mm,title={#1}}
+\newtcolorbox{gbemail}{gbbox}
+\newtcolorbox{gbdoc}[1]{gbbox,title={#1}}
+\newtcolorbox{gbdocnotitle}{gbbox}
+\newtcolorbox{gbcalendar}[1]{gbbox,title={#1}}
+\newtcolorbox{gbpr}[1]{gbbox,title={#1}}
+\newtcolorbox{gbpager}[1]{gbbox,colframe=alarm,boxrule=0.8pt,colbacktitle=alarm,coltitle=white,
+  title={\addfontfeature{LetterSpace=10}#1 \hfill TRIGGERED}}
+\newtcolorbox{gbterminal}[1]{gbbox,colback=termbg,title={\ttfamily\mdseries #1},
+  fontupper=\ttfamily\scriptsize\setlength{\parindent}{0pt}\raggedright}
+\newtcolorbox{gbterminalnotitle}{gbbox,colback=termbg,
+  fontupper=\ttfamily\scriptsize\setlength{\parindent}{0pt}\raggedright}
+
+% Chat message: \gbmsg{avatar colour hex}{initials}{name}{time}{body}
+\newcommand\gbavatar[2]{{\setlength\fboxsep{0.5pt}\colorbox[HTML]{#1}{\makebox[4mm][c]{\rule[-0.6mm]{0pt}{3mm}\fontsize{5}{5}\selectfont\bfseries\color{white}#2}}}}
+\newcommand\gbmsg[5]{\par\noindent
+  \begin{minipage}[t]{5.5mm}\vspace{0pt}\gbavatar{#1}{#2}\end{minipage}%
+  \begin{minipage}[t]{\dimexpr\linewidth-5.5mm}\vspace{0pt}\raggedright
+    \textbf{#3}\enspace{\scriptsize\color{muted}#4}\\[0.2mm]#5\end{minipage}\par\vspace{1.4mm}}
+\newcommand\gbreply[5]{\par\noindent\hspace*{5.5mm}%
+  \begin{minipage}[t]{4.5mm}\vspace{0pt}\scalebox{0.8}{\gbavatar{#1}{#2}}\end{minipage}%
+  \begin{minipage}[t]{\dimexpr\linewidth-10mm}\vspace{0pt}\raggedright
+    \textbf{#3}\enspace{\scriptsize\color{muted}#4}\\[0.2mm]#5\end{minipage}\par\vspace{1.4mm}}
+\newcommand\gbcont[1]{\par\vspace{-0.6mm}\noindent\hspace*{5.5mm}\parbox[t]{\dimexpr\linewidth-5.5mm}{\raggedright #1}\par\vspace{1.4mm}}
+\newcommand\gbreplycont[1]{\par\vspace{-0.6mm}\noindent\hspace*{10mm}\parbox[t]{\dimexpr\linewidth-10mm}{\raggedright #1}\par\vspace{1.4mm}}
+\newcommand\gbreactions[1]{\par\vspace{-0.6mm}\noindent\hspace*{5.5mm}{\scriptsize\color{muted}#1}\par\vspace{1.2mm}}
+\newcommand\gbreaction[1]{\fbox{\rule{0pt}{1.6ex}#1}\enspace}
+\newcommand\gbsystem[1]{\par\noindent\hspace*{5.5mm}{\scriptsize\itshape\color{muted}#1}\par\vspace{1mm}}
+\newcommand\gbdivider[1]{\par\vspace{0.5mm}\noindent{\color{rule}\leaders\hrule height 2.5pt depth -2.1pt\hfill}%
+  \enspace{\scriptsize\bfseries\color{muted}#1}\enspace{\color{rule}\leaders\hrule height 2.5pt depth -2.1pt\hfill}\par\vspace{1mm}}
+\newcommand\gbfield[2]{\noindent\makebox[5.2em][l]{\color{muted}#1}#2\par}
+\newcommand\gbfieldrule{\par\vspace{0.6mm}{\color{rule}\hrule}\vspace{1.4mm}}
+\newcommand\gbcalrow[2]{\noindent\makebox[6.8em][l]{\color{muted}#1}\parbox[t]{\dimexpr\linewidth-6.8em}{\raggedright #2}\par\vspace{0.8mm}}
+\newcommand\gbcalnote[1]{\par\vspace{0.5mm}\noindent{\itshape\color{muted}#1}\par}
+\newcommand\gbtag[1]{\colorbox{boxhead}{\scriptsize\bfseries\MakeUppercase{#1}}}
+\newcommand\gbcode[1]{{\ttfamily #1}}
+
+\begin{document}
+\frontmatter
+\pagestyle{empty}
+
+% --- title page -------------------------------------------------------------
+\begin{titlepage}
+\centering
+\vspace*{48mm}
+{\fontsize{34}{38}\selectfont %%TITLE%%\par}
+\vspace{5mm}
+{\large\itshape %%SUBTITLE%%\par}
+\vfill
+{\sffamily\scriptsize\addfontfeature{LetterSpace=25}\MakeUppercase{%%AUTHOR%%}\par}
+\vspace{20mm}
+\end{titlepage}
+
+% --- blurb ------------------------------------------------------------------
+\cleardoublepage
+\vspace*{30mm}
+{\itshape %%BLURB%%\par}
+
+% --- how to read ------------------------------------------------------------
+\cleardoublepage
+{\centering\large How to read this book\par}\vspace{6mm}
+\noindent This is not an ordinary novel. You read it section by section. Most of the time a section flows straight into the next one, and you read on as you would in any book. When you reach a choice, pick one and turn to the numbered section it names. Section numbers are printed at the top of each section, and the outer corner of every page shows which sections it holds.
+
+%%SESSIONS%% A session ends at a natural stopping place. Put the bookmark in, and come back tomorrow.
+
+Sometimes a section asks you to note a \textbf{codeword}. Write it on the codeword sheet at the front of the book. Later sections may ask whether you have it. Codewords are how the book remembers who you have been, so be honest with it.
+
+\vspace{6mm}{\centering Begin at section \gbref{1}.\par}
+
+\clearpage
+{\centering\large Codeword sheet\par}\vspace{6mm}
+\noindent\begin{tabularx}{\linewidth}{@{}XXX@{}}
+%%SHEET%%
+\end{tabularx}
+\vfill
+\noindent{\sffamily\small Bookmark: section \rule{18mm}{0.4pt}\qquad Session \rule{12mm}{0.4pt}}
+
+\mainmatter
+\pagestyle{fancy}
+%%BODY%%
+
+\end{document}

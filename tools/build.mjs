@@ -3,14 +3,17 @@
 //   dist/index.html                 library page
 //   dist/<slug>/index.html          web reader
 //   dist/<slug>/book.json           compiled story
-//   dist/<slug>/print.html          print edition (numbered sections, paged CSS)
-// Flags: --check (validate only), --stats (print reading-time report)
+//   dist/<slug>/<slug>.tex          print edition source (LaTeX, see tools/latex/template.tex)
+//   dist/<slug>/<slug>.pdf          print edition, with --pdf (needs xelatex)
+// Flags: --check (validate only), --stats (reading-time report), --pdf (compile LaTeX)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadBook } from './lib/parse.mjs';
 import { renderMarkdown, renderInline } from './lib/render.mjs';
 import { validate, stats } from './lib/analyze.mjs';
+import { bookToLatex, templateFor } from './lib/latex.mjs';
+import { spawnSync } from 'node:child_process';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = new Set(process.argv.slice(2));
@@ -41,6 +44,7 @@ for (const slug of slugs) {
   }
   const s = stats(book);
   if (args.has('--stats') || args.has('--check')) printStats(s, book);
+  else console.log(`  one read-through ≈ ${(s.pathWords.avg / s.wpm / 60).toFixed(1)} h`);
   if (args.has('--check')) continue;
 
   const out = path.join(dist, slug);
@@ -48,8 +52,9 @@ for (const slug of slugs) {
   const compiled = compile(book);
   fs.writeFileSync(path.join(out, 'book.json'), JSON.stringify(compiled));
   fs.writeFileSync(path.join(out, 'index.html'), readerPage(book));
-  fs.writeFileSync(path.join(out, 'print.html'), printPage(book));
-  library.push({ slug, meta: book.meta, sessions: book.chapters.length, hours: s.pathWords.avg / s.wpm / 60 });
+  fs.writeFileSync(path.join(out, `${slug}.tex`), bookToLatex(book, templateFor(book.dir, root)));
+  if (args.has('--pdf') && !compilePdf(out, slug)) failed = true;
+  library.push({ slug, meta: book.meta, sessions: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)) });
 }
 
 if (!args.has('--check') && !failed) {
@@ -128,67 +133,32 @@ function readerPage(book) {
 </header>
 <main id="story" aria-live="polite"></main>
 <dialog id="codewords"><h2>Codewords</h2><p class="muted">The print edition asks you to note these on your codeword sheet. Here, the book remembers for you.</p><ul></ul><form method="dialog"><button>Close</button></form></dialog>
-<noscript><p>The web edition needs JavaScript. A <a href="print.html">print edition</a> is available.</p></noscript>
+<noscript><p>The web edition needs JavaScript. See the print edition (PDF) in the library.</p></noscript>
 <script src="../assets/reader.js" defer></script>`,
   });
 }
 
-function printPage(book) {
-  // Sections are numbered in authored order. A choice that leads to the very
-  // next section is printed as a quiet "continue", so linear stretches read
-  // like an ordinary novel and you only flip pages at real decisions.
-  const order = book.chapters.flatMap((c) => c.passages);
-  const num = new Map(order.map((id, i) => [id, i + 1]));
-  const codewords = new Set();
-  for (const p of book.passages.values()) p.set.forEach((c) => codewords.add(c));
-
-  const sections = book.chapters
-    .map((c) => {
-      const items = c.passages
-        .map((id) => {
-          const p = book.passages.get(id);
-          const n = num.get(id);
-          const sets = p.set.map((cw) => `<p class="cw-set">Note the codeword <b>${esc(cw)}</b>.</p>`).join('');
-          const clears = p.clear.map((cw) => `<p class="cw-set">Cross out the codeword <b>${esc(cw)}</b> if you have it.</p>`).join('');
-          let choices = '';
-          if (p.end) choices = `<p class="ending">${esc(p.end)}</p>`;
-          else if (p.tbc) choices = `<p class="ending">To be continued.</p>`;
-          else if (p.choices.length === 1 && !p.choices[0].if && !p.choices[0].unless && num.get(p.choices[0].target) === n + 1)
-            choices = `<p class="continue">❧</p>`;
-          else if (p.choices.length === 1 && !p.choices[0].if && !p.choices[0].unless)
-            choices = `<p class="goto">Turn to <b>${num.get(p.choices[0].target)}</b>.</p>`;
-          else
-            choices = `<ul class="choices">${p.choices
-              .map((ch) => {
-                const cond = ch.if
-                  ? `<i>If you have the codeword${ch.if.length > 1 ? 's' : ''} ${ch.if.map((x) => `<b>${esc(x)}</b>`).join(' and ')}:</i> `
-                  : ch.unless
-                    ? `<i>If you do not have the codeword ${ch.unless.map((x) => `<b>${esc(x)}</b>`).join(' or ')}:</i> `
-                    : '';
-                return `<li>${cond}${renderInline(ch.text)} <span class="turn">turn to <b>${num.get(ch.target)}</b></span></li>`;
-              })
-              .join('')}</ul>`;
-          return `<section class="sec" id="s${n}"><h3 class="sec-num">${n}</h3>${renderMarkdown(p.text)}${sets}${clears}${choices}</section>`;
-        })
-        .join('\n');
-      return `<div class="chapter"><header class="chapter-head"><p class="session">Session ${c.index + 1} of ${book.chapters.length}</p><h2>${esc(c.title)}</h2><p class="subtitle">${esc(c.subtitle)}</p></header>${items}</div>`;
-    })
-    .join('\n');
-
-  const front = `<div class="titlepage"><h1>${esc(book.meta.title)}</h1><p class="subtitle">${esc(book.meta.subtitle || '')}</p><p class="author">${esc(book.meta.author || '')}</p></div>
-<div class="howto"><h2>How to read this book</h2>
-<p>This is not an ordinary novel. You read it section by section. Most of the time a section flows straight into the next one; when you reach a choice, pick one and turn to the numbered section it names. Section numbers are printed large at the top of each section.</p>
-<p>The book is divided into ${book.chapters.length} sessions of roughly an hour each. A session ends at a natural stopping point. Put a bookmark in, and come back tomorrow.</p>
-<p>Some sections ask you to note a <b>codeword</b>. Write it on the sheet below. Later sections may ask whether you have it. Codewords are how the book remembers who you have been.</p>
-<div class="sheet"><h3>Codeword sheet</h3><div class="sheet-grid">${Array.from({ length: 24 }, () => '<span></span>').join('')}</div><p class="muted">Bookmark (section): ______ &nbsp;&nbsp; Session: ______</p></div>
-<p>Begin at section <b>1</b>.</p></div>`;
-
-  return shell({
-    title: `${book.meta.title} — print edition`,
-    css: ['../assets/artifacts.css', '../assets/print.css'],
-    bodyClass: 'print',
-    body: front + sections,
-  });
+function compilePdf(out, slug) {
+  // Two passes so running heads and PDF bookmarks settle.
+  const build = path.join(out, 'latex');
+  fs.mkdirSync(build, { recursive: true });
+  for (let pass = 1; pass <= 2; pass++) {
+    const r = spawnSync('xelatex', ['-interaction=nonstopmode', '-halt-on-error', `-output-directory=${build}`, path.join(out, `${slug}.tex`)], { encoding: 'utf8' });
+    if (r.error) {
+      console.log('  ERROR xelatex not found — install TeX Live (texlive-xetex, texlive-latex-extra, tex-gyre, fonts-texgyre, fonts-dejavu)');
+      return false;
+    }
+    if (r.status !== 0) {
+      const log = r.stdout.split('\n');
+      const i = log.findIndex((l) => l.startsWith('!'));
+      console.log(`  ERROR xelatex failed:\n${log.slice(Math.max(0, i - 2), i + 12).join('\n')}\n  full log: ${path.relative(root, path.join(build, slug + '.log'))}`);
+      return false;
+    }
+  }
+  fs.copyFileSync(path.join(build, `${slug}.pdf`), path.join(out, `${slug}.pdf`));
+  const pages = (fs.readFileSync(path.join(build, `${slug}.log`), 'utf8').match(/Output written on [\s\S]*?\((\d+) p/) || [])[1];
+  console.log(`  print edition: dist/${slug}/${slug}.pdf (${pages} pages, A5)`);
+  return true;
 }
 
 function libraryPage(books) {
@@ -201,7 +171,7 @@ ${books
   .map(
     (b) => `<article class="book-card"><h2><a href="${b.slug}/">${esc(b.meta.title)}</a></h2><p class="subtitle">${esc(b.meta.subtitle || '')}</p>
 <div class="blurb">${renderMarkdown(b.meta.blurb || '')}</div>
-<p class="muted">${b.sessions} sessions · <a href="${b.slug}/">Read online</a> · <a href="${b.slug}/print.html">Print edition</a></p></article>`
+<p class="muted">${b.sessions} sessions · <a href="${b.slug}/">Read online</a>${b.pdf ? ` · <a href="${b.slug}/${b.slug}.pdf">Print edition (PDF)</a>` : ''}</p></article>`
   )
   .join('\n')}</main>`,
   });

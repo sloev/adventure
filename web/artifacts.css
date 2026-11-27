@@ -40,6 +40,9 @@
 .slack-log, .phone-log, .pr-comments { padding: 8px 0; }
 .chat-msg { display: flex; gap: 10px; padding: 5px 14px; }
 .chat-msg.reply { padding-left: 46px; }
+.chat-msg.cont { padding-top: 0; }
+.avatar-gap { flex: none; width: 34px; }
+.chat-msg.reply .avatar-gap { width: 24px; }
 .chat-msg.reply .avatar { width: 24px; height: 24px; font-size: .6rem; }
 .avatar {
   flex: none; width: 34px; height: 34px; border-radius: 6px;
