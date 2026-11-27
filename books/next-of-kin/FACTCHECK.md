@@ -53,6 +53,16 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 57 | Danish birthday customs: paper flags in the cake, the flag on the garden pole, taken down before sunset; "I dag er det …s fødselsdag". | Ch4 | High | — |
 | 58 | Danish clocks go forward on the last Sunday of March (29 March 2026). | Ch4 | High | — |
 
+| 59 | Rigsarkivet access decisions carry conditions (no publication of identifying private information about third parties; photography for own use). | Ch5 | Medium | Standard wording. |
+| 60 | Reading-room practice: lockers, pencils only, no food/drink/coats, foam supports and weights, photography without flash. | Ch5 | Medium-high | Viborg specifics. |
+| 61 | Rigsarkivet Viborg is in the town below the cathedral (not by the motorway). | Ch5 | Medium | Location/description. |
+| 62 | Frikorps Danmark trained at Treskau near Posen; at Demyansk from May 1942. | Ch5 | High | — |
+| 63 | Frøslevlejren became Fårhuslejren after liberation, interning collaborators (up to ~5,000). | Ch5 | High | Peak numbers. |
+| 64 | Straffelovstillægget § 10 covered German military service; internment counted towards sentence; parole after 2/3. | Ch5 | Medium | Section numbers and parole practice. |
+| 65 | Police statements written in the third person ("Afh. forklarer") and signed "Oplæst og vedtaget". | Ch5 | High | — |
+| 66 | Adoption files closed long (often 100 years); the adoptee has the strongest right of access; birth relatives usually refused while the adoptee may be alive. | Ch5 | Medium | Current rules (Familieretshuset/Ankestyrelsen vs Rigsarkivet). |
+| 67 | Easter 2026: Maundy Thursday 2 April, Easter Sunday 5 April, Easter Monday 6 April. | Ch5 | High | — |
+
 ## History
 
 | # | Claim | Where | Confidence | Please verify |

@@ -486,8 +486,3 @@ On the last day of March, a Tuesday, Mette clears out her locker on the step-dow
 And on the same morning, at 09:12, an email arrives from Rigsarkivet.
 
 * [Continue](c5-open)
-
-:: c5-open
-*Chapter 5, “Reading room”, April, is still being written.*
-
-@tbc
