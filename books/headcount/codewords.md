@@ -35,3 +35,4 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `THINDOC` | Documented the reconciler thinly: correct, but without the scars | ch09 calibration (flagged as below target); ch11: you remain the knowledge |
 | `TERMS` | Took written consent terms (attribution, no use in reviews) to Rebecca before documenting | ch09: whether the terms held; ch11: the council inherits them |
 | `RECORDED` | Consented to Otto recording your screen sessions | ch10: Otto debugs "in your style"; ch12 |
+| `CANDIDATE` | Stood as a candidate for the works council (election 22 September) | ch09/ch10 election result; ch11 consultation; ending *The Council* |
