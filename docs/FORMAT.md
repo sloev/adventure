@@ -45,7 +45,21 @@ The alarm goes at 06:40. ...
 * [Hidden if you have it](target-id) unless HOLDOUT
 ```
 
-A passage with a single unconditional choice is a "continue". In print, if the target is the next section it simply flows on; otherwise the reader is told which section to turn to. Every passage with choices must have at least one unconditional choice.
+Every real choice also carries its **print wording** after a `|`. The web edition shows the short button text; the print edition prints the classic gamebook sentence and adds the page number:
+
+```markdown
+* [Take the bike. It's only drizzle.](s1-bike) | If you take the bike, sleet or no sleet
+* [Take the U-Bahn.](s1-ubahn) | If you take the U-Bahn and read Slack on the way in
+* [Ask about the data.](s2-ask-data) if ASKED | and want to follow up on your all-hands question
+```
+
+prints as
+
+> If you take the bike, sleet or no sleet, turn to page **4**.
+> If you take the U-Bahn and read Slack on the way in, turn to page **6**.
+> If you have the codeword **ASKED** and want to follow up on your all-hands question, turn to page **31**.
+
+For conditional choices the wording continues the sentence "If you have the codeword X …", so start it with *and*. A conditional `Continue` needs no wording ("If you have the codeword X, turn to page N."). A passage with a single unconditional choice is a "continue": in print it flows straight on, or says "Turn to page N." Every passage with choices must have at least one unconditional choice.
 
 ### Directives
 
@@ -139,10 +153,17 @@ decision: A5 trim, TeX Gyre Pagella body text, section-range running heads,
 codeword sheet, in-world document boxes, emoji (via `twemojis`). To restyle a
 single book, copy the template to `books/<slug>/template.tex` and edit it.
 
-Sections are numbered in authored order. A choice that leads to the very next
-section prints as a quiet fleuron, so linear stretches read like a novel; real
-choices print as a dotted list with *turn to N*. In the PDF every section
-number is a link.
+The print edition is a **page-based gamebook** in the classic choose-your-path tradition:
+
+- The reader navigates by **page number** ("turn to page 47"). Page numbers are resolved by LaTeX (`\pageref`), and XeLaTeX is rerun until they are stable.
+- **Every passage that can be jumped to starts at the top of a new page.** A passage flows on from the previous one only when that is its single way in, so a reader never reads into a branch they didn't choose.
+- Choices sit at the end of a passage as full sentences: *If you …, turn to page N.*
+- Codewords are written on a codeword sheet in the front matter (as in Fabled Lands or Lone Wolf); conditional choices ask *If you have the codeword X …*.
+- Each session ends with a box telling the reader which page to write down as a bookmark.
+- Endings print *The End*; unfinished books print *To be continued …*.
+- The front matter tells the reader not to read straight through.
+- `npm run pdf` **proof-reads the PDF**: it extracts the text of every page and checks that each passage really starts on the page it is referenced as. A wrong page reference fails the build.
+- In the PDF every page reference is also a link.
 
 Requirements (Debian/Ubuntu): `texlive-xetex texlive-latex-extra
-texlive-fonts-recommended tex-gyre fonts-texgyre fonts-dejavu`.
+texlive-fonts-recommended tex-gyre fonts-texgyre fonts-dejavu`, plus `poppler-utils` for the page-reference check.

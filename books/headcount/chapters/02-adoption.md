@@ -39,8 +39,8 @@ You'd talked to Sanne. Sanne had said, "You already know what you want, you just
 
 So in the end, on that Wednesday, with the Marzocco hissing and Priya waiting, it had come down to something simpler than all of it: whether you wanted to be in the room.
 
-* ["Okay. I'll do it."](s2-champ-wed-yes)
-* ["No. Give it to Tobi."](s2-champ-wed-no)
+* ["Okay. I'll do it."](s2-champ-wed-yes) | If you tell Priya you'll do it
+* ["No. Give it to Tobi."](s2-champ-wed-no) | If you tell her to give it to Tobi
 
 :: s2-champ-wed-yes
 "Okay," you'd said. "I'll do it."
@@ -170,9 +170,9 @@ You talk about the team. About Priya, who protects people. About Ines, whose reg
 
 You think about it. You think about Sasha saying *you never let them be the only one who knows how the system works*, and Sanne saying *don't let them give you anything new*, and Fatma's page four that nobody reads.
 
-* [Tell her the truth about the reconciler: three people understand it, and it terrifies you.](s2-skip-busfactor)
-* [Tell her about the measurement: AI-assisted PR counts don't measure what she thinks they do.](s2-skip-metrics)
-* [Keep it safe. Talk about the flaky bank sandboxes.](s2-skip-safe)
+* [Tell her the truth about the reconciler: three people understand it, and it terrifies you.](s2-skip-busfactor) | If you tell her the truth about the reconciler — that three people understand it, and it frightens you
+* [Tell her about the measurement: AI-assisted PR counts don't measure what she thinks they do.](s2-skip-metrics) | If you tell her the AI-assisted PR count doesn't measure what she thinks it does
+* [Keep it safe. Talk about the flaky bank sandboxes.](s2-skip-safe) | If you play it safe and talk about the bank sandboxes
 
 :: s2-skip-busfactor
 "The reconciler," you say. "Honestly. It's the thing that keeps me awake."
@@ -240,9 +240,9 @@ She writes it down. Word for word, it looks like. When she's done she looks at i
 
 "That's all right. Neither do I, yet." She closes the notebook. "Now — your turn. Anything you want to ask me."
 
-* [Ask her straight out: "Are there going to be layoffs?"](s2-skip-ask-layoffs)
-* [Ask about the per-user data, following up your all-hands question.](s2-skip-ask-data) if ASKED
-* [Ask what happens to Jens.](s2-skip-ask-jens)
+* [Ask her straight out: "Are there going to be layoffs?"](s2-skip-ask-layoffs) | If you ask her straight out whether there will be layoffs
+* [Ask about the per-user data, following up your all-hands question.](s2-skip-ask-data) if ASKED | and want to follow up on your all-hands question about per-user data
+* [Ask what happens to Jens.](s2-skip-ask-jens) | If you ask her what will happen to Jens
 
 :: s2-skip-ask-layoffs
 "Are there going to be layoffs?"
@@ -409,9 +409,9 @@ You do know how this works. You've seen it with velocity charts, with story poin
 
 The river glitters. Somewhere upstream, a U-Bahn rumbles across the Oberbaum bridge.
 
-* ["I'll sit with Noor and show her how to route her work through Otto. It'll get her number up."](s2-priya-noor)
-* ["I'll push my own work through Otto instead. Leave Noor out of it."](s2-priya-self)
-* ["The number's measuring the wrong thing. I'm going to say so — to Rebecca."](s2-priya-push)
+* ["I'll sit with Noor and show her how to route her work through Otto. It'll get her number up."](s2-priya-noor) | If you offer to show Noor how to route her work through Otto
+* ["I'll push my own work through Otto instead. Leave Noor out of it."](s2-priya-self) | If you offer to push your own work through Otto and leave Noor out of it
+* ["The number's measuring the wrong thing. I'm going to say so — to Rebecca."](s2-priya-push) | If you tell Priya you're going to take the problem with the metric to Rebecca
 
 :: s2-priya-noor
 "I'll sit with Noor," you say. "There's a way to do it. She's using Otto all the time — she just writes the code herself afterwards. If she lets Otto write the first draft and then edits it, it gets the label. Same work. Different number."
@@ -598,10 +598,10 @@ She looks at you. Then she nods slowly and writes in her notebook: *Write down w
 :: s2-sidescenes
 The week ends the way February weeks end: in slush, in darkness at half past four, in a slow drift of people towards the U-Bahn and home. Before it does, there's time — if you want it — for one more conversation.
 
-* [Find Fatma at the window table at lunch on Friday.](s2-fatma) if SUPPORTTABLE
-* [Stay for Sasha's Friday kicker tournament.](s2-kicker) if KICKER
-* [Take Ines for a coffee at the Späti.](s2-ines) if TEAMTABLE
-* [Go home on time. It's Friday.](s2-planning)
+* [Find Fatma at the window table at lunch on Friday.](s2-fatma) if SUPPORTTABLE | and want to find Fatma at the window table on Friday
+* [Stay for Sasha's Friday kicker tournament.](s2-kicker) if KICKER | and want to stay for Sasha's Friday kicker tournament
+* [Take Ines for a coffee at the Späti.](s2-ines) if TEAMTABLE | and want to take Ines for a coffee at the Späti
+* [Go home on time. It's Friday.](s2-planning) | If you simply go home on time
 
 :: s2-fatma
 The window table in the Kantine on a Friday in February is the coldest place in the building, and the Support team has it to themselves. Friday is fish — *Seelachsfilet mit Kartoffelsalat* — and the room smells of it. Dorota, at the till, says "*Fisch heute, Herr Fahrrad. Gut für das Gehirn*," and taps her temple.
@@ -632,8 +632,8 @@ You look down the table. Jonte, the young man with the septum piercing, is laugh
 
 "Because to start it, you need three employees to invite everyone to an election meeting. Three names. On a piece of paper." She eats some soup. "I have one name. Mine. Jonte will sign, but Jonte is leaving on the thirty-first of March, so Jonte doesn't help." She looks at you. "I'm not asking now. Now is too early. Now people will say *why, nothing has happened*. But something will happen, Jakob. I've worked here for ten years. I can smell it. When it happens, will you sign?"
 
-* ["Yes. When it's time, I'll sign."](s2-fatma-yes)
-* ["I need to think about it, Fatma."](s2-fatma-think)
+* ["Yes. When it's time, I'll sign."](s2-fatma-yes) | If you tell Fatma you'll sign
+* ["I need to think about it, Fatma."](s2-fatma-think) | If you tell her you need to think about it
 
 :: s2-fatma-yes
 "Yes," you say. "When it's time, I'll sign."
@@ -779,10 +779,10 @@ Priya, at the head of the table, puts her pen down. She looks around the room �
 
 Everyone looks at you.
 
-* ["Keep the manual checklist until the generated suite has caught a real bug on a real release. Prove it first."](s2-plan-ines)
-* ["Hybrid. Automate the bulk. Ines keeps the bank-specific steps — the ones that need someone who knows which sandbox lies."](s2-plan-hybrid)
-* ["Honestly? Eighteen minutes versus two days. I think we should do it, and fix the weak tests as we go."](s2-plan-auto)
-* [Say you need to look at the tests yourself before you have an opinion.](s2-plan-dodge)
+* ["Keep the manual checklist until the generated suite has caught a real bug on a real release. Prove it first."](s2-plan-ines) | If you argue for keeping the manual checklist until the new suite has proved itself
+* ["Hybrid. Automate the bulk. Ines keeps the bank-specific steps — the ones that need someone who knows which sandbox lies."](s2-plan-hybrid) | If you propose a hybrid, with Ines keeping the bank-specific steps
+* ["Honestly? Eighteen minutes versus two days. I think we should do it, and fix the weak tests as we go."](s2-plan-auto) | If you back the automation
+* [Say you need to look at the tests yourself before you have an opinion.](s2-plan-dodge) | If you say you need to read the tests before you have an opinion
 
 :: s2-plan-ines
 "Keep the checklist," you say. "For now. Run both. When the generated suite catches a real bug on a real release that the checklist missed — then we retire the checklist. Not before."

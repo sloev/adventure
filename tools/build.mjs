@@ -13,6 +13,7 @@ import { loadBook } from './lib/parse.mjs';
 import { renderMarkdown, renderInline } from './lib/render.mjs';
 import { validate, stats } from './lib/analyze.mjs';
 import { bookToLatex, templateFor } from './lib/latex.mjs';
+import { verifyPdf } from './lib/verify-pdf.mjs';
 import { spawnSync } from 'node:child_process';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -53,7 +54,7 @@ for (const slug of slugs) {
   fs.writeFileSync(path.join(out, 'book.json'), JSON.stringify(compiled));
   fs.writeFileSync(path.join(out, 'index.html'), readerPage(book));
   fs.writeFileSync(path.join(out, `${slug}.tex`), bookToLatex(book, templateFor(book.dir, root)));
-  if (args.has('--pdf') && !compilePdf(out, slug)) failed = true;
+  if (args.has('--pdf') && !compilePdf(out, slug, book)) failed = true;
   library.push({ slug, meta: book.meta, sessions: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)) });
 }
 
@@ -138,11 +139,12 @@ function readerPage(book) {
   });
 }
 
-function compilePdf(out, slug) {
+function compilePdf(out, slug, book) {
   // Two passes so running heads and PDF bookmarks settle.
   const build = path.join(out, 'latex');
   fs.mkdirSync(build, { recursive: true });
-  for (let pass = 1; pass <= 2; pass++) {
+  // Rerun until page references are stable (page numbers can shift the layout).
+  for (let pass = 1; pass <= 5; pass++) {
     const r = spawnSync('xelatex', ['-interaction=nonstopmode', '-halt-on-error', `-output-directory=${build}`, path.join(out, `${slug}.tex`)], { encoding: 'utf8' });
     if (r.error) {
       console.log('  ERROR xelatex not found — install TeX Live (texlive-xetex, texlive-latex-extra, tex-gyre, fonts-texgyre, fonts-dejavu)');
@@ -154,10 +156,17 @@ function compilePdf(out, slug) {
       console.log(`  ERROR xelatex failed:\n${log.slice(Math.max(0, i - 2), i + 12).join('\n')}\n  full log: ${path.relative(root, path.join(build, slug + '.log'))}`);
       return false;
     }
+    if (pass >= 2 && !/Rerun to get|Label\(s\) may have changed/.test(fs.readFileSync(path.join(build, `${slug}.log`), 'utf8'))) break;
   }
   fs.copyFileSync(path.join(build, `${slug}.pdf`), path.join(out, `${slug}.pdf`));
   const pages = (fs.readFileSync(path.join(build, `${slug}.log`), 'utf8').match(/Output written on [\s\S]*?\((\d+)\s/) || [])[1];
   console.log(`  print edition: dist/${slug}/${slug}.pdf (${pages} pages, A5)`);
+  const v = verifyPdf(book, path.join(out, `${slug}.pdf`), path.join(build, `${slug}.aux`));
+  if (v.skipped) console.log(`  warn  page references not verified: ${v.skipped}`);
+  else if (v.bad.length) {
+    v.bad.forEach((b) => console.log(`  ERROR ${b}`));
+    return false;
+  } else console.log(`  page references verified: all ${v.checked} passages start on the page they are referenced as`);
   return true;
 }
 

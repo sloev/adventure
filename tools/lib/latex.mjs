@@ -202,36 +202,59 @@ export function blockMd(src, { indent = true } = {}) {
 }
 
 export function bookToLatex(book, templatePath) {
+  // Page-based gamebook layout (the classic "turn to page N" convention):
+  //  - every passage the reader can jump to starts at the top of a new page;
+  //  - a passage only flows on from the one before it when that is its single
+  //    way in, so you never read into a branch you didn't choose;
+  //  - every reference is a real page number, resolved by LaTeX (\pageref).
   const order = book.chapters.flatMap((c) => c.passages);
-  const num = new Map(order.map((id, i) => [id, i + 1]));
-  const cwList = (xs) => xs.map((x) => `the codeword \\gbcw{${escRaw(x)}}`).join(' and ');
+  const incoming = new Map(order.map((id) => [id, []]));
+  for (const id of order) {
+    const p = book.passages.get(id);
+    const single = p.choices.length === 1 && !p.choices[0].if && !p.choices[0].unless;
+    for (const ch of p.choices) incoming.get(ch.target)?.push({ from: id, single });
+  }
+  const label = (id) => `p:${id}`;
+  const page = (id) => `\\gbpage{${label(id)}}`;
+  const flowsFrom = (id, prev) => {
+    const inc = incoming.get(id);
+    return !!prev && inc.length === 1 && inc[0].from === prev && inc[0].single && book.passages.get(prev).chapter === book.passages.get(id).chapter;
+  };
+  const cwPhrase = (xs) => (xs.length === 1 ? `the codeword \\gbcw{${escRaw(xs[0])}}` : `the codewords ${xs.map((x) => `\\gbcw{${escRaw(x)}}`).join(' and ')}`);
+  const neither = (xs) => (xs.length === 1 ? `If you do not have the codeword \\gbcw{${escRaw(xs[0])}}` : `If you have none of the codewords ${xs.map((x) => `\\gbcw{${escRaw(x)}}`).join(', ')}`);
+
+  function choiceSentence(ch) {
+    const cond = ch.if ? `If you have ${cwPhrase(ch.if)}` : ch.unless ? neither(ch.unless) : '';
+    const phrase = ch.print ? inlineMd(ch.print) : '';
+    const to = `turn to page ${page(ch.target)}.`;
+    if (cond && phrase) return `${cond} ${phrase}, ${to}`;
+    if (cond) return `${cond}, ${to}`;
+    if (phrase) return `${phrase}, ${to}`;
+    return `\\emph{${inlineMd(ch.text)}} — ${to}`;
+  }
 
   const body = book.chapters
     .map((c) => {
-      const head = `\\gbsession{${c.index + 1}}{${book.chapters.length}}{${escText(c.title)}}{${escText(c.subtitle)}}`;
-      const secs = c.passages.map((id) => {
+      const out = [`\\gbsession{${c.index + 1}}{${book.chapters.length}}{${escText(c.title)}}{${escText(c.subtitle)}}`];
+      c.passages.forEach((id, i) => {
         const p = book.passages.get(id);
-        const n = num.get(id);
-        const parts = [`\\gbsec{${n}}`, blockMd(p.text)];
-        p.set.forEach((cw) => parts.push(`\\gbcodeword{${escRaw(cw)}}`));
-        p.clear.forEach((cw) => parts.push(`\\gbclearcodeword{${escRaw(cw)}}`));
+        const prev = i > 0 ? c.passages[i - 1] : null;
+        if (i > 0) out.push(flowsFrom(id, prev) ? '\\gbflow' : '\\gbnewpage');
+        out.push(`\\gbanchor{${label(id)}}`, blockMd(p.text));
+        p.set.forEach((cw) => out.push(`\\gbcodeword{${escRaw(cw)}}`));
+        p.clear.forEach((cw) => out.push(`\\gbclearcodeword{${escRaw(cw)}}`));
+        const next = c.passages[i + 1];
         const single = p.choices.length === 1 && !p.choices[0].if && !p.choices[0].unless;
-        if (p.end) parts.push(`\\gbending{${escText(p.end)}}`);
-        else if (p.tbc) parts.push('\\gbending{To be continued}');
-        else if (single && num.get(p.choices[0].target) === n + 1) parts.push('\\gbcontinue');
-        else if (single) parts.push(`\\gbgoto{${num.get(p.choices[0].target)}}`);
-        else
-          parts.push(
-            `\\begin{gbchoices}\n${p.choices
-              .map((ch) => {
-                const cond = ch.if ? `\\gbif{${cwList(ch.if)}}` : ch.unless ? `\\gbunless{${cwList(ch.unless)}}` : '';
-                return `\\gbchoice{${cond}${inlineMd(ch.text)}}{${num.get(ch.target)}}`;
-              })
-              .join('\n')}\n\\end{gbchoices}`
-          );
-        return parts.join('\n\n');
+        if (p.end) out.push(`\\gbtheend{${escText(p.end)}}`);
+        else if (p.tbc) out.push('\\gbtbc');
+        else if (single && p.choices[0].target === next && flowsFrom(next, id)) {
+          /* flows straight on */
+        } else if (single && book.passages.get(p.choices[0].target).chapter !== c.id)
+          out.push(`\\gbsessionend{${c.index + 1}}{${label(p.choices[0].target)}}`);
+        else if (single) out.push(`\\gbturnto{${label(p.choices[0].target)}}`);
+        else out.push(`\\begin{gbchoices}\n${p.choices.map((ch) => `\\gbchoice{${choiceSentence(ch)}}`).join('\n')}\n\\end{gbchoices}`);
       });
-      return [head, ...secs].join('\n\n');
+      return out.join('\n\n');
     })
     .join('\n\n');
 
@@ -242,9 +265,10 @@ export function bookToLatex(book, templatePath) {
     TITLE: escText(book.meta.title || ''),
     SUBTITLE: escText(book.meta.subtitle || ''),
     AUTHOR: escText(book.meta.author || ''),
+    START: label(order[0]),
     SESSIONS: book.chapters.length === 1
-      ? 'So far there is one session, roughly an hour of reading.'
-      : `There are ${book.chapters.length} sessions, each roughly an hour of reading.`,
+      ? 'So far this book has one session, roughly an hour of reading.'
+      : `The book is divided into ${book.chapters.length} sessions of roughly an hour each.`,
     BLURB: blurb,
     SHEET: sheetRows,
     BODY: body,

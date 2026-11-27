@@ -14,7 +14,8 @@ Rules:
 4. **Time is real.** Each session covers one or a few concrete days. Dates are those of a year where 12 January is a Monday. Weather is Berlin weather.
 5. **Choices are small and moral, not heroic.** Most choices change a relationship, a codeword, or what you learn. Branches rejoin quickly (branch-and-bottleneck). Big consequences surface sessions later, through codewords.
 6. **Each session ≈ 13–14k words on a single path** (~60 minutes at 230 wpm). Run `npm run stats` to check.
-7. **No real company is depicted.** Real tools (Slack, GitHub, PagerDuty, Datadog, Jira, Google Meet, Personio) are fine as props. The AI system is Kontor's internal agent platform, **Otto**, named after the CEO's dog; the vendor is never named.
+7. **Every real choice gets print wording** (`| If you …`): concrete, in the second person, without revealing what follows.
+8. **No real company is depicted.** Real tools (Slack, GitHub, PagerDuty, Datadog, Jira, Google Meet, Personio) are fine as props. The AI system is Kontor's internal agent platform, **Otto**, named after the CEO's dog; the vendor is never named.
 
 ## Setting
 

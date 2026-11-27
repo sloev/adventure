@@ -3,7 +3,7 @@
 Interactive fiction with unusual focuses. Each book is about **two weeks of reading at an hour a day** (~14 sessions), and every book is published in two forms from the same source:
 
 - **Web**: a reader that remembers your place, your choices and your codewords, and tells you when a session is a good place to stop.
-- **Print**: a gamebook typeset with **LaTeX** (A5, numbered sections, a codeword sheet, real-looking Slack threads, emails and pull requests).
+- **Print**: a classic page-based gamebook typeset with **LaTeX**: "If you…, turn to page 47", every branch starting at the top of a page, a codeword sheet, real-looking Slack threads, emails and pull requests. The build proof-reads the PDF to make sure every page reference lands on the right text.
 
 ## Books
 

@@ -48,8 +48,8 @@ Then it's 08:10 and you are standing on the pavement with your helmet in your ha
 
 The Hercules is locked to the railings in the courtyard. Its rear brake has been making a noise like a dying seagull since October. The ride is twenty-two minutes along the canal. The U8 to Kottbusser Tor and the U1 to Schlesisches Tor is twenty-eight minutes door to door, if nobody is lying on the tracks, and it is warm, and it smells like wet coats.
 
-* [Take the bike. It's only drizzle.](s1-bike)
-* [Take the U-Bahn. Read Slack on the way in.](s1-ubahn)
+* [Take the bike. It's only drizzle.](s1-bike) | If you take the bike, sleet or no sleet
+* [Take the U-Bahn. Read Slack on the way in.](s1-ubahn) | If you take the U-Bahn and read Slack on the way in
 
 :: s1-bike
 It is not only drizzle.
@@ -165,8 +165,8 @@ The kitchen is ten metres away, around the corner by the lift shaft. You can hea
 
 Or you could sit down, put your headphones on, and read the 147 messages before anyone has a chance to ask you anything.
 
-* [Get coffee first. Hear what people are saying.](s1-coffee)
-* [Sit down. Read Slack before standup.](s1-slack)
+* [Get coffee first. Hear what people are saying.](s1-coffee) | If you go to the kitchen first to hear what people are saying
+* [Sit down. Read Slack before standup.](s1-slack) | If you sit down at your desk and read Slack before standup
 
 :: s1-coffee
 The kitchen at Kontor is the size of a small apartment and contains the single most expensive object on the fourth floor: a two-group La Marzocco espresso machine, bought in 2021 when the company raised its Series C and was spending money on things as an expression of identity. Everyone calls it *the Marzocco*. It has a laminated sign of its own — *Please clean the steam wand after use!!! This means YOU* — and on Mondays it is broken. Nobody knows why it is broken on Mondays. There is a theory that the cleaners turn it off at the wall on Friday nights and something in its Italian soul can't handle the cold start. There is a Jira ticket in the Facilities project, FAC-212, that has been open for nineteen months.
@@ -534,9 +534,9 @@ The Slido QR code appears. Around you, phones come up like lighters at a concert
 
 You have the Slido page open on your phone. The text box is empty. The cursor is blinking.
 
-* [Write a question. Put your name on it.](s1-slido-named)
-* [Upvote the top question and say nothing.](s1-slido-quiet)
-* [Lean over to Sasha and say what you actually think.](s1-slido-sasha)
+* [Write a question. Put your name on it.](s1-slido-named) | If you write a question for the Slido and put your name on it
+* [Upvote the top question and say nothing.](s1-slido-quiet) | If you upvote the top question and keep quiet
+* [Lean over to Sasha and say what you actually think.](s1-slido-sasha) | If you lean over and tell Sasha what you really think
 
 :: s1-slido-named
 You type it with your thumbs, slowly, deleting it twice.
@@ -668,9 +668,9 @@ By the window, the long table where Support sits, Fatma's team, quieter than usu
 
 And on your way in, at the far end by the coat rack, you saw Noor, who didn't come to the trays at all. She took her Tupperware out of her bag and went back upstairs. She does that most days. You've never really thought about it until now.
 
-* [Sit with your team. Hear Tobi out.](s1-lunch-team)
-* [Sit with Sasha and the Support people by the window.](s1-lunch-support)
-* [Take your tray upstairs. Eat with Noor.](s1-lunch-noor)
+* [Sit with your team. Hear Tobi out.](s1-lunch-team) | If you sit with your team and hear Tobi out
+* [Sit with Sasha and the Support people by the window.](s1-lunch-support) | If you sit with Sasha and the Support team by the window
+* [Take your tray upstairs. Eat with Noor.](s1-lunch-noor) | If you take your tray upstairs and eat with Noor
 
 :: s1-lunch-team
 You slide onto the bench beside Ines. She moves her tray two centimetres to make room, which is Ines for *welcome*.
@@ -883,9 +883,9 @@ You look at the diff. You look at the clock: 13:17. The focus block you put in y
 
 At the top of the PR, Otto's review sits there in its tidy box: *Risk: medium. No blocking issues found.* Below it, a button: **Ask otto-bot a follow-up**.
 
-* [Do it properly. Check out the branch, run it, read every path that touches the PSP.](s1-review-deep)
-* [Ask Otto to go deeper on the risky parts, then decide.](s1-review-otto)
-* [Skim the core files, check the tests are green, and approve behind the feature flag.](s1-review-skim)
+* [Do it properly. Check out the branch, run it, read every path that touches the PSP.](s1-review-deep) | If you review the pull request properly — check out the branch, run it, and read every path that touches the PSP
+* [Ask Otto to go deeper on the risky parts, then decide.](s1-review-otto) | If you ask Otto to dig deeper into the risky parts and decide from there
+* [Skim the core files, check the tests are green, and approve behind the feature flag.](s1-review-skim) | If you skim the core files, check the tests are green, and approve it behind the feature flag
 
 :: s1-review-deep
 You close Slack. Actually close it, the whole app, which you do perhaps twice a year and which feels, every time, like turning off a life-support machine. You put your phone face down on the desk under the dead succulent. Then you open a terminal.
@@ -1103,8 +1103,8 @@ Noor says, quickly, "It's okay! We can do tomorrow. It's not urgent."
 
 She means it. She also, very clearly, booked a room.
 
-* [Go with Noor. The kicker will be there tomorrow.](s1-noor)
-* [Ten minutes of kicker. Move Noor to tomorrow.](s1-kicker)
+* [Go with Noor. The kicker will be there tomorrow.](s1-noor) | If you keep your meeting with Noor
+* [Ten minutes of kicker. Move Noor to tomorrow.](s1-kicker) | If you play kicker and move Noor to tomorrow
 
 :: s1-kicker
 "Tomorrow first thing," you tell Noor. "Nine. I promise. I'll bring coffee."
@@ -1221,8 +1221,8 @@ You wait.
 
 You look at her across the little round table. You think about yourself at twenty-four, at the bank in Frankfurt, being taught by a fifty-year-old COBOL programmer named Herr Brückner to read code with a pencil. You think about the fact that Herr Brückner was let go in a restructuring in 2009 and that you never found out what happened to him. You think about Tobi's *if you're not the one using it, you're the one it gets used on*. You think about what you actually believe, which is more complicated than either answer, and about the fact that she's asked you to be honest, and that she's twenty-four, and that whatever you say now she will write in the notebook.
 
-* ["Learn it properly. I'll pair with you every Thursday. Two hours. I'll block it."](s1-noor-proper)
-* ["Learn Otto. Honestly — that's where this is going. Use your carefulness to check it."](s1-noor-otto)
+* ["Learn it properly. I'll pair with you every Thursday. Two hours. I'll block it."](s1-noor-proper) | If you tell her to learn the system properly, and offer to pair with her every Thursday
+* ["Learn Otto. Honestly — that's where this is going. Use your carefulness to check it."](s1-noor-otto) | If you tell her to learn Otto and use her carefulness to check it
 
 :: s1-noor-proper
 "Learn it properly," you say.
@@ -1304,9 +1304,9 @@ Priya's watching you. Then she says, more quietly: "Also. Between us. I'd like t
 
 She doesn't need an answer this second, but she needs one by Wednesday.
 
-* ["Okay. I'll do it."](s1-priya-yes)
-* ["I don't think I'm the right person, Priya."](s1-priya-no)
-* ["Can I sleep on it? I'll tell you Wednesday."](s1-priya-maybe)
+* ["Okay. I'll do it."](s1-priya-yes) | If you tell Priya you'll be the Otto champion
+* ["I don't think I'm the right person, Priya."](s1-priya-no) | If you tell her you're not the right person
+* ["Can I sleep on it? I'll tell you Wednesday."](s1-priya-maybe) | If you ask to sleep on it until Wednesday
 
 :: s1-priya-yes
 "Okay," you say. "I'll do it."
@@ -1403,7 +1403,7 @@ Your phone is on the bedside table, face down. It's not supposed to be there. Th
 
 It buzzes once.
 
-* [Turn it over.](s1-night)
+* [Turn it over.](s1-night) | If you turn the phone over
 
 :: s1-night
 Three notifications, stacked on the lock screen in the blue light.
@@ -1445,10 +1445,10 @@ You lie there with the phone over your face, its blue light on your eyelids. Bes
 
 The cursor in the reply box blinks.
 
-* [Ask it: "What did I miss while I was on holiday?"](s1-night-missed)
-* [Ask it what "uniquely idempotent" means.](s1-night-idem) if OTTOREVIEW
-* [Ask it whether you turned off the hob.](s1-night-hob) if RUBBERSTAMP
-* [Put the phone in the drawer. That was the deal.](s1-night-drawer)
+* [Ask it: "What did I miss while I was on holiday?"](s1-night-missed) | If you ask Otto what you missed while you were on holiday
+* [Ask it what "uniquely idempotent" means.](s1-night-idem) if OTTOREVIEW | and want to ask Otto what “uniquely idempotent” means
+* [Ask it whether you turned off the hob.](s1-night-hob) if RUBBERSTAMP | and want to ask Otto whether you turned off the hob
+* [Put the phone in the drawer. That was the deal.](s1-night-drawer) | If you put the phone in the drawer, as agreed
 
 :: s1-night-missed
 You type it with your thumb, half as a joke. *What did I miss while I was on holiday?*

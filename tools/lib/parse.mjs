@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const PASSAGE_RE = /^::\s*([A-Za-z0-9_.-]+)\s*$/;
-const CHOICE_RE = /^\*\s*\[(.+?)\]\(([A-Za-z0-9_.-]+)\)\s*(?:(if|unless)\s+([A-Z0-9_ ,]+))?\s*$/;
+// * [Web text](target) [if|unless CODEWORD, ...] [| Print phrasing]
+const CHOICE_RE = /^\*\s*\[(.+?)\]\(([A-Za-z0-9_.-]+)\)\s*(?:(if|unless)\s+([A-Z0-9_ ,]+?))?\s*(?:\|\s*(.+?))?\s*$/;
 const DIRECTIVE_RE = /^@(set|clear|end|tbc|note)\b\s*(.*)$/;
 
 export function parseFrontmatter(src) {
@@ -49,6 +50,7 @@ export function parseChapter(src, file) {
         const choice = { text: cm[1], target: cm[2], loc };
         if (cm[3] === 'if') choice.if = codewordList(cm[4]);
         if (cm[3] === 'unless') choice.unless = codewordList(cm[4]);
+        if (cm[5]) choice.print = cm[5];
         cur.choices.push(choice);
         return;
       }

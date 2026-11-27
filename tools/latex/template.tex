@@ -47,23 +47,17 @@
 \raggedbottom
 \emergencystretch=1.5em
 
-% --- running heads: section range on the outer edge, like a gamebook ---------
-% Every section inserts a mark in the "gbsec" class; the header shows the first
-% and last section that appear on the page (just "12" when it is only one).
-\NewMarkClass{gbsec}
+% --- running heads: in a page-based gamebook the page number is the reader's
+% navigation, so it sits large in the outer top corner of every page.
 \newcommand\gbbooktitle{%%TITLE%%}
 \newcommand\gbsessiontitle{}
-\newcommand\gbrange{\IfMarksEqualTF{gbsec}{first-page}{last-page}
-  {\FirstMark{gbsec}}{\FirstMark{gbsec}–\LastMark{gbsec}}}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE]{\sffamily\small\bfseries\gbrange}
-\fancyhead[RO]{\sffamily\small\bfseries\gbrange}
+\fancyhead[LE,RO]{\sffamily\large\bfseries\thepage}
 \fancyhead[CE]{\footnotesize\scshape\color{muted}\MakeLowercase{\gbbooktitle}}
 \fancyhead[CO]{\footnotesize\scshape\color{muted}\MakeLowercase{\gbsessiontitle}}
-\fancyfoot[C]{\footnotesize\color{muted}\thepage}
 \renewcommand{\headrulewidth}{0pt}
-\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\footnotesize\color{muted}\thepage}}
+\fancypagestyle{plain}{\fancyhf{}\fancyhead[LE,RO]{\sffamily\large\bfseries\thepage}}
 
 % --- sessions ---------------------------------------------------------------
 % \gbsession{number}{of}{title}{subtitle}
@@ -80,35 +74,36 @@
   \phantomsection\addcontentsline{toc}{chapter}{#1.\ #3}%
 }
 
-% --- sections ---------------------------------------------------------------
-\newcommand\gbsec[1]{%
-  \par\needspace{5\baselineskip}\vspace{5mm plus 2mm}%
-  \phantomsection\hypertarget{sec#1}{}\InsertMark{gbsec}{#1}%
-  {\centering\sffamily\bfseries\large
-   {\color{rule}\rule[0.6ex]{7mm}{0.4pt}}\enspace #1\enspace{\color{rule}\rule[0.6ex]{7mm}{0.4pt}}\par}%
-  \nobreak\vspace{3mm}\noindent\ignorespaces}
-\newcommand\gbref[1]{\hyperlink{sec#1}{\sffamily\bfseries #1}}
+% --- passages ---------------------------------------------------------------
+% Every passage that can be jumped to starts on a new page (\gbnewpage). A
+% passage that can only be reached from the one before it flows on (\gbflow).
+\newcommand\gbanchor[1]{\phantomsection\label{#1}\hypertarget{#1}{}\noindent\ignorespaces}
+\newcommand\gbnewpage{\clearpage}
+\newcommand\gbflow{\par\vspace{3mm plus 1mm}{\centering\gbsymbols\small\color{muted}❧\par}\vspace{2mm plus 1mm}}
+\newcommand\gbpage[1]{\hyperref[#1]{\sffamily\bfseries\pageref*{#1}}}
 \newcommand\gbscenebreak{\par\vspace{2mm}{\centering\gbsymbols\color{muted}⁂\par}\vspace{2mm}\noindent}
 
-% --- choices ----------------------------------------------------------------
+% --- choices: classic "If you …, turn to page N." ----------------------------
 \newenvironment{gbchoices}
-  {\par\vspace{3mm}\needspace{4\baselineskip}\noindent{\color{rule}\rule{\linewidth}{0.4pt}}\par
-   \begin{list}{{\gbsymbols\small\color{muted}▸}}{\leftmargin=1.1em\labelwidth=0.8em\labelsep=0.3em
-     \itemsep=1.2mm\parsep=0pt\topsep=1.5mm\rightmargin=0pt}\raggedright}
-  {\end{list}\vspace{2mm}}
-% \gbchoice{text}{section}
-\newcommand\gbchoice[2]{\item #1\nobreak\leaders\hbox to 0.7em{\hss{\color{rule}.}\hss}\hfill\nobreak
-  \mbox{\enspace\small turn to \gbref{#2}}}
-\newcommand\gbif[1]{{\itshape If you have #1:} }
-\newcommand\gbunless[1]{{\itshape If you do not have #1:} }
+  {\par\vspace{4mm plus 2mm}\needspace{5\baselineskip}\noindent{\color{rule}\rule{\linewidth}{0.4pt}}\par\vspace{1mm}
+   \begin{list}{}{\leftmargin=1.5em\itemindent=-1.5em\itemsep=2.2mm\parsep=0pt\topsep=1mm\rightmargin=0pt}\raggedright}
+  {\end{list}}
+\newcommand\gbchoice[1]{\item #1}
 \newcommand\gbcw[1]{\textsf{\bfseries\small #1}}
-\newcommand\gbcontinue{\par\vspace{1mm}{\centering\gbsymbols\small\color{muted}❧\par}}
-\newcommand\gbgoto[1]{\par\vspace{1mm}{\raggedleft\itshape Turn to \gbref{#1}.\par}}
-\newcommand\gbcodeword[1]{\par\vspace{2mm}\noindent
-  \fbox{\sffamily\small Note the codeword \textbf{#1} on your sheet.}\par\vspace{1mm}}
-\newcommand\gbclearcodeword[1]{\par\vspace{2mm}\noindent
-  \fbox{\sffamily\small Cross out the codeword \textbf{#1} if you have it.}\par\vspace{1mm}}
-\newcommand\gbending[1]{\par\vspace{8mm}{\centering\large\scshape #1\par}\vspace{8mm}}
+\newcommand\gbturnto[1]{\par\vspace{3mm}{\raggedleft\itshape Turn to page \gbpage{#1}.\par}}
+\newcommand\gbsessionend[2]{\par\vfill\noindent
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\centering\small
+    \textsf{\bfseries END OF SESSION #1}\\[1mm]
+    This is a good place to stop for today.\\[1mm]
+    Write \textbf{page \pageref*{#2}} on your codeword sheet as your bookmark.\\[1mm]
+    When you are ready to go on, turn to page \gbpage{#2}.}}\par}
+\newcommand\gbcodeword[1]{\par\vspace{3mm}\noindent
+  \fbox{\sffamily\small Write the codeword \textbf{#1} on your codeword sheet.}\par\vspace{1mm}}
+\newcommand\gbclearcodeword[1]{\par\vspace{3mm}\noindent
+  \fbox{\sffamily\small If you have the codeword \textbf{#1}, cross it out.}\par\vspace{1mm}}
+\newcommand\gbtheend[1]{\par\vspace{12mm}{\centering{\large\itshape #1\par}\vspace{6mm}
+  {\fontsize{22}{26}\selectfont\scshape The End\par}}\vspace{10mm}}
+\newcommand\gbtbc{\par\vspace{12mm}{\centering{\large\scshape To be continued \dots\par}}\vspace{10mm}}
 
 % --- in-world documents -----------------------------------------------------
 \tcbset{
@@ -180,24 +175,28 @@
 \vspace*{30mm}
 {\itshape %%BLURB%%\par}
 
-% --- how to read ------------------------------------------------------------
+% --- how to read -------------------------------------------------------------
 \cleardoublepage
-{\centering\large How to read this book\par}\vspace{6mm}
-\noindent This is not an ordinary novel. You read it section by section. Most of the time a section flows straight into the next one, and you read on as you would in any book. When you reach a choice, pick one and turn to the numbered section it names. Section numbers are printed at the top of each section, and the outer corner of every page shows which sections it holds.
+{\centering\large\scshape Before you begin\par}\vspace{6mm}
+\noindent\textbf{Do not read this book from the first page to the last.} It will not make sense, and it will not be your story.
 
-%%SESSIONS%% A session ends at a natural stopping place. Put the bookmark in, and come back tomorrow.
+You are the main character. Read until you reach a choice. Each choice tells you which page to turn to; go there and carry on reading from the top of that page. Some choices are only open to you if you have a particular codeword. If you don't have it, that path is closed to you this time.
 
-Sometimes a section asks you to note a \textbf{codeword}. Write it on the codeword sheet at the front of the book. Later sections may ask whether you have it. Codewords are how the book remembers who you have been, so be honest with it.
+Your choices are remembered. When the book tells you to write down a \textbf{codeword}, write it on the codeword sheet overleaf. Later pages will ask whether you have it. Be honest: the book can only remember what you write down.
 
-\vspace{6mm}{\centering Begin at section \gbref{1}.\par}
+%%SESSIONS%% When a session ends, the book tells you so, and tells you which page to turn to next. Write that page down as your bookmark.
+
+There is more than one way through this year, and more than one way it can end. When you reach \textsc{The End}, you can begin again and choose differently.
+
+\vspace{8mm}{\centering\large Begin on page \gbpage{%%START%%}.\par}
 
 \clearpage
-{\centering\large Codeword sheet\par}\vspace{6mm}
+{\centering\large\scshape Codeword sheet\par}\vspace{6mm}
 \noindent\begin{tabularx}{\linewidth}{@{}XXX@{}}
 %%SHEET%%
 \end{tabularx}
 \vfill
-\noindent{\sffamily\small Bookmark: section \rule{18mm}{0.4pt}\qquad Session \rule{12mm}{0.4pt}}
+\noindent{\sffamily\small Bookmark: page \rule{18mm}{0.4pt}\qquad Session \rule{12mm}{0.4pt}}
 
 \mainmatter
 \pagestyle{fancy}
