@@ -19,10 +19,11 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `AIHELPER` | live | Let Ida set up an AI assistant for transcription and claim drafts | Ch5: it misreads a word in Aksel's file (or a church entry); Ch12: it endorses the noble line unless audited |
 | `MERGED` | live | Accepted a MyHeritage Smart Match unchecked in Ch2 | Ch4/Ch7: the wrong death year resurfaces; Birthe (if `BIRTHE`) or Kurt corrects it; Ch12 publishing |
 | `LATE1` | live | Put research ahead of family (Ch2) | Ending *The Long Evening*; Ch7 Mette remarks |
-| `TESTED` | planned | Took a DNA test yourself | Ch4: your own list (otherwise only Ida's) |
-| `KARENDNA` | planned | Swabbed Karen at the plejehjem | Ch4: proves Karen's side is intact, narrows the question to Poul; Ch12 the ethics come back |
-| `BENTDNA` | planned | Persuaded Bent to test | Ch9: Bent's list shows Hans-Jørgen's daughter; Ch11: Bent sees he doesn't match you |
-| `APPLIED` | planned | Applied for Aksel's case file in February | Ch5: file is waiting in Viborg (otherwise you can only order it, and it arrives in Ch7) |
+| `TESTED` | live | Took a DNA test yourself | Ch4: your own list (otherwise only Ida's) |
+| `KARENDNA` | live | Swabbed Karen at the plejehjem | Ch4: proves Karen's side is intact, narrows the question to Poul; Ch12 the ethics come back |
+| `BENTDNA` | live | Persuaded Bent to test | Ch9: Bent's list shows Hans-Jørgen's daughter; Ch11: Bent sees he doesn't match you |
+| `APPLIED` | live | Applied for Aksel's case file in February | Ch5: file is waiting in Viborg (otherwise you can only order it, and it arrives in Ch7) |
+| `LINDA` | live | Wrote to the Museum of Danish America in Feb; Linda replied that Dorothy died on 3 Feb and offered to pass Søren's contact to the estate attorney | Ch6: the heir letter is no surprise; DIY route is open from the start; Ch10 Iowa |
 | `CAMILLA` | planned | Wrote to Camilla Bruun first | Ch8: meeting tone; otherwise she writes to you |
 | `TOLDMETTE` | planned | Told Mette what the match list means | Ch7, Ch13: Mette as ally; without it, Ch7 conflict |
 | `TOLDLENE` | planned | Told Lene in Ch4 | Ch6, Ch13: Lene's arc |

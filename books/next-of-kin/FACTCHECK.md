@@ -36,6 +36,16 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 42 | Parole (*prøveløsladelse*) after two-thirds of a treason sentence, with internment counted, around 1946. | Ch2 (arithmetic), Ch5 | Medium | Parole practice for frontline volunteers in 1946. |
 | 43 | Adoption orders in 1942 were granted by the Ministry of Justice (*adoptionsbevilling*); identities of adoptive parents withheld from the birth mother. | Ch2 | Medium | Granting authority in 1942 and Mødrehjælpen's role. |
 
+| 44 | Retsopgøret: ~40,000 arrested, ~13,000 convicted; most frontline volunteers 1–4 years; 46 executed. | Ch3 | Medium-high | Figures as commonly cited. |
+| 45 | Daisy (Rigsarkivet's catalogue) lists retsopgør case files by court district with handwritten name registers; restricted units need an access application (2–6 weeks), delivered to a chosen reading room. | Ch3 | Medium | Which court held Holstebro-area treason cases; whether these files need an application in 2026. |
+| 46 | Udvandrerarkivet's database: Copenhagen police emigration protocols 1869–1908 (~390,000 entries) with contract number and destination; Oscar II (Scandinavian America Line) sailed from 1902. | Ch3 | High | That an April 1903 Oscar II sailing is plausible; how a 1906 departure via Hamburg to Buenos Aires would appear. |
+| 47 | US federal censuses 1910–1950 free on FamilySearch; Clay Township, Shelby County, is near Elk Horn. | Ch3 | Medium | Township name for a farm north of Elk Horn. |
+| 48 | MyHeritage DNA: registration with "whose DNA is this?", a consent checkbox for testing others, optional research consent; samples processed by a lab in the US. | Ch3 | Medium | 2026 workflow. |
+| 49 | Danish care homes would not take part in DNA testing of a resident without a guardian; family decision. | Ch3 | Medium | What staff would actually say. |
+| 50 | Fastelavn in Danish care homes: barrel-hitting with soft bats, kindergarten visits, *kattekonge/-dronning*. | Ch3 | High | — |
+| 51 | Familieretshuset processing time for a værgemål: 3–5 months. | Ch3 | Low | 2026 times. |
+| 52 | Myrtue Medical Center is the hospital in Harlan, Iowa; Elk Horn–Kimballton high school existed in the 1950s. | Ch3 | Medium | School name in 1959. |
+
 ## History
 
 | # | Claim | Where | Confidence | Please verify |
