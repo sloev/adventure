@@ -18,8 +18,8 @@ export function verifyPdf(book, pdfPath, auxPath) {
   const pages = r.stdout.split('\f');
   const aux = fs.readFileSync(auxPath, 'utf8');
   const labels = Object.fromEntries([...aux.matchAll(/\\newlabel\{p:([^}]+)\}\{\{[^}]*\}\{(\d+)\}/g)].map((m) => [m[1], +m[2]]));
-  // Arabic page 1 is the first page of the main matter (session 1's title page).
-  const first = pages.findIndex((t) => /SESSION 1 OF/i.test(t));
+  // Arabic page 1 is the first page of the main matter (chapter 1's opening page).
+  const first = pages.findIndex((t) => /CHAPTER 1(?!\d)/.test(t));
   const bad = [];
   for (const [id, p] of book.passages) {
     const pg = labels[id];

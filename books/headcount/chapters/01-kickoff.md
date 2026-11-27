@@ -1355,7 +1355,7 @@ On the way back she tells you about her daughter's new word, which is *nein*, an
 
 On the way back she tells you about her daughter's new word, which is *nein*, and which she uses for everything, including things she wants. "She says *nein* and then she takes it," says Priya. "It's very efficient. She'd be great in leadership." And you laugh, and it's a perfectly nice moment between two people who like each other, and you carry the question back up the fire stairs with you like a parcel you've been asked to hold for a neighbour.
 
-@note The deferred answer is resolved at the start of session 2 (default: Tobi becomes champion).
+@note The deferred answer is resolved at the start of chapter 2 (default: Tobi becomes champion).
 * [Continue](s1-home)
 
 :: s1-home

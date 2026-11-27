@@ -281,17 +281,18 @@ export function bookToLatex(book, templatePath) {
 }
 
 function planned(book) {
-  return Number(book.meta.sessions_planned) || book.chapters.length;
+  return Number(book.meta.chapters_planned || book.meta.sessions_planned) || book.chapters.length;
 }
 function edition(book) {
   const n = book.chapters.length, p = planned(book);
   if (n >= p) return book.meta.edition || 'First edition';
-  return `Instalment: sessions 1–${n} of ${p}`;
+  return `Instalment: chapters 1–${n} of ${p}`;
 }
 function sessionsSentence(book) {
+  // Only an instalment note; the book never tells the reader how long to read.
   const n = book.chapters.length, p = planned(book);
-  if (n >= p) return `The book is divided into ${n} sessions of roughly an hour each.`;
-  return `The finished book will have ${p} sessions of roughly an hour each. **This instalment contains the first ${n}**, and ends at a page marked \\textsc{To be continued}; there are no endings yet. Your codewords will carry over into the next instalment, so keep your sheet.`.replace(/\*\*(.+?)\*\*/g, '\\textbf{$1}');
+  if (n >= p) return '';
+  return `\\textbf{This is an instalment.} It contains the first ${n} of ${p} chapters and ends at a page marked \\textsc{To be continued}; there are no endings yet. Keep your codeword sheet: your codewords carry over into the next instalment.`;
 }
 
 export function sheetLines(book) {

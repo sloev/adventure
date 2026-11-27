@@ -38,7 +38,7 @@ const library = [];
 for (const slug of slugs) {
   const book = loadBook(path.join(booksDir, slug));
   const { errors, warnings } = validate(book);
-  console.log(`\n${book.meta.title} (${slug}): ${book.passages.size} passages in ${book.chapters.length} sessions`);
+  console.log(`\n${book.meta.title} (${slug}): ${book.passages.size} passages in ${book.chapters.length} chapters`);
   warnings.forEach((w) => console.log(`  warn  ${w}`));
   errors.forEach((e) => console.log(`  ERROR ${e}`));
   if (errors.length) {
@@ -71,7 +71,7 @@ for (const slug of slugs) {
     console.log(`  audit: books/${slug}/AUDIT.md — ${a.issues.length} issue(s), max ${a.maxHeld} codewords held on one route`);
     a.issues.forEach((i) => console.log(`  audit ${i}`));
   }
-  library.push({ slug, meta: book.meta, sessions: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)), onebit: fs.existsSync(path.join(out, `${slug}-1bit.pdf`)) });
+  library.push({ slug, meta: book.meta, chapters: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)), onebit: fs.existsSync(path.join(out, `${slug}-1bit.pdf`)) });
 }
 
 if (!args.has('--check') && !failed) {
@@ -84,10 +84,10 @@ process.exit(failed ? 1 : 0);
 
 function printStats(s, book) {
   const h = (w) => (w / s.wpm / 60).toFixed(1);
-  console.log(`  words written: ${s.totalWords.toLocaleString('en')}  |  one read-through: ~${Math.round(s.pathWords.avg).toLocaleString('en')} words ≈ ${h(s.pathWords.avg)} h at ${s.wpm} wpm (target: ${book.meta.target || 'n/a'})`);
+  console.log(`  words written: ${s.totalWords.toLocaleString('en')}  |  one read-through: ~${Math.round(s.pathWords.avg).toLocaleString('en')} words ≈ ${h(s.pathWords.avg)} h at ${s.wpm} wpm (target: ${book.meta.target_hours ? `~${book.meta.target_hours} h` : book.meta.target || 'n/a'})`);
   for (const c of s.chapters) {
     const bar = '█'.repeat(Math.min(30, Math.round(c.minutes / 2))).padEnd(30, '·');
-    console.log(`  ${c.id.padEnd(28)} ${bar} ${c.minutes.toFixed(0).padStart(3)} min/read  (${c.written.toLocaleString('en')} words written)${c.draft ? '  [outline]' : ''}`);
+    console.log(`  ${c.id.padEnd(28)} ${bar} ${c.minutes.toFixed(0).padStart(3)} min  (${c.written.toLocaleString('en')} words written)${c.draft ? '  [outline]' : ''}`);
   }
   console.log('  endings reached by random readers:');
   for (const [k, f] of s.endings) console.log(`    ${(f * 100).toFixed(1).padStart(5)}%  ${k}`);
@@ -107,7 +107,7 @@ function compile(book) {
     };
   }
   return {
-    meta: { title: book.meta.title, subtitle: book.meta.subtitle, author: book.meta.author, sessionsPlanned: Number(book.meta.sessions_planned) || book.chapters.length },
+    meta: { title: book.meta.title, subtitle: book.meta.subtitle, author: book.meta.author, chaptersPlanned: Number(book.meta.chapters_planned || book.meta.sessions_planned) || book.chapters.length },
     start: book.chapters[0].start,
     chapters: book.chapters.map((c) => ({ id: c.id, title: c.title, subtitle: c.subtitle, start: c.start })),
     passages,
@@ -215,7 +215,8 @@ function compilePdf(out, slug, book) {
     if (pass >= 2 && !/Rerun to get|Label\(s\) may have changed/.test(fs.readFileSync(path.join(build, `${slug}.log`), 'utf8'))) break;
   }
   fs.copyFileSync(path.join(build, `${slug}.pdf`), path.join(out, `${slug}.pdf`));
-  const pages = (fs.readFileSync(path.join(build, `${slug}.log`), 'utf8').match(/Output written on [\s\S]*?\((\d+)\s/) || [])[1];
+  // pdfinfo, not the TeX log: the log wraps lines at 79 chars, sometimes mid-number.
+  const pages = (spawnSync('pdfinfo', [path.join(out, `${slug}.pdf`)], { encoding: 'utf8' }).stdout.match(/Pages:\s+(\d+)/) || [])[1];
   console.log(`  print edition: dist/${slug}/${slug}.pdf (${pages} pages, A5)`);
   const v = verifyPdf(book, path.join(out, `${slug}.pdf`), path.join(build, `${slug}.aux`));
   if (v.skipped) console.log(`  warn  page references not verified: ${v.skipped}`);
@@ -231,12 +232,12 @@ function libraryPage(books) {
     title: 'Adventure — interactive fiction',
     css: ['assets/reader.css'],
     bodyClass: 'library',
-    body: `<main class="lib"><h1>Adventure</h1><p class="lede">Interactive fiction with unusual focuses. Each book is about two weeks of reading at an hour a day, and works on screen and on paper.</p>
+    body: `<main class="lib"><h1>Adventure</h1><p class="lede">Interactive fiction with unusual focuses. Each book is around fourteen hours of reading, and works on screen and on paper.</p>
 ${books
   .map(
     (b) => `<article class="book-card"><h2><a href="${b.slug}/">${esc(b.meta.title)}</a></h2><p class="subtitle">${esc(b.meta.subtitle || '')}</p>
 <div class="blurb">${renderMarkdown(b.meta.blurb || '')}</div>
-<p class="muted">${b.sessions} sessions · <a href="${b.slug}/">Read online</a>${b.pdf ? ` · <a href="${b.slug}/${b.slug}.pdf">Print edition (PDF)</a>` : ''}${b.onebit ? ` · <a href="${b.slug}/${b.slug}-1bit.pdf">1-bit print master</a>` : ''}</p></article>`
+<p class="muted">${b.chapters} chapters · <a href="${b.slug}/">Read online</a>${b.pdf ? ` · <a href="${b.slug}/${b.slug}.pdf">Print edition (PDF)</a>` : ''}${b.onebit ? ` · <a href="${b.slug}/${b.slug}-1bit.pdf">1-bit print master</a>` : ''}</p></article>`
   )
   .join('\n')}</main>`,
   });

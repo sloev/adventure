@@ -36,7 +36,7 @@ export function validate(book) {
 }
 
 // Monte Carlo walks through the whole book, respecting codewords, to estimate
-// how many words a reader actually reads per session (chapter) and in total.
+// how many words a reader actually reads per chapter and in the whole book.
 export function stats(book, { walks = 3000, wpm } = {}) {
   wpm = wpm || Number(book.meta.wpm) || 230;
   const { passages, chapters } = book;
