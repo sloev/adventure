@@ -646,8 +646,3 @@ Christoph looks at you for a long time in the dark.
 He goes. You watch him cross the crowded roof, stopping to talk to people, shaking hands, laughing at something Ben says. At the fire door he stops by Hakan from the Späti, who is sitting on an upturned crate with a beer, and talks to him for a while, and you see him ask Hakan something and then repeat it, carefully, the way you'd repeat a name you were afraid of forgetting.
 
 * [Continue](s6-priya)
-
-:: s7-open
-*Chapter 7, “Knowledge Capture”, July, is still being written.*
-
-@tbc

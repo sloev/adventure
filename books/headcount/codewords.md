@@ -31,3 +31,7 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `COUNCIL` | Signed the invitation to the works-council election meeting (12 May) | S6/S7: protected under §15(3a) KSchG; on the election board; the dashboard challenge under §87(1) Nr. 6; S11 Interessenausgleich; ending *The Council* |
 | `BOARD` | Stood for (and was elected to) the election board on 2 June | S7: running the works-council election; S8 heat/vacation clash; S11 consultation |
 | `NOORTRUST` | Told Noor honestly to weigh the Bundesbank offer on its merits | S9 peer review; S11: she tells you first when the list comes |
+| `HONESTDOC` | Documented the reconciler fully and truthfully for Knowledge Capture | ch09 calibration (rated highly); ch11: "legitimate business interest" argument weakens for you, strengthens for Noor |
+| `THINDOC` | Documented the reconciler thinly: correct, but without the scars | ch09 calibration (flagged as below target); ch11: you remain the knowledge |
+| `TERMS` | Took written consent terms (attribution, no use in reviews) to Rebecca before documenting | ch09: whether the terms held; ch11: the council inherits them |
+| `RECORDED` | Consented to Otto recording your screen sessions | ch10: Otto debugs "in your style"; ch12 |
