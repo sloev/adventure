@@ -29,3 +29,5 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `SPOKE` | Said what "Stop pretending" meant in the first Area retro | S5: people remember who spoke on 12 May; S9 calibration |
 
 | `COUNCIL` | Signed the invitation to the works-council election meeting (12 May) | S6/S7: protected under §15(3a) KSchG; on the election board; the dashboard challenge under §87(1) Nr. 6; S11 Interessenausgleich; ending *The Council* |
+| `BOARD` | Stood for (and was elected to) the election board on 2 June | S7: running the works-council election; S8 heat/vacation clash; S11 consultation |
+| `NOORTRUST` | Told Noor honestly to weigh the Bundesbank offer on its merits | S9 peer review; S11: she tells you first when the list comes |

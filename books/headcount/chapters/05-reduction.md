@@ -657,11 +657,6 @@ It takes four minutes. When you've finished, it's spotless. Nobody sees you do i
 
 * [Continue](s6-open)
 
-:: s6-open
-*Chapter 6, “Survivors”, June, is still being written.*
-
-@tbc
-
 :: s5-noor
 At 14:10 Noor comes back from the quiet room on the third floor and sits down opposite you and opens her laptop and says, without preamble: "Will you read it with me?"
 
