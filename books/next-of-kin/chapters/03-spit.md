@@ -475,7 +475,7 @@ You look at her across the table: forty-eight, in her hospital fleece, with a st
 She laughs, and then her eyes are wet, and she wipes them with the back of her hand, impatiently. "It's more meetings. More rotas. Days, mostly; no nights, maybe one weekend in four. Budget meetings with the region. Being the one everybody shouts at when there aren't enough staff, which there never are." She picks up the spoon again, and this time eats some soup. "And I'll be home in the evenings. Every evening. For the first time in twenty years." She looks at you over the spoon. "So that'll be interesting."
 
 * [Continue](c3-mette-late) if LATE1
-* [Continue](c3-mette-good)
+* [Continue](c3-mette-good) unless LATE1
 
 :: c3-mette-late
 You hear it. The thing under it, under the soup and the joke. *I'll be home in the evenings. Every evening.* And you'll be upstairs, in the office, with the door a hand's width open, in 1787.
@@ -533,7 +533,7 @@ Lene [19:21]: I'm not doing it either before you ask. I don't need to know I'm 4
 You look at the screen for a while. *Your name is on it.* Then you type *ok. thank you.* And then, after a moment, *nobody is 4% Italian, it doesn't work like that*, and delete it, and send a thumbs-up instead.
 
 * [Continue](c3-email) if LINDA
-* [Continue](c3-end)
+* [Continue](c3-end) unless LINDA
 
 :: c3-email
 On Thursday the twenty-sixth, at 15:40, at your desk at work, between a call with the municipality of Favrskov and a meeting about a wind turbine, your phone buzzes with an email, and you open it without thinking, and read it standing up, and then sit down.
@@ -587,8 +587,3 @@ On the screen there's a little green banner: *Your DNA results are ready!*
 And under it, five green circles.
 
 * [Continue](c4-open)
-
-:: c4-open
-*Chapter 4, “Matches”, March, is still being written.*
-
-@tbc
