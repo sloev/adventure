@@ -1,0 +1,17 @@
+{
+  "name": "adventure",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Interactive fiction books that work both in print and on the web.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node tools/build.mjs --check",
+    "stats": "node tools/build.mjs --stats",
+    "pdf": "node tools/build.mjs && node tools/pdf.mjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "dependencies": {
+    "marked": "15.0.12"
+  }
+}
