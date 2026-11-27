@@ -906,7 +906,7 @@ You'll never know any of this happened. Nobody will. It's the kind of thing that
 
 On the fourth floor, Mehmet cleans the steam wand. On the kitchen TV the graphs go round. In a data centre in Frankfurt, Otto reads the logs and says nothing, because nobody asks.
 
-* [Continue](s3-start)
+* [Continue](s3-open)
 
 :: s2-end-risk
 At 23:09 on Friday the twenty-seventh, while you're asleep, `debit-gateway` logs three timeouts from the PSP in the space of forty seconds. The PSP is having a bad night — a deploy on their side, you'll learn later — and for those forty seconds its p99 latency climbs above twenty-five seconds.
@@ -935,12 +935,7 @@ It sits in a queue. It's one ticket. It's two duplicate payments out of eleven t
 
 The pilot is five customers. In April, the plan says, it goes to everyone.
 
-* [Continue](s3-start)
-
-:: s3-start
-*Session 3 — “Sev-1”, March — is still being written.*
-
-@tbc
+* [Continue](s3-open)
 
 :: s2-oncall
 The first week of February is also your on-call week.

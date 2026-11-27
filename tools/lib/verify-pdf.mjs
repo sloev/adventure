@@ -27,7 +27,9 @@ export function verifyPdf(book, pdfPath, auxPath) {
       bad.push(`${id}: no page label`);
       continue;
     }
-    const opening = norm(p.text.replace(/```[\s\S]*?```/g, '').replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')).split(' ').slice(0, 5).join(' ');
+    // Compare the first words of the first prose paragraph (artifact boxes are skipped).
+    const firstPara = p.text.replace(/```[\s\S]*?```/g, '\n\n').split(/\n\s*\n/).map((x) => x.trim()).find(Boolean) || '';
+    const opening = norm(firstPara.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')).split(' ').slice(0, 5).join(' ');
     if (!opening) continue;
     if (!norm(pages[first + pg - 1] || '').includes(opening)) bad.push(`${id}: expected on page ${pg}, opening "${opening}" not found there`);
   }

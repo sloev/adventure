@@ -9,7 +9,7 @@ Interactive fiction with unusual focuses. Each book is about **two weeks of read
 
 | Book | Status |
 |---|---|
-| **[Headcount](books/headcount/)**: a software developer's year at a Berlin invoicing company, the year AI arrives and the headcount stops growing. Ultra-realistic: open office, Kantine, kicker, standups, PR reviews, PagerDuty, all-hands, works councils. | Sessions 1–2 of 14 written (~60 min each). Full plan in [`bible.md`](books/headcount/bible.md). |
+| **[Headcount](books/headcount/)**: a software developer's year at a Berlin invoicing company, the year AI arrives and the headcount stops growing. Ultra-realistic: open office, Kantine, kicker, standups, PR reviews, PagerDuty, all-hands, works councils. | Sessions 1–3 of 14 written (~60 min each). Full plan in [`bible.md`](books/headcount/bible.md). |
 
 ## Working on a book
 

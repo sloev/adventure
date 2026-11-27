@@ -76,6 +76,10 @@ Set in session 1: `ASKED`, `CANDID` (all-hands); `TEAMTABLE`, `SUPPORTTABLE`, `N
 
 Set in session 2: `BUSFACTOR`, `METRICSDOUBT` (skip-level answer); `CANDOUR` (asked Rebecca a hard question); `GAMED` / `PUSHEDBACK` (adoption metric); `SIGNED` (promised Fatma to sign the works-council invitation); `INESALLY` / `BACKEDAUTO` (Regression 2.0).
 
+Set in session 3: `WAITED` (sent the page back to Tobi), `DECLARED` / `QUIET` (woke people at once / investigated alone first), `WARROOM` (went to the office; Mehmet's coffee), postmortem stance `TOOKBLAME` / `NAMEDTOBI` / `DEFENDEDTOBI` / `SYSTEMIC` / `BLAMEDOTTO`.
+
+Session 3 facts for later: €187,406.20 duplicated, 1,308 refunds (Noor caught 4 false positives), 11 customers churned, unrecoverable cost ≈ one mid-level engineer per year (Marta). `@kontor/payment-path-reviewers` = Jakob + Sasha. Rebecca offers a protected "documentation project" (→ July). Tobi asks to sit in on the reconciler work. Mila got the school round the corner (the appeal Otto wrote). Jakob's father walks with a *Wanderstock*; Easter in Utrecht or Kassel unresolved.
+
 Already consequential: `REVIEWED` decides whether the 27 Feb PSP timeouts double-debit two pilot customers (session 2 ending) and therefore what the March Sev-1 is about.
 
 Threads opened in session 2 for later: Jakob's `notes.md` (Jens's advice: keep a record of what only you could fix); Jens becomes "Head of Engineering Excellence" from 1 April; Mila's school Widerspruch, written with Otto; Dorota noticing Rebecca asked about the catering contract; Mehmet's hours cut because of the floor robot; Marek: "when they start with the contractors, it's because they're practising"; Tobi's incident-prediction tool flags the reconciler.
