@@ -773,8 +773,3 @@ You stand in the hall with it, under the cupboard with the coats.
 Nordic Heir Research.
 
 * [Continue](c6-open)
-
-:: c6-open
-*Chapter 6, “Heirs”, May, is still being written.*
-
-@tbc
