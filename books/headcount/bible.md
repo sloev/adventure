@@ -84,6 +84,15 @@ Already consequential: `REVIEWED` decides whether the 27 Feb PSP timeouts double
 
 Threads opened in session 2 for later: Jakob's `notes.md` (Jens's advice: keep a record of what only you could fix); Jens becomes "Head of Engineering Excellence" from 1 April; Mila's school Widerspruch, written with Otto; Dorota noticing Rebecca asked about the catering contract; Mehmet's hours cut because of the floor robot; Marek: "when they start with the contractors, it's because they're practising"; Tobi's incident-prediction tool flags the reconciler.
 
+## Editorial notes from the March review (to act on in later sessions)
+
+- **Fatma and Support** deserve more room than "the department that gets automated": give a Support session its own point of view (S5/S6), and use the works council to challenge the per-user Otto dashboard under §87(1) Nr. 6 BetrVG.
+- **Sanne** must keep her own life and arc (her school's staffing crisis, her own career choice), not only be Jakob's conscience.
+- **Consequences**: decisions should become tangible later (see `codewords.md` for each codeword's planned payoff). Retire spent codewords with `@clear` so the sheet stays short.
+- **Tobi** stays complex: talented, careless, decent. Never the antagonist.
+- **Rebecca** stays ambiguous and honest.
+- Specialist fact-checks are tracked in `FACTCHECK.md`.
+
 ## Endings (resolved in session 14)
 
 - **The Orchestrator** (`CHAMPION`, no `COUNCIL`): you stayed and now "supervise" agent workflows for three former teams. Well paid. The Kantine contract was not renewed; you eat at your desk.

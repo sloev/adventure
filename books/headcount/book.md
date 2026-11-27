@@ -3,6 +3,8 @@ title: Headcount
 subtitle: A year on the Payments team
 author: Adventure
 target: 14 sessions × ~60 min
+sessions_planned: 14
+codeword_sheet: 36
 wpm: 230
 ---
 Berlin, January. You are Jakob Lenz, forty-one, senior backend engineer on the Settlements team at Kontor, an invoicing company of four hundred people in a converted brick factory in Kreuzberg. You know where the old code is buried. You have a daughter starting school in August and a rent that went up again.

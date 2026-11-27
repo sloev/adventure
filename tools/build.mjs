@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url';
 import { loadBook } from './lib/parse.mjs';
 import { renderMarkdown, renderInline } from './lib/render.mjs';
 import { validate, stats } from './lib/analyze.mjs';
-import { bookToLatex, templateFor } from './lib/latex.mjs';
+import { bookToLatex, templateFor, sheetLines } from './lib/latex.mjs';
+import { audit } from './lib/audit.mjs';
 import { verifyPdf } from './lib/verify-pdf.mjs';
 import { spawnSync } from 'node:child_process';
 
@@ -54,7 +55,17 @@ for (const slug of slugs) {
   fs.writeFileSync(path.join(out, 'book.json'), JSON.stringify(compiled));
   fs.writeFileSync(path.join(out, 'index.html'), readerPage(book));
   fs.writeFileSync(path.join(out, `${slug}.tex`), bookToLatex(book, templateFor(book.dir, root)));
-  if (args.has('--pdf') && !compilePdf(out, slug, book)) failed = true;
+  if ((args.has('--pdf') || args.has('--audit')) && !compilePdf(out, slug, book)) failed = true;
+  if (args.has('--audit')) {
+    const aux = path.join(out, 'latex', `${slug}.aux`);
+    const labels = fs.existsSync(aux)
+      ? Object.fromEntries([...fs.readFileSync(aux, 'utf8').matchAll(/\\newlabel\{p:([^}]+)\}\{\{[^}]*\}\{(\d+)\}/g)].map((m) => [m[1], +m[2]]))
+      : {};
+    const a = audit(book, { labels, pdfPath: path.join(out, `${slug}.pdf`), ledgerPath: path.join(book.dir, 'codewords.md'), sheetLines: sheetLines(book) });
+    fs.writeFileSync(path.join(book.dir, 'AUDIT.md'), a.markdown);
+    console.log(`  audit: books/${slug}/AUDIT.md — ${a.issues.length} issue(s), max ${a.maxHeld} codewords held on one route`);
+    a.issues.forEach((i) => console.log(`  audit ${i}`));
+  }
   library.push({ slug, meta: book.meta, sessions: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)) });
 }
 
@@ -91,7 +102,7 @@ function compile(book) {
     };
   }
   return {
-    meta: { title: book.meta.title, subtitle: book.meta.subtitle, author: book.meta.author },
+    meta: { title: book.meta.title, subtitle: book.meta.subtitle, author: book.meta.author, sessionsPlanned: Number(book.meta.sessions_planned) || book.chapters.length },
     start: book.chapters[0].start,
     chapters: book.chapters.map((c) => ({ id: c.id, title: c.title, subtitle: c.subtitle, start: c.start })),
     passages,

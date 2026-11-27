@@ -15,7 +15,7 @@ export function validate(book) {
       [...(ch.if || []), ...(ch.unless || [])].forEach((c) => testedAnywhere.add(c));
     }
     if (!p.choices.length && !p.end && !p.tbc) errors.push(`${p.loc}: dead end — "${p.id}" has no choices and no @end/@tbc`);
-    if (p.choices.length && p.choices.every((c) => c.if)) warnings.push(`${p.loc}: every choice in "${p.id}" is conditional (needs an unconditional fallback)`);
+    // (Passages whose choices are all conditional are checked exhaustively by `npm run audit`.)
     if (!p.text) warnings.push(`${p.loc}: passage "${p.id}" has no text`);
   }
   for (const c of testedAnywhere) if (!setAnywhere.has(c)) errors.push(`codeword ${c} is tested but never set`);

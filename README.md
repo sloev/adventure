@@ -18,12 +18,13 @@ npm install
 npm run check      # validate links/codewords, show minutes-per-session
 npm run build      # web edition into dist/
 npm run pdf        # + print edition via XeLaTeX → dist/<book>/<book>.pdf
+npm run audit      # + structural audit → books/<book>/AUDIT.md
 npm run serve      # http://localhost:8080
 ```
 
 - Source format: [`docs/FORMAT.md`](docs/FORMAT.md). Plain Markdown passages, `* [choice](target)` links, `@set CODEWORD`, and fenced blocks for in-world documents (`slack`, `dm`, `email`, `pager`, `pr`, `terminal`, `calendar`, `doc`, `phone`).
 - Print layout: [`tools/latex/template.tex`](tools/latex/template.tex). Per-book override: `books/<slug>/template.tex`.
-- Codewords are the only state, so every book works on paper.
+- Codewords are the only state, so every book works on paper. Each book keeps a codeword ledger (`codewords.md`) with the planned payoff of every codeword; `npm run audit` explores every reachable state and fails loudly on dead ends, impossible choices, orphan codewords, or more codewords than the sheet holds.
 - `npm run check` estimates reading time by simulating thousands of random read-throughs. Aim for ~60 minutes per session.
 
 ## Layout

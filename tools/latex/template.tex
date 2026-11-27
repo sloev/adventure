@@ -17,7 +17,7 @@
 \usepackage{fontspec}
 \setmainfont{TeX Gyre Pagella}[Ligatures=TeX]
 \setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]
-\setmonofont{DejaVu Sans Mono}[Scale=0.8]
+\setmonofont{DejaVu Sans Mono}[Scale=0.85]
 \newfontfamily\gbsymbols{DejaVu Sans}
 \usepackage[english]{babel}
 \usepackage[protrusion=true]{microtype}
@@ -25,6 +25,7 @@
 
 % --- packages ---------------------------------------------------------------
 \usepackage{xcolor}
+\usepackage{tikz}
 \usepackage[most]{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage{tabularx,booktabs,array}
@@ -64,13 +65,13 @@
 \newcommand\gbsession[4]{%
   \cleardoublepage\thispagestyle{plain}%
   \renewcommand\gbsessiontitle{#3}%
-  \vspace*{22mm}%
+  \vspace*{26mm}%
   {\centering
-   {\sffamily\scriptsize\color{muted}\addfontfeature{LetterSpace=18}SESSION #1 OF #2\par}
-   \vspace{4mm}{\fontsize{24}{28}\selectfont #3\par}
-   \vspace{2mm}{\itshape #4\par}
-   \vspace{3mm}{\gbsymbols\color{muted}⁂}\par}%
-  \vspace{12mm}%
+   {\sffamily\footnotesize\bfseries\color{muted}\addfontfeature{LetterSpace=18}SESSION #1 OF #2\par}
+   \vspace{5mm}{\fontsize{28}{32}\selectfont #3\par}
+   \vspace{4mm}{\color{rule}\rule{24mm}{0.5pt}}\par
+   \vspace{4mm}{\large\itshape #4\par}}%
+  \vspace{14mm}%
   \phantomsection\addcontentsline{toc}{chapter}{#1.\ #3}%
 }
 
@@ -85,9 +86,10 @@
 
 % --- choices: classic "If you …, turn to page N." ----------------------------
 \newenvironment{gbchoices}
-  {\par\vspace{4mm plus 2mm}\needspace{5\baselineskip}\noindent{\color{rule}\rule{\linewidth}{0.4pt}}\par\vspace{1mm}
-   \begin{list}{}{\leftmargin=1.5em\itemindent=-1.5em\itemsep=2.2mm\parsep=0pt\topsep=1mm\rightmargin=0pt}\raggedright}
-  {\end{list}}
+  {\par\vspace{5mm plus 2mm}\needspace{6\baselineskip}\noindent
+   {\sffamily\footnotesize\bfseries\color{muted}\addfontfeature{LetterSpace=12}WHAT DO YOU DO?\par}\vspace{1.5mm}
+   \begin{list}{{\gbsymbols\color{muted}▸}}{\leftmargin=1.2em\labelwidth=0.9em\labelsep=0.3em\itemsep=2.4mm\parsep=0pt\topsep=0pt\rightmargin=0pt}\raggedright}
+  {\end{list}\par}
 \newcommand\gbchoice[1]{\item #1}
 \newcommand\gbcw[1]{\textsf{\bfseries\small #1}}
 \newcommand\gbturnto[1]{\par\vspace{3mm}{\raggedleft\itshape Turn to page \gbpage{#1}.\par}}
@@ -97,10 +99,14 @@
     This is a good place to stop for today.\\[1mm]
     Write \textbf{page \pageref*{#2}} on your codeword sheet as your bookmark.\\[1mm]
     When you are ready to go on, turn to page \gbpage{#2}.}}\par}
-\newcommand\gbcodeword[1]{\par\vspace{3mm}\noindent
-  \fbox{\sffamily\small Write the codeword \textbf{#1} on your codeword sheet.}\par\vspace{1mm}}
-\newcommand\gbclearcodeword[1]{\par\vspace{3mm}\noindent
-  \fbox{\sffamily\small If you have the codeword \textbf{#1}, cross it out.}\par\vspace{1mm}}
+\newcommand\gbcodeword[1]{\par\vspace{4mm}\noindent
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\centering
+    {\sffamily\footnotesize\bfseries\color{muted}\addfontfeature{LetterSpace=12}RECORD THIS CODEWORD\par}\vspace{0.8mm}
+    {\sffamily\large\bfseries #1\par}}}\par\vspace{2mm}}
+\newcommand\gbclearcodeword[1]{\par\vspace{4mm}\noindent
+  \fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\centering
+    {\sffamily\footnotesize\bfseries\color{muted}\addfontfeature{LetterSpace=12}CROSS OUT THIS CODEWORD\par}\vspace{0.8mm}
+    {\sffamily\large\bfseries #1\par}}}\par\vspace{2mm}}
 \newcommand\gbtheend[1]{\par\vspace{12mm}{\centering{\large\itshape #1\par}\vspace{6mm}
   {\fontsize{22}{26}\selectfont\scshape The End\par}}\vspace{10mm}}
 \newcommand\gbtbc{\par\vspace{12mm}{\centering{\large\scshape To be continued \dots\par}}\vspace{10mm}}
@@ -111,7 +117,7 @@
     colback=boxbg,colframe=rule,boxrule=0.4pt,
     left=2.5mm,right=2.5mm,top=1.5mm,bottom=1.5mm,
     before skip=4mm plus 1mm,after skip=4mm plus 1mm,
-    fontupper=\sffamily\footnotesize\setlength{\parindent}{0pt}\linespread{1.0}\selectfont\raggedright,
+    fontupper=\sffamily\small\setlength{\parindent}{0pt}\linespread{1.0}\selectfont\raggedright,
     coltitle=ink,colbacktitle=boxhead,fonttitle=\sffamily\footnotesize\bfseries,
     titlerule=0.4pt,toptitle=0.8mm,bottomtitle=0.8mm},
 }
@@ -126,37 +132,40 @@
 \newtcolorbox{gbpager}[1]{gbbox,colframe=alarm,boxrule=0.8pt,colbacktitle=alarm,coltitle=white,
   title={\addfontfeature{LetterSpace=10}#1 \hfill TRIGGERED}}
 \newtcolorbox{gbterminal}[1]{gbbox,colback=termbg,title={\ttfamily\mdseries #1},
-  fontupper=\ttfamily\scriptsize\setlength{\parindent}{0pt}\raggedright}
+  fontupper=\ttfamily\footnotesize\setlength{\parindent}{0pt}\raggedright}
 \newtcolorbox{gbterminalnotitle}{gbbox,colback=termbg,
-  fontupper=\ttfamily\scriptsize\setlength{\parindent}{0pt}\raggedright}
+  fontupper=\ttfamily\footnotesize\setlength{\parindent}{0pt}\raggedright}
 
 % Chat message: \gbmsg{avatar colour hex}{initials}{name}{time}{body}
-\newcommand\gbavatar[2]{{\setlength\fboxsep{0.5pt}\colorbox[HTML]{#1}{\makebox[4mm][c]{\rule[-0.6mm]{0pt}{3mm}\fontsize{5}{5}\selectfont\bfseries\color{white}#2}}}}
+\newcommand\gbavatar[2]{{\setlength\fboxsep{0.5pt}\colorbox[HTML]{#1}{\makebox[4.8mm][c]{\rule[-0.7mm]{0pt}{3.6mm}\fontsize{6.5}{6.5}\selectfont\bfseries\color{white}#2}}}}
 \newcommand\gbmsg[5]{\par\noindent
-  \begin{minipage}[t]{5.5mm}\vspace{0pt}\gbavatar{#1}{#2}\end{minipage}%
-  \begin{minipage}[t]{\dimexpr\linewidth-5.5mm}\vspace{0pt}\raggedright
-    \textbf{#3}\enspace{\scriptsize\color{muted}#4}\\[0.2mm]#5\end{minipage}\par\vspace{1.4mm}}
-\newcommand\gbreply[5]{\par\noindent\hspace*{5.5mm}%
-  \begin{minipage}[t]{4.5mm}\vspace{0pt}\scalebox{0.8}{\gbavatar{#1}{#2}}\end{minipage}%
-  \begin{minipage}[t]{\dimexpr\linewidth-10mm}\vspace{0pt}\raggedright
-    \textbf{#3}\enspace{\scriptsize\color{muted}#4}\\[0.2mm]#5\end{minipage}\par\vspace{1.4mm}}
-\newcommand\gbcont[1]{\par\vspace{-0.6mm}\noindent\hspace*{5.5mm}\parbox[t]{\dimexpr\linewidth-5.5mm}{\raggedright #1}\par\vspace{1.4mm}}
-\newcommand\gbreplycont[1]{\par\vspace{-0.6mm}\noindent\hspace*{10mm}\parbox[t]{\dimexpr\linewidth-10mm}{\raggedright #1}\par\vspace{1.4mm}}
-\newcommand\gbreactions[1]{\par\vspace{-0.6mm}\noindent\hspace*{5.5mm}{\scriptsize\color{muted}#1}\par\vspace{1.2mm}}
+  \begin{minipage}[t]{6.6mm}\vspace{0pt}\gbavatar{#1}{#2}\end{minipage}%
+  \begin{minipage}[t]{\dimexpr\linewidth-6.6mm}\vspace{0pt}\raggedright
+    \textbf{#3}\enspace{\footnotesize\color{muted}#4}\\[0.2mm]#5\end{minipage}\par\vspace{1.4mm}}
+\newcommand\gbreply[5]{\par\noindent\hspace*{6.6mm}%
+  \begin{minipage}[t]{5.4mm}\vspace{0pt}\scalebox{0.8}{\gbavatar{#1}{#2}}\end{minipage}%
+  \begin{minipage}[t]{\dimexpr\linewidth-12mm}\vspace{0pt}\raggedright
+    \textbf{#3}\enspace{\footnotesize\color{muted}#4}\\[0.2mm]#5\end{minipage}\par\vspace{1.4mm}}
+\newcommand\gbcont[1]{\par\vspace{-0.6mm}\noindent\hspace*{6.6mm}\parbox[t]{\dimexpr\linewidth-6.6mm}{\raggedright #1}\par\vspace{1.4mm}}
+\newcommand\gbreplycont[1]{\par\vspace{-0.6mm}\noindent\hspace*{12mm}\parbox[t]{\dimexpr\linewidth-12mm}{\raggedright #1}\par\vspace{1.4mm}}
+\newcommand\gbreactions[1]{\par\vspace{-0.6mm}\noindent\hspace*{6.6mm}{\footnotesize\color{muted}#1}\par\vspace{1.2mm}}
 \newcommand\gbreaction[1]{\fbox{\rule{0pt}{1.6ex}#1}\enspace}
-\newcommand\gbsystem[1]{\par\noindent\hspace*{5.5mm}{\scriptsize\itshape\color{muted}#1}\par\vspace{1mm}}
+\newcommand\gbsystem[1]{\par\noindent\hspace*{6.6mm}{\footnotesize\itshape\color{muted}#1}\par\vspace{1mm}}
 \newcommand\gbdivider[1]{\par\vspace{0.5mm}\noindent{\color{rule}\leaders\hrule height 2.5pt depth -2.1pt\hfill}%
-  \enspace{\scriptsize\bfseries\color{muted}#1}\enspace{\color{rule}\leaders\hrule height 2.5pt depth -2.1pt\hfill}\par\vspace{1mm}}
+  \enspace{\footnotesize\bfseries\color{muted}#1}\enspace{\color{rule}\leaders\hrule height 2.5pt depth -2.1pt\hfill}\par\vspace{1mm}}
 \newcommand\gbfield[2]{\noindent\makebox[5.2em][l]{\color{muted}#1}#2\par}
 \newcommand\gbfieldrule{\par\vspace{0.6mm}{\color{rule}\hrule}\vspace{1.4mm}}
 \newcommand\gbcalrow[2]{\noindent\makebox[6.8em][l]{\color{muted}#1}\parbox[t]{\dimexpr\linewidth-6.8em}{\raggedright #2}\par\vspace{0.8mm}}
 \newcommand\gbcalnote[1]{\par\vspace{0.5mm}\noindent{\itshape\color{muted}#1}\par}
-\newcommand\gbtag[1]{\colorbox{boxhead}{\scriptsize\bfseries\MakeUppercase{#1}}}
+\newcommand\gbtag[1]{\colorbox{boxhead}{\footnotesize\bfseries\MakeUppercase{#1}}}
 \newcommand\gbcode[1]{{\ttfamily #1}}
 
 \begin{document}
 \frontmatter
 \pagestyle{empty}
+
+% --- cover (books/<slug>/cover.tex if present) ------------------------------
+%%COVER%%
 
 % --- title page -------------------------------------------------------------
 \begin{titlepage}
@@ -165,10 +174,24 @@
 {\fontsize{34}{38}\selectfont %%TITLE%%\par}
 \vspace{5mm}
 {\large\itshape %%SUBTITLE%%\par}
+\vspace{10mm}
+{\sffamily\footnotesize\color{muted}\addfontfeature{LetterSpace=12}\MakeUppercase{%%EDITION%%}\par}
 \vfill
-{\sffamily\scriptsize\addfontfeature{LetterSpace=25}\MakeUppercase{%%AUTHOR%%}\par}
+{\sffamily\footnotesize\addfontfeature{LetterSpace=25}\MakeUppercase{%%AUTHOR%%}\par}
 \vspace{20mm}
 \end{titlepage}
+
+% --- copyright page ---------------------------------------------------------
+\clearpage
+\vspace*{\fill}
+{\footnotesize\setlength{\parskip}{2mm}\noindent
+\textbf{%%TITLE%%}. %%SUBTITLE%%.\\
+%%EDITION%%.\par
+\noindent © %%YEAR%% %%AUTHOR%%. All rights reserved.\par
+%%ISBN%%
+\noindent This is a work of fiction. Kontor GmbH, its people and its software are invented. Any resemblance to real companies or persons is coincidental. Real places, laws, banking standards and software tools appear as they are, or as the author understands them.\par
+\noindent Typeset in TeX Gyre Pagella and TeX Gyre Heros with XeLaTeX. Emoji from Twemoji (CC-BY 4.0).\par}
+\clearpage
 
 % --- blurb ------------------------------------------------------------------
 \cleardoublepage

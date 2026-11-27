@@ -9,6 +9,7 @@
     "check": "node tools/build.mjs --check",
     "stats": "node tools/build.mjs --stats",
     "pdf": "node tools/build.mjs --pdf",
+    "audit": "node tools/build.mjs --audit",
     "serve": "node tools/serve.mjs"
   },
   "dependencies": {

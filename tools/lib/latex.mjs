@@ -109,7 +109,7 @@ const blocks = {
     const title = f.find(([k]) => k === 'title')?.[1] || '';
     return `\\begin{gbpager}{${escText((info || 'P2').toUpperCase())}}\n{\\small\\bfseries ${inlineMd(title)}\\par}\\vspace{1mm}\n${fields(
       f.filter(([k]) => k !== 'title')
-    )}${body ? `\n\\vspace{1mm}{\\ttfamily\\scriptsize ${escCode(body)}\\par}` : ''}\n\\end{gbpager}`;
+    )}${body ? `\n\\vspace{1mm}{\\ttfamily\\footnotesize ${escCode(body)}\\par}` : ''}\n\\end{gbpager}`;
   },
   pr(info, src) {
     const m = (info || '').match(/^(#\d+)\s+(.*)$/) || [null, '', info || ''];
@@ -235,7 +235,7 @@ export function bookToLatex(book, templatePath) {
 
   const body = book.chapters
     .map((c) => {
-      const out = [`\\gbsession{${c.index + 1}}{${book.chapters.length}}{${escText(c.title)}}{${escText(c.subtitle)}}`];
+      const out = [`\\gbsession{${c.index + 1}}{${planned(book)}}{${escText(c.title)}}{${escText(c.subtitle)}}`];
       c.passages.forEach((id, i) => {
         const p = book.passages.get(id);
         const prev = i > 0 ? c.passages[i - 1] : null;
@@ -258,22 +258,44 @@ export function bookToLatex(book, templatePath) {
     })
     .join('\n\n');
 
-  const sheetRows = Array.from({ length: 12 }, () => '\\rule{0pt}{8mm} & & \\\\ \\cline{1-3}').join('\n');
+  const sheetRows = Array.from({ length: Math.ceil(sheetLines(book) / 3) }, () => '\\rule{0pt}{8mm} & & \\\\ \\cline{1-3}').join('\n');
   const blurb = blockMd(book.meta.blurb || '', { indent: true });
-  const tpl = fs.readFileSync(templatePath, 'utf8');
+  const coverPath = path.join(book.dir, 'cover.tex');
+  const tpl = fs
+    .readFileSync(templatePath, 'utf8')
+    .replace('%%COVER%%', () => (fs.existsSync(coverPath) ? fs.readFileSync(coverPath, 'utf8') : ''));
   const fill = {
     TITLE: escText(book.meta.title || ''),
     SUBTITLE: escText(book.meta.subtitle || ''),
     AUTHOR: escText(book.meta.author || ''),
     START: label(order[0]),
-    SESSIONS: book.chapters.length === 1
-      ? 'So far this book has one session, roughly an hour of reading.'
-      : `The book is divided into ${book.chapters.length} sessions of roughly an hour each.`,
+    SESSIONS: sessionsSentence(book),
+    EDITION: escText(edition(book)),
+    YEAR: String(book.meta.year || new Date().getFullYear()),
+    ISBN: book.meta.isbn ? `\\noindent ISBN ${escRaw(book.meta.isbn)}\\par` : '',
     BLURB: blurb,
     SHEET: sheetRows,
     BODY: body,
   };
   return tpl.replace(/%%([A-Z]+)%%/g, (m, k) => (k in fill ? fill[k] : m));
+}
+
+function planned(book) {
+  return Number(book.meta.sessions_planned) || book.chapters.length;
+}
+function edition(book) {
+  const n = book.chapters.length, p = planned(book);
+  if (n >= p) return book.meta.edition || 'First edition';
+  return `Instalment: sessions 1–${n} of ${p}`;
+}
+function sessionsSentence(book) {
+  const n = book.chapters.length, p = planned(book);
+  if (n >= p) return `The book is divided into ${n} sessions of roughly an hour each.`;
+  return `The finished book will have ${p} sessions of roughly an hour each. **This instalment contains the first ${n}**, and ends at a page marked \\textsc{To be continued}; there are no endings yet. Your codewords will carry over into the next instalment, so keep your sheet.`.replace(/\*\*(.+?)\*\*/g, '\\textbf{$1}');
+}
+
+export function sheetLines(book) {
+  return Number(book.meta.codeword_sheet) || 36;
 }
 
 export function templateFor(bookDir, root) {

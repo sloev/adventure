@@ -335,7 +335,7 @@ At 09:41 Priya appears at the end of the row with her laptop under her arm and h
 :: s1-standup
 The board is a whiteboard on wheels with a TV screwed to a bracket above it, because at some point in 2022 somebody decided the team needed both. The TV shows the Jira board. The whiteboard shows an architecture diagram from an incident in October that nobody has erased, because it's useful, and because erasing it would feel like admitting the incident is over, which it isn't — there are still three follow-up tickets in the backlog.
 
-You stand in the loose semicircle that the team has formed every morning at 09:45 for three years. You know where everyone will stand before they stand there. Priya by the TV, holding a remote she will never use properly. Hanne beside her with her laptop open on one forearm like a waiter's tray. Ines at the end, arms crossed, a cardigan the colour of a traffic cone. Sasha leaning against the pillar with the sign that says not to lean against it. Noor half a step behind everyone, notebook in hand. Felix from frontend not here, because Felix is shared with Invoicing and has decided that standups are optional for shared people; his Slack status says :headphones: *Deep work*.
+You stand in the loose semicircle that the team has formed every morning at 09:45 for three years. You know where everyone will stand before they stand there. Priya by the TV, holding a remote she will never use properly. Hanne beside her with her laptop open on one forearm like a waiter's tray. Ines at the end, arms crossed, a cardigan the colour of a traffic cone. Sasha — Oleksandr Kovalenko on the payroll and in every system, Sasha to every human being — leaning against the pillar with the sign that says not to lean against it. Noor half a step behind everyone, notebook in hand. Felix from frontend not here, because Felix is shared with Invoicing and has decided that standups are optional for shared people; his Slack status says :headphones: *Deep work*.
 
 And Tobi, arriving at 09:46 at a fast walk from the direction of the kitchen with an energy drink in one hand and his laptop in the other, his hair still wet from the shower he clearly took at the gym downstairs, saying "Sorry sorry sorry, I'm here, I'm here."
 
@@ -365,7 +365,7 @@ He scrolls. The plan appears: a long markdown document, numbered steps, headings
 
 "How long did it take?" Hanne asks, and she already knows the answer, because she's heard it on Friday, but she wants the room to hear it.
 
-"Like… twenty hours of me? Over a week? And some of that was just watching it." He clicks. "Retries for AM04 and MS03 — insufficient funds, reason not specified — with back-off by TARGET2 business days, so it skips weekends and the bank holidays. New table for attempts. New worker. Feature flag per customer. Ninety-four per cent coverage. Otto's reviewed it, there's no blocking issues. And—" he clicks again "—it even updated the runbook."
+"Like… twenty hours of me? Over a week? And some of that was just watching it." He clicks. "Retries for AM04 and MS03 — insufficient funds, reason not specified — with back-off by TARGET business days, so it skips weekends and the bank holidays. New table for attempts. New worker. Feature flag per customer. Ninety-four per cent coverage. Otto's reviewed it, there's no blocking issues. And—" he clicks again "—it even updated the runbook."
 
 There's a small silence. It's the kind of silence you get when people are doing arithmetic. Six weeks, two people. Twenty hours, one person, mostly watching.
 
@@ -608,7 +608,6 @@ On the other side of you, Noor has stopped writing in her notebook. You realise 
 
 On stage, Christoph is saying, "We'll never judge people on whether they use a tool. We judge people on impact."
 
-@set CANDID
 * [Continue](s1-allhands-end)
 
 :: s1-allhands-end
@@ -851,7 +850,6 @@ Something in her shoulders lets go, very slightly. She picks up her spoon again 
 
 You don't have a good answer to that. You eat your lentils. Outside, over the Spree, a gull is hanging motionless in the wind, perfectly still, working very hard to stay in the same place.
 
-@set NOORLUNCH
 * [Continue](s1-afternoon)
 
 :: s1-afternoon
@@ -863,7 +861,7 @@ It's long. You knew it would be long. But there's long and there's *long*, and t
 
 You scroll through it once, fast, the way you'd flick through a book in a shop, to get its shape.
 
-It's good. That's the first thing, and it's unnerving. It's *good*. It's well-structured. The names are sensible. There are comments in the places you'd want comments, and not in the places you wouldn't. The `BusinessDayCalendar` correctly knows about the TARGET2 holidays, including the first of May and the twenty-sixth of December, which three different human engineers have got wrong in this codebase over the years. The migration has a sensible index. The retry policy reads from config, with per-customer feature flags, exactly as Hanne's spec asked. The commit messages are tidy, conventional, slightly too long — *feat(dunning): introduce DebitRetryWorker with exponential back-off aligned to TARGET2 business days* — in a way that no human being has ever written a commit message at 2 a.m.
+It's good. That's the first thing, and it's unnerving. It's *good*. It's well-structured. The names are sensible. There are comments in the places you'd want comments, and not in the places you wouldn't. The `BusinessDayCalendar` correctly knows about the TARGET closing days, including the first of May and the twenty-sixth of December, which three different human engineers have got wrong in this codebase over the years. The migration has a sensible index. The retry policy reads from config, with per-customer feature flags, exactly as Hanne's spec asked. The commit messages are tidy, conventional, slightly too long — *feat(dunning): introduce DebitRetryWorker with exponential back-off aligned to TARGET business days* — in a way that no human being has ever written a commit message at 2 a.m.
 
 If you had been given this by a contractor, you'd have been impressed. If you'd been given it by a new senior hire, you'd have thought: *okay, this person is good.*
 
@@ -896,7 +894,7 @@ Switched to branch 'tobi/SET-1390-smart-retries'
 $ ./gradlew test
 > Task :test
 DebitRetryWorkerTest > retries AM04 after 3 business days PASSED
-DebitRetryWorkerTest > skips TARGET2 holidays PASSED
+DebitRetryWorkerTest > skips TARGET closing days PASSED
 DebitRetryWorkerTest > stops after max attempts PASSED
 DebitRetryWorkerTest > does not retry MD06 (refund request) PASSED
 … 214 tests completed, 0 failed
@@ -1008,13 +1006,13 @@ otto-bot [13:24]: **Deep review: payment submission correctness**
   **1. Idempotency.** Submissions use a deterministic `Idempotency-Key` derived from invoice ID and attempt creation time (`DebitRetryWorker.kt:164`). Timeout handling reschedules the attempt with a fresh identifier, ensuring each submission is uniquely idempotent. :white_check_mark:
   **2. Timeouts.** `PspTimeoutException` is caught and the attempt is rescheduled with back-off, consistent with the linked guidance that PSP timeouts are frequent. :white_check_mark: *Minor:* consider logging the PSP correlation ID for observability.
   **3. Concurrency.** `DebitRetryWorker` acquires a row-level lock via `SELECT … FOR UPDATE SKIP LOCKED`, preventing two workers from processing the same attempt. :white_check_mark:
-  **4. Business days.** TARGET2 calendar correctly excludes 1 May, 25–26 Dec, Good Friday and Easter Monday. :white_check_mark:
+  **4. Business days.** TARGET calendar correctly excludes 1 May, 25–26 Dec, Good Friday and Easter Monday. :white_check_mark:
   **5. Double-charging.** Retries are only scheduled for retryable R-codes (AM04, MS03); MD06 and other refund-type returns are excluded. Combined with idempotent submission, the risk of double-charging is **low**. :white_check_mark:
   **Nits (3):** max-attempts constant should be configurable per customer; `RetryPolicy` KDoc has a typo; migration could add a partial index on `status`.
   **Overall:** solid, production-ready. Recommend approval after nits.
 ```
 
-You read it. It's thorough. It's well-organised. It's caught the max-attempts constant, which you'd have caught too. It has looked at the row locking, which is the thing you'd have spent forty minutes on, and the row locking is right — you check that one yourself, quickly, and it is. It's checked the TARGET2 calendar, which three different human engineers have got wrong in this codebase over the years.
+You read it. It's thorough. It's well-organised. It's caught the max-attempts constant, which you'd have caught too. It has looked at the row locking, which is the thing you'd have spent forty minutes on, and the row locking is right — you check that one yourself, quickly, and it is. It's checked the TARGET calendar, which three different human engineers have got wrong in this codebase over the years.
 
 *Ensuring each submission is uniquely idempotent.* You read that line twice. It sounds right. It's the kind of sentence that sounds right. You think about the PSP, and the timeouts, and your Confluence page, and you think: *it read the page. It linked it. It said consistent with the linked guidance.*
 
@@ -1058,7 +1056,7 @@ You tell yourself that the tests are green, and that ninety-four per cent covera
 
 So you skim.
 
-You read `RetryPolicy.kt` properly, because it's short and it's the heart of what Hanne asked for — the back-off, the R-codes. It's right. You read the migration, because you have strong feelings about migrations; it has a sensible index. You open `BusinessDayCalendar.kt` and check the TARGET2 holidays, because three different human engineers have got them wrong in this codebase over the years, and Otto has got them right, including the twenty-sixth of December, and you feel a small, absurd pang of something that's almost jealousy.
+You read `RetryPolicy.kt` properly, because it's short and it's the heart of what Hanne asked for — the back-off, the R-codes. It's right. You read the migration, because you have strong feelings about migrations; it has a sensible index. You open `BusinessDayCalendar.kt` and check the TARGET closing days, because three different human engineers have got them wrong in this codebase over the years, and Otto has got them right, including the twenty-sixth of December, and you feel a small, absurd pang of something that's almost jealousy.
 
 You open `DebitRetryWorker.kt` and scroll through it. It's long, and it's clean, and it reads like a textbook. There's a state machine. There's row locking — `SELECT … FOR UPDATE SKIP LOCKED` — which is right. There's a timeout handler, a `catch` block with a log line and a `scheduleRetry`, ten lines, tidy. You glance at it. It reschedules on timeout. Sensible.
 
