@@ -10,7 +10,7 @@ Interactive fiction with unusual focuses. Each book is about **two weeks of read
 | Book | Status |
 |---|---|
 | **[Headcount](books/headcount/)**: a software developer's year at a Berlin invoicing company, the year AI arrives and the headcount stops growing. Ultra-realistic: open office, Kantine, kicker, standups, PR reviews, PagerDuty, all-hands, works councils. | Sessions 1–3 of 14 written (~60 min each). Full plan in [`bible.md`](books/headcount/bible.md). |
-| **[Next of Kin](books/next-of-kin/)**: a land surveyor buries his father in Struer and spends a year building the family tree: church books in Gothic script, DNA match lists, reading rooms, Facebook groups, doorbells in Thy. Ultra-realistic; some of what he finds he'd rather not know. | Planning. Plan in [`bible.md`](books/next-of-kin/bible.md); not yet in the build. |
+| **[Next of Kin](books/next-of-kin/)**: a land surveyor buries his father in Struer and spends a year building the family tree: church books in Gothic script, DNA match lists, reading rooms, Facebook groups, doorbells in Thy. Ultra-realistic; some of what he finds he'd rather not know. | Chapter 1 of 14 written. Plan in [`bible.md`](books/next-of-kin/bible.md). |
 
 ## Working on a book
 

@@ -8,11 +8,12 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 
 | Codeword | Status | Meaning | Planned use |
 |---|---|---|---|
-| `ASKEDBENT` | planned | Asked Bent about the uniform photo at the mindekaffe | Ch5: Bent knows you're digging when you ring him from Viborg; Ch11 |
-| `SHOEBOX` | planned | Took the shoebox home (instead of leaving it for Lene to sort) | Ch2 onward: the 1962 letter and the hymn book are at hand; without it you must ask Lene for items (Ch6, Ch9) |
-| `KIT` | planned | Kept Poul's unopened DNA kit | Ch4/Ch8: Søren understands why it was never opened; Ch14 variant |
-| `KARENIOWA` | planned | Asked Karen about the Iowa letter on her good morning | Ch6: you recognise Elk Horn and Dorothy at once; DIY route easier |
-| `KARENPOUL` | planned | Asked Karen about Poul's young years (she mentions "the doctor in Holstebro") | Ch8: the name rings a bell; Ch8 `ASKEDKAREN` scene changes |
+| `PHOTO` | retired after ch01 | Took Aksel's uniform photo to the funeral (temporary; cleared at the end of the mindekaffe) | Ch1 only: unlocks asking Bent (`ASKEDBENT`) |
+| `ASKEDBENT` | live | Asked Bent about the uniform photo at the mindekaffe | Ch5: Bent knows you're digging when you ring him from Viborg; Ch11 |
+| `SHOEBOX` | live | Took the shoebox home (instead of leaving it for Lene to sort) | Ch2 onward: the 1962 letter and the hymn book are at hand; without it you must ask Lene for items (Ch6, Ch9) |
+| `KIT` | live | Kept Poul's unopened DNA kit | Ch4/Ch8: Søren understands why it was never opened; Ch14 variant |
+| `KARENIOWA` | live | Asked Karen about the Iowa letter on her good morning | Ch6: you recognise Elk Horn and Dorothy at once; DIY route easier |
+| `KARENPOUL` | live | Asked Karen about Poul's young years (she mentions "the doctor in Holstebro") | Ch8: the name rings a bell; Ch8 `ASKEDKAREN` scene changes |
 | `BIRTHE` | planned | Joined the gothic-script group and posted | Ch2–Ch12: Birthe helps read records; Ch9 she knows about adoption files |
 | `MYHERITAGE` | planned | Paid for the subscription | Ch4: you see full match details and trees; Ch12 publishing options |
 | `AIHELPER` | planned | Let Ida set up an AI assistant for transcription and claim drafts | Ch5: it misreads a word in Aksel's file (or a church entry); Ch12: it endorses the noble line unless audited |

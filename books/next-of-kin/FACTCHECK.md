@@ -17,6 +17,15 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 25 | Midwife protocols (*jordemoderprotokoller*) survive for many parishes and can name the mother of a child born out of wedlock. | Ch2, Ch7 | Medium | Survival and access for Thy parishes. |
 | 26 | Danish emigrants to Argentina settled around Tandil and Necochea from the 1860s; many returned. | Ch7 | High | — |
 
+| 27 | Denmark's monarch gives the New Year's speech at 18:00 on 31 December (King Frederik X since 2024). | Ch1 | High | — |
+| 28 | Funeral with cremation (*bisættelse*) from the parish church; urn interment (*urnenedsættelse*) months later. | Ch1 | High | — |
+| 29 | When one spouse dies and the survivor lacks capacity, the probate court (*skifteretten*) requires a guardian (*værge*) via Familieretshuset before the jointly owned house can be sold; "takes months". | Ch1 | Medium | Whether *uskiftet bo* or a private estate administration applies here, and typical waiting times. |
+| 30 | *Mødrehjælpen* existed in 1942 and could appear on a letterhead. | Ch1 | Medium | Institution name and letterhead wording in 1942 (Mødrehjælpsinstitution / Mødrehjælpen). |
+| 31 | Frikorps Danmark: about 6,000 Danes, 1941–43; dissolved 1943. | Ch1 | High | Exact figures. |
+| 32 | Elk Horn, Iowa: Danish windmill brought over from Denmark in the 1970s; Museum of Danish America. | Ch1 | High | — |
+| 33 | Iowa State Teachers College, Cedar Falls (now University of Northern Iowa), name in 1962. | Ch1 | High | — |
+| 34 | Hanstholm had a large German fortress/batteries with thousands of soldiers. | Ch1 | High | — |
+
 ## History
 
 | # | Claim | Where | Confidence | Please verify |
