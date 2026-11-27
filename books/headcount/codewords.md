@@ -39,3 +39,6 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `DIRECTOR` | Accepted Rebecca's offer to become Director of Money Movement from 1 October | ch09 calibration from the other side; ch11 you're in the room with the folder; ending *The Orchestrator* |
 | `ALWAYSON` | Answered the page during Mila's Einschulung ceremony | ch10/ch13: the pattern; ending *The Burnout* (with no `HOMEFIRST`) |
 | `HOMEFIRST` | Let the Einschulung page roll to Noor and stayed in the Aula | ch10: Sanne; ch14 epilogue |
+| `NOORCASE` | Wrote Noor's peer review to make the "knowledge, abilities and performance" case (§1(3) KSchG) | ch11 social selection: her review is cited; ch12 |
+| `TOBIKIND` | Left March out of Tobi's peer review | ch10/ch12: Tobi finds out what others wrote; whether he'd have wanted it |
+| `SAWLIST` | Opened the calibration spreadsheet left shared in Drive | ch10: you know who's "role criticality: low"; ch11 |

@@ -432,8 +432,3 @@ And from the stairwell, coming up from the roof, Sasha, back from Kraków, sunbu
 "So," he says. "Now the diary is graded."
 
 * [Continue](s9-open)
-
-:: s9-open
-*Chapter 9, “Calibration”, September, is still being written.*
-
-@tbc
