@@ -10,6 +10,7 @@ title: Next of Kin
 subtitle: A year in the family archive
 author: Adventure
 target: about two weeks at an hour a day
+target_hours: 14
 chapters_planned: 14
 codeword_sheet: 36
 wpm: 230
