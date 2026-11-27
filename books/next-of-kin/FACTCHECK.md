@@ -26,6 +26,16 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 33 | Iowa State Teachers College, Cedar Falls (now University of Northern Iowa), name in 1962. | Ch1 | High | — |
 | 34 | Hanstholm had a large German fortress/batteries with thousands of soldiers. | Ch1 | High | — |
 
+| 35 | Church books on Arkivalieronline run to about 1968–69 for many parishes and are open for births of the 1940s; volunteers' census transcriptions (Danish Family Search) link to original images. | Ch2 | Medium | Exact cut-off years for online church books in 2026. |
+| 36 | Danish church-book birth registers have columns for birth date/place, baptism, name, parents, godparents (*faddere*), remarks; *kontraministerialbog* is the duplicate. | Ch2 | High | — |
+| 37 | Gothic handwriting persisted in rural church books into the late 1800s; by 1921 most priests wrote Latin script. | Ch2 | Medium-high | — |
+| 38 | Vigsø belongs to Hansted parish (Hanstholm). | Ch2 | Medium | Parish affiliation of Vigsø in the 1800s. |
+| 39 | *Inderste*, *strandfoged*, *strandsidder*, *indledning/kirkegang* (churching), *fattiglem*: meanings as given. | Ch2 | High | — |
+| 40 | MyHeritage: free tree up to 250 people; 14-day Complete trial; first-year intro price around 1,200 kr. | Ch2 | Low-medium | 2026 limits and Danish pricing. |
+| 41 | Probate (*skifte*) of a cottager in Thy in 1779 would be in a manor's (*gods*) probate register naming heirs with ages. | Ch2 | Medium | Which estate held land at Vigsø/Klitten; survival of 1770s probate registers. |
+| 42 | Parole (*prøveløsladelse*) after two-thirds of a treason sentence, with internment counted, around 1946. | Ch2 (arithmetic), Ch5 | Medium | Parole practice for frontline volunteers in 1946. |
+| 43 | Adoption orders in 1942 were granted by the Ministry of Justice (*adoptionsbevilling*); identities of adoptive parents withheld from the birth mother. | Ch2 | Medium | Granting authority in 1942 and Mødrehjælpen's role. |
+
 ## History
 
 | # | Claim | Where | Confidence | Please verify |
