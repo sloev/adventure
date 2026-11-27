@@ -31,7 +31,7 @@ Books at the moment:
 | Slug | Book | Status |
 |---|---|---|
 | `headcount` | *Headcount*: a developer's year as AI arrives | live, chapters 1–3 of 14 |
-| `next-of-kin` | *Next of Kin*: a year of family-tree research | live, chapter 1 of 14 |
+| `next-of-kin` | *Next of Kin*: a year of family-tree research | live, chapters 1–2 of 14 |
 
 ### Length: a target for the whole book, never a unit inside it
 

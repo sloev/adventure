@@ -543,7 +543,7 @@ The sideboard is the last big thing in the living room. Teak, Danish, 1968, boug
 
 Inside it are Karen's albums, which nobody is throwing away, and the good tablecloths, and the candlesticks, and, at the back of the left-hand cupboard, a shelf of books: a Danish dictionary, the B&O fiftieth-anniversary book with its silver cover, *Danmarks Fugle*, three Reader's Digest condensed books, a road atlas from 1979, and a small black hymnbook with gilt edges.
 
-Lene takes it out and opens the cover. Inside, in faded gilt, is a name: *Inger Bach*. And below it, on the flyleaf, in old brown ink and a careful child's copperplate: *Konfirmeret i Struer Kirke 4. april 1937*.
+Lene takes it out and opens the cover. Inside, in faded gilt, is a name: *Inger Bach*. And below it, on the flyleaf, in old brown ink and a careful child's copperplate: *Konfirmeret i Struer Kirke 3. april 1938*.
 
 "Farmor's salmebog," Lene says. She turns it over in her hands. "From her confirmation. I didn't know Far had this." She holds it out to you. "Do you want it? You're the one who still goes to church."
 
@@ -852,8 +852,3 @@ You click it.
 Downstairs, the dishwasher finishes its cycle with three soft beeps, and the house settles around you, and outside, for the first time in four days, there's no wind at all.
 
 * [Continue](c2-open)
-
-:: c2-open
-*Chapter 2, “Gothic”, late January, is still being written.*
-
-@tbc

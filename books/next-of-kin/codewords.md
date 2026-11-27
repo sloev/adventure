@@ -14,11 +14,11 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `KIT` | live | Kept Poul's unopened DNA kit | Ch4/Ch8: Søren understands why it was never opened; Ch14 variant |
 | `KARENIOWA` | live | Asked Karen about the Iowa letter on her good morning | Ch6: you recognise Elk Horn and Dorothy at once; DIY route easier |
 | `KARENPOUL` | live | Asked Karen about Poul's young years (she mentions "the doctor in Holstebro") | Ch8: the name rings a bell; Ch8 `ASKEDKAREN` scene changes |
-| `BIRTHE` | planned | Joined the gothic-script group and posted | Ch2–Ch12: Birthe helps read records; Ch9 she knows about adoption files |
-| `MYHERITAGE` | planned | Paid for the subscription | Ch4: you see full match details and trees; Ch12 publishing options |
-| `AIHELPER` | planned | Let Ida set up an AI assistant for transcription and claim drafts | Ch5: it misreads a word in Aksel's file (or a church entry); Ch12: it endorses the noble line unless audited |
-| `MERGED` | planned | Accepted a MyHeritage Smart Match unchecked in Ch2 | Ch4/Ch7: the wrong death year resurfaces; Birthe (if `BIRTHE`) or Kurt corrects it; Ch12 publishing |
-| `LATE1` | planned | Put research ahead of family (Ch2) | Ending *The Long Evening*; Ch7 Mette remarks |
+| `BIRTHE` | live | Joined the gothic-script group and posted | Ch2–Ch12: Birthe helps read records; Ch9 she knows about adoption files |
+| `MYHERITAGE` | live | Paid for the subscription | Ch4: you see full match details and trees; Ch12 publishing options |
+| `AIHELPER` | live | Let Ida set up an AI assistant for transcription and claim drafts | Ch5: it misreads a word in Aksel's file (or a church entry); Ch12: it endorses the noble line unless audited |
+| `MERGED` | live | Accepted a MyHeritage Smart Match unchecked in Ch2 | Ch4/Ch7: the wrong death year resurfaces; Birthe (if `BIRTHE`) or Kurt corrects it; Ch12 publishing |
+| `LATE1` | live | Put research ahead of family (Ch2) | Ending *The Long Evening*; Ch7 Mette remarks |
 | `TESTED` | planned | Took a DNA test yourself | Ch4: your own list (otherwise only Ida's) |
 | `KARENDNA` | planned | Swabbed Karen at the plejehjem | Ch4: proves Karen's side is intact, narrows the question to Poul; Ch12 the ethics come back |
 | `BENTDNA` | planned | Persuaded Bent to test | Ch9: Bent's list shows Hans-Jørgen's daughter; Ch11: Bent sees he doesn't match you |
@@ -40,7 +40,7 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `ASKEDKAREN` | planned | Asked Karen directly about the donor | Ch12 |
 | `SIBLINGS` | planned | Joined the half-sibling group chat | Ending *The Half-Brother* |
 | `HANSJORGEN` | planned | Contacted Hans-Jørgen Nielsen | Ch11, Ch13 |
-| `BENTINGER` | planned | Told Bent his mother had another son | Ch11 |
+| `BENTINGER` | live | Told Bent his mother had another son (can be set as early as ch2, when Søren reads the Mødrehjælpen letter) | Ch9: Bent's DNA and Hans-Jørgen; Ch11 |
 | `IOWA` | planned | Flew to Iowa | Ch10–Ch14 |
 | `LATE3` | planned | Put research ahead of family (Ch10) | Ending *The Long Evening* |
 | `PUBLISHED` | planned | Published the full tree | Ending *The Archivist* |
