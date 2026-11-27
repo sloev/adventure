@@ -36,7 +36,7 @@ Rules:
 - **Priya Raman**, 36 — engineering manager. Ex-consultancy, joined 2021. Kind, organised, honest to the edge of what she's allowed. Increasingly squeezed between her team and the new leadership. Has a two-year-old.
 - **Tobias "Tobi" Brandt**, 29 — backend engineer. Fast, generous, genuinely talented, an early and loud Otto adopter (posts in `#ai-wins`). Insecure about not having a CS degree. Not a villain; his arc is the hardest one.
 - **Noor Haddad**, 24 — junior backend engineer, ten months in. TU Berlin graduate, came from Aleppo at 13. Careful, takes notes, eats lunch from a Tupperware at her desk. Most exposed to the year.
-- **Oleksandr "Sasha" Kovalenko**, 46 — SRE embedded with Settlements. Moved from Kharkiv in 2014. Has seen three hype cycles. Kicker champion, smokes on the roof, on-call veteran, knows the cleaners by name.
+- **Oleksandr "Sasha" Kovalenko**, 46 — SRE embedded with Settlements. Moved from Kharkiv in 2014. Has seen three hype cycles. Kicker champion, smokes on the roof, on-call veteran, knows the cleaners by name. Partner Olena ("we tried wife"); son Danylo, 16, Berlin-born German, "embarrassed by him" (revealed S4, May Day).
 - **Hanne Vogel**, 33 — product manager. OKR-fluent, anxious, wants to be liked by leadership and by the team and increasingly cannot be both.
 - **Ines Carvalho**, 38 — QA engineer, Portuguese, joined 2018. Owns the end-to-end test suite and the manual regression checklist for SEPA. First to be made "redundant by automation" (May).
 - **Felix Wagner**, 31 — frontend engineer shared with Invoicing. Mostly offstage; headphones.
@@ -79,6 +79,10 @@ Set in session 2: `BUSFACTOR`, `METRICSDOUBT` (skip-level answer); `CANDOUR` (as
 Set in session 3: `WAITED` (sent the page back to Tobi), `DECLARED` / `QUIET` (woke people at once / investigated alone first), `WARROOM` (went to the office; Mehmet's coffee), postmortem stance `TOOKBLAME` / `NAMEDTOBI` / `DEFENDEDTOBI` / `SYSTEMIC` / `BLAMEDOTTO`.
 
 Session 3 facts for later: €187,406.20 duplicated, 1,308 refunds (Noor caught 4 false positives), 11 customers churned, unrecoverable cost ≈ one mid-level engineer per year (Marta). `@kontor/payment-path-reviewers` = Jakob + Sasha. Rebecca offers a protected "documentation project" (→ July). Tobi asks to sit in on the reconciler work. Mila got the school round the corner (the appeal Otto wrote). Jakob's father walks with a *Wanderstock*; Easter in Utrecht or Kassel unresolved.
+
+Set in session 4: `KASSEL`, `DOCSHARED`/`DOCOWNER`/`DOCDECLINED`, `CAUTIOUS`, `SPOKE`.
+
+Session 4 facts for later: Priya is Director of Money Movement (19 people); Hanne is PM for the whole Area (three jobs), wrote the *Stop pretending* sticky; Simone (ex-manager, Leipzig, Sachsen LB 2009 Sozialauswahl) went back to IC; Sanne is acting deputy head (kommissarisch, unpaid year one), twelve red Post-its; Support at 63% Otto, sick days +110%, Bettina; Ines applied to Lisbon ×2 and Hamburg (insurer), asked Jakob for a reference, filed SET-1517 (step 117, umlaut mandate) which Jakob assigned to himself; Jens gave Jakob the only copy of the 2017 A2 reconciler diagram (on top of the wardrobe); *Burned* agent exists (31 scars if Jakob joined, 19 + 12 sent later if not) and goes on all payment-path PRs by end of May; smart retries at 100% from early May; Fatma's beer at Würgeengel 12 May 19:00; Sasha: 9% company-wide on 12 May, Aufhebungsverträge offered in 15-minute slots, no works council.
 
 Already consequential: `REVIEWED` decides whether the 27 Feb PSP timeouts double-debit two pilot customers (session 2 ending) and therefore what the March Sev-1 is about.
 

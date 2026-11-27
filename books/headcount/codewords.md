@@ -23,3 +23,8 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `BACKEDAUTO` | Backed Regression 2.0 over Ines's checklist | S5: Ines doesn't say goodbye to you |
 | `WARROOM` | Went to the office during the incident (Mehmet's coffee) | S6: Mehmet's hours are cut again; he asks you for a reference letter |
 | `TOOKBLAME` / `NAMEDTOBI` / `DEFENDEDTOBI` / `SYSTEMIC` / `BLAMEDOTTO` | Your framing of the postmortem | S3 (checked); S4 retro; S9 calibration; Tobi's arc in S10–S12 |
+| `KASSEL` | Spent Easter with your father in Kassel | S10: his fall; whether he remembers the conversation about the works council |
+| `DOCSHARED` / `DOCOWNER` / `DOCDECLINED` | Your answer to Rebecca's knowledge project | S7 knowledge capture: co-authored, owned, or done without you by the Knowledge Capture tool |
+| `CAUTIOUS` | Refused to sign off the 100% retries rollout | S9 calibration: the "decision velocity" chart with your ticket on it |
+| `SPOKE` | Said what "Stop pretending" meant in the first Area retro | S5: people remember who spoke on 12 May; S9 calibration |
+
