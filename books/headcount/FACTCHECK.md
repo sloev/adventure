@@ -32,3 +32,15 @@ The book's credibility depends on its technical and legal detail. This is what i
 - Sasha's full name **Oleksandr Kovalenko** now introduced at the first standup (S1) before it appears in dashboards.
 - Jakob joined 2019; Sasha 2016; Ines 2018; Priya 2021; Jens VP since 2017; Noor ten months in as of January.
 - Dates follow a year in which 12 January is a Monday.
+
+## Added in chapters 5–9
+
+| # | Claim | Where | Confidence | Please verify |
+|---|---|---|---|---|
+| 16 | A works council at 201–400 employees has **9 members** (§9 BetrVG); list election seats allocated by **d'Hondt** (Wahlordnung). | ch09 | High | — |
+| 17 | Directors may or may not be **leitende Angestellte** (§5(3) BetrVG) depending on independent hiring/firing authority; senior executives can neither vote nor stand; a wrongly admitted candidate makes the election challengeable (§19 BetrVG). | ch06, ch09 | Medium-high | How an election board would actually decide an "area Director" in a 420-person company. |
+| 18 | Members of the election board and the first three inviting employees, and elected council members, have special protection against ordinary dismissal (§15 KSchG, incl. Abs. 3a). | ch05–ch09 | High | Exact durations (we say "four years and one after" for members). |
+| 19 | **Aufhebungsvertrag** + Arbeitsagentur **Sperrzeit** (12 weeks) unless the agreement records that an operational dismissal would otherwise have followed at the same date and the severance is within the usual range. | ch05 | Medium-high | Current Arbeitsagentur guidance (Fachliche Weisungen §159 SGB III). |
+| 20 | Mass-dismissal notification thresholds (§17 KSchG) for ~420 employees and 38 departures within 30 days. | ch05 | Medium | Whether agreements count towards the threshold (they can, if employer-initiated). |
+| 21 | Council information right **§80(2) BetrVG** and co-determination on monitoring systems **§87(1) Nr. 6**. | ch09 | High | — |
+| 22 | Berlin Einschulung on a **Saturday** before the first school week (we use Sat 22 Aug, school from Mon 24 Aug). | ch08 | Medium | 2026/27 Berlin school calendar. |
