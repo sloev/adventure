@@ -1550,4 +1550,4 @@ Mehmet looks at it for a second, the way you'd look at the weather forecast for 
 
 Then he turns off the lights.
 
-@tbc
+* [Continue](s2-open)

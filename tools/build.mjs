@@ -156,7 +156,7 @@ function compilePdf(out, slug) {
     }
   }
   fs.copyFileSync(path.join(build, `${slug}.pdf`), path.join(out, `${slug}.pdf`));
-  const pages = (fs.readFileSync(path.join(build, `${slug}.log`), 'utf8').match(/Output written on [\s\S]*?\((\d+) p/) || [])[1];
+  const pages = (fs.readFileSync(path.join(build, `${slug}.log`), 'utf8').match(/Output written on [\s\S]*?\((\d+)\s/) || [])[1];
   console.log(`  print edition: dist/${slug}/${slug}.pdf (${pages} pages, A5)`);
   return true;
 }

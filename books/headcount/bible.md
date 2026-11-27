@@ -69,6 +69,16 @@ Rules:
 | 13 | **Weihnachtsfeier** | December | Last days. Farewell Slack messages. Laptops returned in a cardboard box at reception. The Christmas party, which is smaller and better. | Final conversations. |
 | 14 | **January again** | the next January | Epilogue. One morning, one year later. | Endings resolve from codewords. |
 
+## Codewords in use
+
+Set in session 1: `ASKED`, `CANDID` (all-hands); `TEAMTABLE`, `SUPPORTTABLE`, `NOORLUNCH` (lunch); `REVIEWED`, `OTTOREVIEW`, `RUBBERSTAMP` (PR #4821); `KICKER` or `MENTOR` (15:30); `CHAMPION` / `HOLDOUT` (Priya; undecided readers choose at the start of session 2).
+
+Set in session 2: `BUSFACTOR`, `METRICSDOUBT` (skip-level answer); `CANDOUR` (asked Rebecca a hard question); `GAMED` / `PUSHEDBACK` (adoption metric); `SIGNED` (promised Fatma to sign the works-council invitation); `INESALLY` / `BACKEDAUTO` (Regression 2.0).
+
+Already consequential: `REVIEWED` decides whether the 27 Feb PSP timeouts double-debit two pilot customers (session 2 ending) and therefore what the March Sev-1 is about.
+
+Threads opened in session 2 for later: Jakob's `notes.md` (Jens's advice: keep a record of what only you could fix); Jens becomes "Head of Engineering Excellence" from 1 April; Mila's school Widerspruch, written with Otto; Dorota noticing Rebecca asked about the catering contract; Mehmet's hours cut because of the floor robot; Marek: "when they start with the contractors, it's because they're practising"; Tobi's incident-prediction tool flags the reconciler.
+
 ## Endings (resolved in session 14)
 
 - **The Orchestrator** (`CHAMPION`, no `COUNCIL`): you stayed and now "supervise" agent workflows for three former teams. Well paid. The Kantine contract was not renewed; you eat at your desk.
