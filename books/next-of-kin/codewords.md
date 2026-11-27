@@ -15,6 +15,8 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `KARENPOUL` | planned | Asked Karen about Poul's young years (she mentions "the doctor in Holstebro") | S8: the name rings a bell; S8 `ASKEDKAREN` scene changes |
 | `BIRTHE` | planned | Joined the gothic-script group and posted | S2–S12: Birthe helps read records; S9 she knows about adoption files |
 | `MYHERITAGE` | planned | Paid for the subscription | S4: you see full match details and trees; S12 publishing options |
+| `AIHELPER` | planned | Let Ida set up an AI assistant for transcription and claim drafts | S5: it misreads a word in Aksel's file (or a church entry); S12: it endorses the noble line unless audited |
+| `MERGED` | planned | Accepted a MyHeritage Smart Match unchecked in S2 | S4/S7: the wrong death year resurfaces; Birthe (if `BIRTHE`) or Kurt corrects it; S12 publishing |
 | `LATE1` | planned | Put research ahead of family (S2) | Ending *The Long Evening*; S7 Mette remarks |
 | `TESTED` | planned | Took a DNA test yourself | S4: your own list (otherwise only Ida's) |
 | `KARENDNA` | planned | Swabbed Karen at the plejehjem | S4: proves Karen's side is intact, narrows the question to Poul; S12 the ethics come back |
@@ -42,4 +44,5 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `LATE3` | planned | Put research ahead of family (S10) | Ending *The Long Evening* |
 | `PUBLISHED` | planned | Published the full tree | Ending *The Archivist* |
 | `DUNES` | planned | Published only the Overgaard/Thy research | S14 variant |
+| `LEGEND` | planned | Audited the "Kaptajn Thomsen" noble line and found the break | S12: no public correction; S13 Holger's version at the table |
 | `DRAWER` | planned | Kept everything private | Ending *The Keeper* |

@@ -1,6 +1,6 @@
 # Next of Kin: story bible and plan
 
-Working document for writers. Not part of the book. Spoilers are in `canon.md`; read it before writing anything.
+Working document for writers. Not part of the book. Spoilers are in `canon.md`; read it before writing anything. The book is inspired by a real Danish family-history project; `inspiration.md` lists the patterns we borrow from it (patterns, never people).
 
 Proposed `book.md` front matter (to be added in the same PR as session 1, which is when the book goes live in the build):
 
@@ -40,7 +40,9 @@ The second promise: **the past is fixed; only what you learn and what you do wit
 9. **Nobody is a villain.** Bent protects his father's memory because he loved him. The heir-hunting firm is legal and does real work. Your mother's silence was a promise. The doctor is dead. Everyone is reasonable from where they stand, including the people who did bad things in 1942.
 10. **Each session ≈ 13–14k words on a single path** (~60 min at 230 wpm). Every real choice gets print wording (`| If you …`), concrete, second person, never revealing what follows.
 11. **Real institutions and sites as props, invented people and firms.** Rigsarkivet and its reading rooms (Copenhagen, Viborg, Odense, Aabenraa), Arkivalieronline, Danish Family Search, the Danish Demographic Database, Politiets Registerblade, arkiv.dk, Det Danske Udvandrerarkiv (Aalborg), FamilySearch, MyHeritage, Ancestry, GEDmatch, Find a Grave, the Museum of Danish America in Elk Horn: fine, shown accurately and neutrally, never accused of anything. The heir-hunting firm, the fertility clinic, the Facebook groups, the lokalarkiv volunteers and every private person are invented.
-12. **Handle the dark material with care.** Frikorps Danmark, the post-war treason trials, children of German soldiers, the women's institution on Sprogø and the sterilisation laws, donor conception without consent: shown through records and people, without sensationalism, without excusing, without retrospective cartoon villainy. Research the history properly; when in doubt, understate.
+12. **Not everything gets solved.** Real research ends with open questions: the 1798 child's father, the 1898 paternity case, a photo nobody can identify. Leave them open, visibly, and let Søren learn to write "unresolved" without shame.
+13. **Family story is evidence too, labelled as such.** Bent's version, Karen's fragments, Holger's legend: record them, test them, keep them visible next to what the records say. Never let the prose quietly upgrade a family story to fact, or quietly sneer at it.
+14. **Handle the dark material with care.** Frikorps Danmark, the post-war treason trials, children of German soldiers, the women's institution on Sprogø and the sterilisation laws, donor conception without consent: shown through records and people, without sensationalism, without excusing, without retrospective cartoon villainy. Research the history properly; when in doubt, understate.
 
 ## Setting
 
@@ -83,6 +85,12 @@ The second promise: **the past is fixed; only what you learn and what you do wit
 - **Linda Sørensen Haugaard**, 63, Elk Horn, Iowa, volunteer at the Museum of Danish America's genealogy centre; distant cousin. Emails in long paragraphs with exclamation marks.
 - **Hans-Jørgen Nielsen**, 84, Sønderborg. See canon.
 
+## The binder (method as mechanic)
+
+Søren is a surveyor: he documents. From session 2 he keeps a research binder (later a folder of Markdown files, if `AIHELPER`). Each finding becomes a **claim** with four headings: *Claim, Evidence, Missing, Next*, and a validation level: *lead, low, moderate, high, confirmed*. He writes down what a source does **not** prove and records negative searches ("searched Hansted burials 1860–65, no Peder Jensen"). Legal father, biological father, foster parents and household are never merged into one line.
+
+This is the book's quiet game: readers who keep claims honest (check the church book behind the MyHeritage hint, read the image instead of trusting the transcription, audit the noble line) are rewarded later with stronger evidence, better conversations, and a tree nobody can embarrass in public. Shown with the `claim` block (see Artifacts).
+
 ## Research threads
 
 The book is built around five threads the reader can pull. Each has its own records, people and codewords; all are true (see canon) but no reader has time, money and family goodwill to follow all of them to the end in one year. Most readers will finish two or three deeply.
@@ -95,6 +103,8 @@ The book is built around five threads the reader can pull. Each has its own reco
 | **The letter from Iowa** | Overgaard (mother's side) | A 1962 airmail letter, then in May a letter from an heir-research firm | A distant cousin died intestate in Iowa; Karen is among the heirs |
 | **The dunes** | Overgaard deep line + Mette | The church books of Vigsø; then Mette's DNA | The tree runs back to the 1600s in Thy, and Søren and Mette are related (double third cousins) |
 
+A sixth, lighter thread runs through all of them: **the legend** of "Kaptajn Thomsen" (canon §6), a family story that is beloved, harmless and false, and the online tree that attaches it to medieval nobility. It is where the reader learns to audit, at low stakes, before the stakes are high.
+
 The threads cross: the match list makes the Kjær threads "not your blood" without making them less your family; the Iowa inheritance makes Søren's mother's legal capacity a practical problem; the dunes thread is the only one where nothing terrible is found, and that matters too.
 
 ## The year (session plan)
@@ -102,7 +112,7 @@ The threads cross: the match list makes the Kjær threads "not your blood" witho
 | # | Session | Dates | Core events | Key choices → codewords |
 |---|---|---|---|---|
 | 1 | **Mindekaffe** | Fri 9 – Sun 11 Jan | Poul's funeral at Struer Kirke; the mindekaffe at the harbour hotel; Bent's speech; Lene wants the house cleared by March. Clearing the rækkehus over the weekend: the shed, the drawer with the unopened DNA kit, the shoebox (photos, the scratched uniform photo, a 1962 airmail letter from Iowa, Inger's hymn book). Karen at the plejehjem on Sunday morning, a good morning. | Ask Bent about the photo at the mindekaffe → `ASKEDBENT`; take the shoebox home → `SHOEBOX` (or leave it for Lene); keep Poul's DNA kit → `KIT`; ask Karen about Iowa / about Poul → `KARENIOWA` / `KARENPOUL`. |
-| 2 | **Gothic** | late Jan | First evenings on Arkivalieronline. Learning to read gotisk; the 1801/1834/1845 censuses; patronymics. MyHeritage merges the wrong Jens Christensen. First post in Birthe's group. Getting the Kjærs back to 1787 and the Overgaards to 1700, or getting stuck. | Post in the group → `BIRTHE`; pay for a MyHeritage subscription → `MYHERITAGE`; stay up past 2 a.m. twice → `LATE1`. |
+| 2 | **Gothic** | late Jan | First evenings on Arkivalieronline. Learning to read gotisk; the 1801/1834/1845 censuses; patronymics. MyHeritage merges the wrong Jens Christensen. First post in Birthe's group. Getting the Kjærs back to 1787 and the Overgaards to 1700, or getting stuck. | Post in the group → `BIRTHE`; pay for a MyHeritage subscription → `MYHERITAGE`; let Ida set up an AI assistant to transcribe and draft claims → `AIHELPER`; accept a MyHeritage Smart Match without checking the church book → `MERGED` (a wrong death year, a line moved to the wrong parish; corrected later by Birthe or not); stay up past 2 a.m. twice → `LATE1`. |
 | 3 | **Spit** | Feb (Fastelavn, Sun 15 Feb) | Ida's DNA kits: who tests? Søren, Mette, Lene (refuses at first), Bent ("what for?"), Karen (consent, capacity, the nursing staff). Ordering Aksel's records? Starting the emigration search in the Udvandrerarkiv database. Waiting. | Test yourself → `TESTED`; swab Karen → `KARENDNA` (ethics scene); ask Bent to test → `BENTDNA`; apply for Aksel's case file → `APPLIED`. |
 | 4 | **Matches** | mid-March (Søren's 49th birthday, Sat 14 Mar) | Results. The match list. No Kjær side. Camilla Bruun as "close family" (~1,700 cM). Ida's results show the same. Mette and Søren share 150 cM; Ida notices first. The Leeds method on the kitchen table. | Message Camilla → `CAMILLA`; tell Mette what you think it means → `TOLDMETTE`; tell Lene → `TOLDLENE`; ignore the list for now → `PARKED`. |
 | 5 | **Reading room** | April (after Easter) | Rigsarkivet, Viborg: Aksel's treason case (landssvigersag), his own statement, the Frikorps enlistment, Demyansk, the 1946 sentence. Pencils only. Anne-Marie Dahl. Bent rings while Søren is in the reading room. | Photograph the whole file → `AKSELFILE`; tell Bent what you found → `BENTTOLD`; write it up in the family's Facebook group / keep it private. |
@@ -112,7 +122,7 @@ The threads cross: the match list makes the Kjær threads "not your blood" witho
 | 9 | **Sønderborg** | August | The 1942 receipt; Inger's thread; adoption records and Mødrehjælpen; Sprogø or not (see canon). Finding Hans-Jørgen. The doorbell in Sønderborg. | Write to him first / ring the bell → `HANSJORGEN`; tell Bent his mother had another son → `BENTINGER`. |
 | 10 | **Iowa** | September | The estate: Linda in Elk Horn, a probate attorney on Zoom at 22:00, the family-tree affidavit, what a share really comes to after fees and tax. Possibly a trip to Iowa (money, time, Mette's new job). | Fly to Iowa → `IOWA` (+ `LATE3` if it costs the family); prove the line yourself → affects payout. |
 | 11 | **Bent** | October (autumn holidays, week 42) | Bent's birthday. Everything Søren knows that Bent doesn't, and vice versa. Bent's own DNA result, if he tested. The photo. | What you tell Bent; whether you show him the file. |
-| 12 | **The tree** | November | Karen's last weeks (she dies on Sun 22 Nov). Publishing the tree: what goes on MyHeritage, Geni, in the family's Christmas letter. Writing an article for the local-history yearbook about the Overgaards, or about Aksel. | Publish everything → `PUBLISHED`; publish the dunes only → `DUNES`; keep it all in the drawer → `DRAWER`. |
+| 12 | **The tree** | November | Karen's last weeks (she dies on Sun 22 Nov). Publishing the tree: what goes on MyHeritage, Geni, in the family's Christmas letter. Writing an article for the local-history yearbook about the Overgaards, or about Aksel. | What may be published: living people hidden, DNA data never, people born after ~1926 without a death date anonymised. The noble line: audit it or publish it (`LEGEND`). Publish everything → `PUBLISHED`; publish the dunes only → `DUNES`; keep it all in the drawer → `DRAWER`. |
 | 13 | **Jul** | December | Christmas Eve in Viby with Bent, Lene's family, perhaps Camilla, perhaps nobody new. Ida's history project, finished. What you say at the table. | Final conversations. |
 | 14 | **Lørdag** | Sat 9 Jan 2027 | Epilogue: one year after the funeral. One morning. | Endings resolve from codewords. |
 
@@ -138,6 +148,7 @@ Existing blocks to use now: `email`, `phone` (texts), `dm` (Messenger), `doc` (r
 | `post` | A Facebook group post with comments and reactions (chat-like syntax) | Like `slack` |
 | `letter` | A letter (typed or handwritten), with date line and signature | Print: serif, no box |
 | `web` | A web page or search results: address bar, title, body | Like `doc`, with a URL caption |
+| `claim` | Søren's research note: title, status/validation line, then *Claim / Evidence / Missing / Next* sections | Print: index-card box; the four headings in small caps |
 
 Until they exist, use `doc` with a caption naming the source.
 
@@ -146,6 +157,9 @@ Until they exist, use `doc` with a caption naming the source.
 - The two monitors on the office desk; the magnifying glass from Poul's toolbox, used on screen scans; a notebook in which Søren writes every source in surveyor's block capitals.
 - West Jutland wind, always from the west. The Limfjord ferry at Oddesund. Rugbrød with leverpostej at the plejehjem. Filter coffee in Thermos jugs at every Danish gathering.
 - Birthe's "*hej søren. det står der vist… 'uægte'. ja. det er det ord.*" Kurt's "*Det var Overgaard-stedet. Nu hedder det noget med Feriepark.*"
+- Catalogue routes noted like a real researcher: archive, series, volume, *opslag* (image) number, package number from the DAISY catalogue; "Start bestilling".
+- The midwife protocol, the *skifteprotokol*, the *Dansk Jord* farm index in a scanned PDF from Slægtsforskernes Bibliotek, a county yearbook article from 1978 with footnotes to family papers nobody has seen since.
+- If `AIHELPER`: the assistant's drafts arrive fast and fluent, with a confident wrong reading of one Gothic word per page; Søren learns to check every name, date and relationship term against the image.
 - MyHeritage emails: "*You have 3 new Smart Matches™*". Ancestry: "*New DNA match*". The little green leaf hint.
 - Ida doing in ten minutes on her phone what took Søren an evening.
 - The shoebox on the kitchen table, then the desk, then a shelf, then a binder, then three.

@@ -12,6 +12,10 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 4 | Patronymic surnames in rural Jutland persisted well into the 1800s despite the 1828 naming law. | S2 | High | — |
 | 5 | The Copenhagen police emigration protocols (1869–1940) are searchable via the Danish Emigration Archives (Udvandrerarkivet) in Aalborg. | S3, S6 | High | Coverage years and whether 1903 departures via Copenhagen are included (they should be). |
 | 6 | Christian V's land register of 1688 lists tenants by farm; sand drift in Thy destroyed farmland in the 1700s. | S7 | High on both | Whether Vigsø/Hansted is covered in the surviving 1688 material. |
+| 23 | In Sønderjylland 1874–1920, German civil registers (*Standesamt*/personregister) are the primary record for births, marriages and deaths; records for Sønderjylland are served from the Aabenraa reading room. | S9 | High | Which series are online at Arkivalieronline vs reading room only. |
+| 24 | Danish courts in the 1890s–1930s could register paternity after a declaration (alimentation/paternity cases kept in county archives); a legal finding is not genetic proof. | S7 (1898 case) | Medium | Archive series for 1898 paternity/alimentation cases in Thisted Amt. |
+| 25 | Midwife protocols (*jordemoderprotokoller*) survive for many parishes and can name the mother of a child born out of wedlock. | S2, S7 | Medium | Survival and access for Thy parishes. |
+| 26 | Danish emigrants to Argentina settled around Tandil and Necochea from the 1860s; many returned. | S7 | High | — |
 
 ## History
 
