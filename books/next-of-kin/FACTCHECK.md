@@ -46,6 +46,13 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 51 | Familieretshuset processing time for a værgemål: 3–5 months. | Ch3 | Low | 2026 times. |
 | 52 | Myrtue Medical Center is the hospital in Harlan, Iowa; Elk Horn–Kimballton high school existed in the 1950s. | Ch3 | Medium | School name in 1959. |
 
+| 53 | Leeds Method: cluster 2nd–3rd-cousin matches (~90–400 cM) by shared matches into four grandparent groups. | Ch4 | High | — |
+| 54 | cM values used: parent/child ~3,470–3,490; grandparent ~1,794; half sibling 1,689–1,806; half aunt/niece ~700–912; 1C ~791–846; 3rd cousin twice over ~151. All within Shared cM Project ranges. | Ch4 | High | MyHeritage's relationship labels for each value. |
+| 55 | MyHeritage ethnicity estimates show categories such as "Scandinavian", "Baltic", "Irish, Scottish, and Welsh", "Italian"; small percentages are unreliable. | Ch4 | Medium | Category names in 2026. |
+| 56 | "NPE" / *uventet forældreskab* is the term used in DNA communities. | Ch4 | High | Danish term in use. |
+| 57 | Danish birthday customs: paper flags in the cake, the flag on the garden pole, taken down before sunset; "I dag er det …s fødselsdag". | Ch4 | High | — |
+| 58 | Danish clocks go forward on the last Sunday of March (29 March 2026). | Ch4 | High | — |
+
 ## History
 
 | # | Claim | Where | Confidence | Please verify |

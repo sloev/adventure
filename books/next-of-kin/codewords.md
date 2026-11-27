@@ -24,10 +24,10 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `BENTDNA` | live | Persuaded Bent to test | Ch9: Bent's list shows Hans-Jørgen's daughter; Ch11: Bent sees he doesn't match you |
 | `APPLIED` | live | Applied for Aksel's case file in February | Ch5: file is waiting in Viborg (otherwise you can only order it, and it arrives in Ch7) |
 | `LINDA` | live | Wrote to the Museum of Danish America in Feb; Linda replied that Dorothy died on 3 Feb and offered to pass Søren's contact to the estate attorney | Ch6: the heir letter is no surprise; DIY route is open from the start; Ch10 Iowa |
-| `CAMILLA` | planned | Wrote to Camilla Bruun first | Ch8: meeting tone; otherwise she writes to you |
-| `TOLDMETTE` | planned | Told Mette what the match list means | Ch7, Ch13: Mette as ally; without it, Ch7 conflict |
-| `TOLDLENE` | planned | Told Lene in Ch4 | Ch6, Ch13: Lene's arc |
-| `PARKED` | planned | Decided to ignore the match list for now | Ch8: Camilla's message forces it |
+| `CAMILLA` | live | Wrote to Camilla Bruun first | Ch8: meeting tone; otherwise she writes to you |
+| `TOLDMETTE` | live | Told Mette what the match list means | Ch7, Ch13: Mette as ally; without it, Ch7 conflict |
+| `TOLDLENE` | live | Told Lene in Ch4 | Ch6, Ch13: Lene's arc |
+| `PARKED` | live | Decided to ignore the match list for now | Ch8: Camilla's message forces it |
 | `AKSELFILE` | planned | Photographed Aksel's whole case file | Ch11: you can show Bent; Ch12 publishing |
 | `BENTTOLD` | planned | Told Bent what the file says | Ch11 |
 | `SIGNED` | planned | Signed the heir-research firm's 33 % agreement | Ch10 payout; ending *The Heir* variant |
