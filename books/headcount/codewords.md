@@ -28,3 +28,4 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `CAUTIOUS` | Refused to sign off the 100% retries rollout | S9 calibration: the "decision velocity" chart with your ticket on it |
 | `SPOKE` | Said what "Stop pretending" meant in the first Area retro | S5: people remember who spoke on 12 May; S9 calibration |
 
+| `COUNCIL` | Signed the invitation to the works-council election meeting (12 May) | S6/S7: protected under §15(3a) KSchG; on the election board; the dashboard challenge under §87(1) Nr. 6; S11 Interessenausgleich; ending *The Council* |
