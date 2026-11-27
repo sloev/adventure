@@ -521,8 +521,3 @@ That's what you wanted, all year. That's what Knowledge Capture was for. That's 
 You sit at your desk and look at *I paused* for a long time, and you can't tell, any more, whether you're looking at your work or at your replacement, and you suspect, in a year like this one, that they might be the same thing.
 
 * [Continue](s11-open)
-
-:: s11-open
-*Chapter 11, “The List”, November, is still being written.*
-
-@tbc
