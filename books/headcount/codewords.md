@@ -47,4 +47,5 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 
 Retired after ch10 (crossed out at the start of chapter 10; payoffs spent or dropped): `TEAMTABLE`, `SUPPORTTABLE`, `KICKER`, `ASKED`, `CANDOUR`, `GAMED`, `CAUTIOUS`, `WARROOM`, `BUSFACTOR`.
 | `VOLUNTEER` | Applied for the voluntary severance programme, freeing your role for a Ringtausch (swap) | ch12/ch13: Noor takes the senior reconciliation role; ending *The Package* |
-| `NOORKEPT` | Noor is not dismissed in the end (via the knowledge list, the Ringtausch or the council) | ch13/ch14: she's at the Weihnachtsfeier as an employee; endings |
+| `NOORKEPT` | Noor is not dismissed in the end (via the knowledge list, the Ringtausch or the council) | ch13/ch14: she's at the Weihnachtsfeier as an employee; endings **Not used** (Noor is kept on every route); name reserved, never reuse. |
+| `EXIT` | Accepted the Köln insurer's offer and resigned (December) | ch14: ending *The Exit* |

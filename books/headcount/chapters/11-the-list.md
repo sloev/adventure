@@ -472,9 +472,3 @@ You stand at the kitchen window with the phone. Down in the courtyard, Mila is r
 He hangs up.
 
 * [Continue](s11-friday)
-
-
-:: s12-open
-*Chapter 12, “Consultation”, December, is still being written.*
-
-@tbc
