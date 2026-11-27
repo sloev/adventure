@@ -42,3 +42,7 @@ Codewords are the reader's only memory on paper, so each one costs them a line o
 | `NOORCASE` | Wrote Noor's peer review to make the "knowledge, abilities and performance" case (§1(3) KSchG) | ch11 social selection: her review is cited; ch12 |
 | `TOBIKIND` | Left March out of Tobi's peer review | ch10/ch12: Tobi finds out what others wrote; whether he'd have wanted it |
 | `SAWLIST` | Opened the calibration spreadsheet left shared in Drive | ch10: you know who's "role criticality: low"; ch11 |
+| `INTERVIEWED` | Interviewed elsewhere in October (Köln insurer and/or the Mitte AI startup) | ch11/ch13: an offer in hand; ending *The Exit* |
+| `PROPOSED` | Asked Sanne to marry you (the kitchen floor, October) | ch13 Christmas; ch14 epilogue |
+
+Retired after ch10 (crossed out at the start of chapter 10; payoffs spent or dropped): `TEAMTABLE`, `SUPPORTTABLE`, `KICKER`, `ASKED`, `CANDOUR`, `GAMED`, `CAUTIOUS`, `WARROOM`, `BUSFACTOR`.

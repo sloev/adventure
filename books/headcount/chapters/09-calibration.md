@@ -520,8 +520,3 @@ At 10:00 Sasha comes past your desk on his way to the roof, the yellow goalie ro
 "Fifteenth of October," he says. "Board meeting. Then we see what goes in the folder."
 
 * [Continue](s10-open)
-
-:: s10-open
-*Chapter 10, “Rumours”, October, is still being written.*
-
-@tbc
