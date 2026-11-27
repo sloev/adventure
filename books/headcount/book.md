@@ -2,8 +2,8 @@
 title: Headcount
 subtitle: A year on the Payments team
 author: Adventure
-target: 14 sessions × ~60 min
-sessions_planned: 14
+target_hours: 14
+chapters_planned: 14
 codeword_sheet: 36
 wpm: 230
 ---
