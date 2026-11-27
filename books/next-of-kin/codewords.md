@@ -30,6 +30,9 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `PARKED` | live | Decided to ignore the match list for now | Ch8: Camilla's message forces it |
 | `AKSELFILE` | planned | Photographed Aksel's whole case file | Ch11: you can show Bent; Ch12 publishing |
 | `BENTTOLD` | planned | Told Bent what the file says | Ch11 |
+| `SUSANNE` | planned | Told Bent (ch5) that a Susanne Nielsen in Sønderborg is on his list at half-niece level | Ch9: Bent has already written to her / wants to go; Hans-Jørgen found faster |
+| `BENTKNOWS` | planned | Told Bent (ch5) that he and Søren share no DNA, i.e. Poul was not Søren's biological father | Ch11 changes from revelation to aftermath; Ch13 Christmas |
+| `AIWRONG` | planned | Accepted the AI's summary of Aksel's file ("admitted taking part in shooting partisans") without checking the image; the file says he admitted *witnessing* it and denied taking part | Ch11: what Søren tells Bent is wrong; Ch12: published unless corrected |
 | `SIGNED` | planned | Signed the heir-research firm's 33 % agreement | Ch10 payout; ending *The Heir* variant |
 | `DIY` | planned | Traced the Iowa estate yourself | Ch10; ending *The Heir* |
 | `LENEHEIR` | planned | Told Lene about the inheritance | Ch13 |
