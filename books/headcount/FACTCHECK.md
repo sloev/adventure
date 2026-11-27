@@ -44,3 +44,5 @@ The book's credibility depends on its technical and legal detail. This is what i
 | 20 | Mass-dismissal notification thresholds (§17 KSchG) for ~420 employees and 38 departures within 30 days. | ch05 | Medium | Whether agreements count towards the threshold (they can, if employer-initiated). |
 | 21 | Council information right **§80(2) BetrVG** and co-determination on monitoring systems **§87(1) Nr. 6**. | ch09 | High | — |
 | 22 | Berlin Einschulung on a **Saturday** before the first school week (we use Sat 22 Aug, school from Mon 24 Aug). | ch08 | Medium | 2026/27 Berlin school calendar. |
+| 23 | Employer's written notification to the council before a mass dismissal (**§17(2) KSchG**) and the council's right to an external adviser in larger companies (**§111 S. 2 BetrVG**, >300 employees). | ch10 | High | — |
+| 24 | Hip fracture in an elderly patient → **Hüft-TEP** the same day; then **Anschlussheilbehandlung** (rehab, e.g. in Bad Wildungen), **Kurzzeitpflege** if needed, **Pflegegrad** application and assessment by the Medizinischer Dienst. | ch10 | High | Typical timings in Hesse. |
