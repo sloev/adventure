@@ -8,11 +8,11 @@
     \def\H{h}\def\S{s}\def\G{g}
     \begin{tikzpicture}
       \fill[white] (0,0) rectangle (122mm,-104mm);
-      \fill[black!8] (0,0) rectangle (122mm,-6mm);
-      \node[anchor=west,font=\sffamily\scriptsize\color{black!60}] at (2mm,-3mm) {Headcount\_FY26\_v7\_FINAL(2).xlsx};
-      \fill[black!4] (0,-6mm) rectangle (122mm,-11mm);
+      \fill[coverhead] (0,0) rectangle (122mm,-6mm);
+      \node[anchor=west,font=\sffamily\scriptsize\color{covermid}] at (2mm,-3mm) {Headcount\_FY26\_v7\_FINAL(2).xlsx};
+      \fill[coverhead] (0,-6mm) rectangle (122mm,-11mm);
       \foreach \x/\h in {2/ID,12/Name,48/Team,80/Since,98/Status} {
-        \node[anchor=west,font=\sffamily\scriptsize\bfseries\color{black!70}] at (\x mm,-8.5mm) {\h};
+        \node[anchor=west,font=\sffamily\scriptsize\bfseries\color{covertext}] at (\x mm,-8.5mm) {\h};
       }
       \foreach \i/\id/\name/\team/\since/\status/\style in {
           0/0012/{Albrecht, M.}/Finance/2016/active/n,
@@ -36,21 +36,21 @@
           \fill[black!14] (0,\y mm) rectangle (122mm,\y mm-5.4mm);
           \draw[black,line width=0.8pt] (0.4mm,\y mm-0.2mm) rectangle (121.6mm,\y mm-5.2mm);
         \fi
-        \draw[black!10] (0,\y mm-5.4mm) -- (122mm,\y mm-5.4mm);
-        \def\c{black!80}\ifx\style\S\def\c{black!35}\fi\ifx\style\G\def\c{black!55}\fi
+        \draw[covergrid] (0,\y mm-5.4mm) -- (122mm,\y mm-5.4mm);
+        \def\c{covertext}\ifx\style\S\def\c{coverfaint}\fi\ifx\style\G\def\c{covermid}\fi
         \node[anchor=west,font=\sffamily\scriptsize,text=\c] at (2mm,\y mm-2.7mm) {\id};
         \node[anchor=west,font=\sffamily\scriptsize,text=\c] at (12mm,\y mm-2.7mm) {\name};
         \node[anchor=west,font=\sffamily\scriptsize,text=\c] at (48mm,\y mm-2.7mm) {\team};
         \node[anchor=west,font=\sffamily\scriptsize,text=\c] at (80mm,\y mm-2.7mm) {\since};
         \node[anchor=west,font=\sffamily\scriptsize\ifx\style\H\bfseries\fi,text=\c] at (98mm,\y mm-2.7mm) {\status};
-        \ifx\style\S\draw[black!35] (11mm,\y mm-2.7mm) -- (78mm,\y mm-2.7mm);\fi
+        \ifx\style\S\draw[coverfaint] (11mm,\y mm-2.7mm) -- (78mm,\y mm-2.7mm);\fi
       }
-      \node[anchor=west,font=\sffamily\scriptsize\color{black!45}] at (2mm,-101mm) {412 rows \quad Σ headcount = 412 \quad target: 412};
+      \node[anchor=west,font=\sffamily\scriptsize\color{covermid}] at (2mm,-101mm) {412 rows \quad Σ headcount = 412 \quad target: 412};
     \end{tikzpicture}};
   % title
   \node[anchor=south west,text=white,font=\fontsize{46}{50}\selectfont] at ([xshift=13mm,yshift=40mm]current page.south west) {Headcount};
-  \node[anchor=south west,text=white!75,font=\large\itshape] at ([xshift=14mm,yshift=30mm]current page.south west) {A year on the Payments team};
-  \node[anchor=south west,text=white!60,font=\sffamily\footnotesize,align=left] at ([xshift=14mm,yshift=14mm]current page.south west) {\addfontfeature{LetterSpace=20}AN INTERACTIVE NOVEL \quad·\quad YOU DECIDE};
+  \node[anchor=south west,text=covertextB,font=\large\itshape] at ([xshift=14mm,yshift=30mm]current page.south west) {A year on the Payments team};
+  \node[anchor=south west,text=covertextC,font=\sffamily\footnotesize,align=left] at ([xshift=14mm,yshift=14mm]current page.south west) {\addfontfeature{LetterSpace=20}AN INTERACTIVE NOVEL \quad·\quad YOU DECIDE};
 \end{tikzpicture}
 \restoregeometry
 \end{titlepage}

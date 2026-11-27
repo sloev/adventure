@@ -165,5 +165,14 @@ The print edition is a **page-based gamebook** in the classic choose-your-path t
 - `npm run pdf` **proof-reads the PDF**: it extracts the text of every page and checks that each passage really starts on the page it is referenced as. A wrong page reference fails the build.
 - In the PDF every page reference is also a link.
 
+### Two PDFs
+
+`npm run pdf` produces both:
+
+- `dist/<book>/<book>.pdf`: the edition as designed, with greys, colour avatars and emoji, links and searchable text.
+- `dist/<book>/<book>-1bit.pdf`: a **strictly 1-bit black-and-white print master**. The same LaTeX is compiled with `\gbonebit` (no grey text or rules; text never sits on a tint), every page is rasterised at 1200 dpi without anti-aliasing, and every remaining tone is screened with the stochastic clustered-dot halftone from [sloev/grudgebook](https://github.com/sloev/grudgebook) (`tools/onebit/halftone.c`, vendored unchanged; `dot_threshold` and `dot_gain_inverse` ported from its `halftone.py`). Pages are CCITT Group 4, 1 bit per pixel; the build checks every image with `pdfimages`. Layout and page numbers are identical to the colour edition.
+
+Set `ONEBIT_DPI=600` for faster proofs, or pass `--no-1bit` to skip it.
+
 Requirements (Debian/Ubuntu): `texlive-xetex texlive-latex-extra
-texlive-fonts-recommended tex-gyre fonts-texgyre fonts-dejavu`, plus `poppler-utils` for the page-reference check.
+texlive-fonts-recommended tex-gyre fonts-texgyre fonts-dejavu`, plus `poppler-utils`, and for the 1-bit edition Python 3 with NumPy and Pillow and a C compiler.

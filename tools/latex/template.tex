@@ -137,7 +137,8 @@
   fontupper=\ttfamily\footnotesize\setlength{\parindent}{0pt}\raggedright}
 
 % Chat message: \gbmsg{avatar colour hex}{initials}{name}{time}{body}
-\newcommand\gbavatar[2]{{\setlength\fboxsep{0.5pt}\colorbox[HTML]{#1}{\makebox[4.8mm][c]{\rule[-0.7mm]{0pt}{3.6mm}\fontsize{6.5}{6.5}\selectfont\bfseries\color{white}#2}}}}
+\newcommand\gbavatarfill[1]{\colorbox[HTML]{#1}}
+\newcommand\gbavatar[2]{{\setlength\fboxsep{0.5pt}\gbavatarfill{#1}{\makebox[4.8mm][c]{\rule[-0.7mm]{0pt}{3.6mm}\fontsize{6.5}{6.5}\selectfont\bfseries\color{white}#2}}}}
 \newcommand\gbmsg[5]{\par\noindent
   \begin{minipage}[t]{6.6mm}\vspace{0pt}\gbavatar{#1}{#2}\end{minipage}%
   \begin{minipage}[t]{\dimexpr\linewidth-6.6mm}\vspace{0pt}\raggedright
@@ -157,8 +158,41 @@
 \newcommand\gbfieldrule{\par\vspace{0.6mm}{\color{rule}\hrule}\vspace{1.4mm}}
 \newcommand\gbcalrow[2]{\noindent\makebox[6.8em][l]{\color{muted}#1}\parbox[t]{\dimexpr\linewidth-6.8em}{\raggedright #2}\par\vspace{0.8mm}}
 \newcommand\gbcalnote[1]{\par\vspace{0.5mm}\noindent{\itshape\color{muted}#1}\par}
-\newcommand\gbtag[1]{\colorbox{boxhead}{\footnotesize\bfseries\MakeUppercase{#1}}}
+\newcommand\gbtagbox[1]{\colorbox{boxhead}{#1}}
+\newcommand\gbtag[1]{\gbtagbox{\footnotesize\bfseries\MakeUppercase{#1}}}
 \newcommand\gbcode[1]{{\ttfamily #1}}
+
+% --- cover colours ------------------------------------------------------------
+\colorlet{covertext}{black!80}
+\colorlet{coverhead}{black!6}
+\colorlet{covergrid}{black!10}
+\colorlet{coverfaint}{black!35}
+\colorlet{covermid}{black!55}
+\colorlet{covertextB}{white!75}
+\colorlet{covertextC}{white!60}
+
+% --- 1-bit edition (compiled with \def\gbonebit{}) ----------------------------
+% As in sloev/grudgebook: no grey text or rules in the 1-bit book. Hierarchy is
+% carried by size, weight and space; tone survives only in fills, which
+% tools/onebit/onebit.py screens with the stochastic clustered-dot halftone.
+\ifdefined\gbonebit
+  \definecolor{muted}{gray}{0}
+  \definecolor{rule}{gray}{0}
+  \renewcommand\gbavatarfill[1]{\colorbox{black}}
+  % text never sits on a screen: box interiors white, structure from frames
+  \definecolor{boxbg}{gray}{1}
+  \definecolor{boxhead}{gray}{1}
+  \definecolor{termbg}{gray}{1}
+  \definecolor{alarm}{gray}{0}
+  \renewcommand\gbtagbox[1]{{\setlength\fboxrule{0.5pt}\fbox{#1}}}
+  \colorlet{covertext}{black}
+  \colorlet{coverhead}{white}
+  \colorlet{covergrid}{black}
+  \colorlet{coverfaint}{black}
+  \colorlet{covermid}{black}
+  \colorlet{covertextB}{white}
+  \colorlet{covertextC}{white}
+\fi
 
 \begin{document}
 \frontmatter

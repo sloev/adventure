@@ -17,7 +17,7 @@ Interactive fiction with unusual focuses. Each book is about **two weeks of read
 npm install
 npm run check      # validate links/codewords, show minutes-per-session
 npm run build      # web edition into dist/
-npm run pdf        # + print edition via XeLaTeX → dist/<book>/<book>.pdf
+npm run pdf        # + print editions: <book>.pdf and <book>-1bit.pdf (1-bit B&W, grudgebook halftone)
 npm run audit      # + structural audit → books/<book>/AUDIT.md
 npm run serve      # http://localhost:8080
 ```

@@ -5,6 +5,7 @@
 //   dist/<slug>/book.json           compiled story
 //   dist/<slug>/<slug>.tex          print edition source (LaTeX, see tools/latex/template.tex)
 //   dist/<slug>/<slug>.pdf          print edition, with --pdf (needs xelatex)
+//   dist/<slug>/<slug>-1bit.pdf     strictly 1-bit black & white print master (tools/onebit)
 // Flags: --check (validate only), --stats (reading-time report), --pdf (compile LaTeX)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -54,8 +55,12 @@ for (const slug of slugs) {
   const compiled = compile(book);
   fs.writeFileSync(path.join(out, 'book.json'), JSON.stringify(compiled));
   fs.writeFileSync(path.join(out, 'index.html'), readerPage(book));
-  fs.writeFileSync(path.join(out, `${slug}.tex`), bookToLatex(book, templateFor(book.dir, root)));
+  const tex = bookToLatex(book, templateFor(book.dir, root));
+  fs.writeFileSync(path.join(out, `${slug}.tex`), tex);
+  // 1-bit edition source: identical layout, no grey text (see template.tex).
+  fs.writeFileSync(path.join(out, `${slug}-1bit.tex`), '\\def\\gbonebit{}\n' + tex);
   if ((args.has('--pdf') || args.has('--audit')) && !compilePdf(out, slug, book)) failed = true;
+  else if (args.has('--pdf') && !args.has('--no-1bit') && !compileOneBit(out, slug)) failed = true;
   if (args.has('--audit')) {
     const aux = path.join(out, 'latex', `${slug}.aux`);
     const labels = fs.existsSync(aux)
@@ -66,7 +71,7 @@ for (const slug of slugs) {
     console.log(`  audit: books/${slug}/AUDIT.md — ${a.issues.length} issue(s), max ${a.maxHeld} codewords held on one route`);
     a.issues.forEach((i) => console.log(`  audit ${i}`));
   }
-  library.push({ slug, meta: book.meta, sessions: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)) });
+  library.push({ slug, meta: book.meta, sessions: book.chapters.length, pdf: fs.existsSync(path.join(out, `${slug}.pdf`)), onebit: fs.existsSync(path.join(out, `${slug}-1bit.pdf`)) });
 }
 
 if (!args.has('--check') && !failed) {
@@ -150,6 +155,46 @@ function readerPage(book) {
   });
 }
 
+function xelatex(out, job) {
+  // Rerun until page references are stable (page numbers can shift the layout).
+  const build = path.join(out, 'latex');
+  fs.mkdirSync(build, { recursive: true });
+  for (let pass = 1; pass <= 5; pass++) {
+    const r = spawnSync('xelatex', ['-interaction=nonstopmode', '-halt-on-error', `-output-directory=${build}`, path.join(out, `${job}.tex`)], { encoding: 'utf8' });
+    if (r.error || r.status !== 0) return r;
+    if (pass >= 2 && !/Rerun to get|Label\(s\) may have changed/.test(fs.readFileSync(path.join(build, `${job}.log`), 'utf8'))) break;
+  }
+  return { status: 0 };
+}
+
+function compileOneBit(out, slug) {
+  const r = xelatex(out, `${slug}-1bit`);
+  if (r.status !== 0) {
+    console.log(`  ERROR xelatex failed for the 1-bit edition (see dist/${slug}/latex/${slug}-1bit.log)`);
+    return false;
+  }
+  const pagesOf = (f) => (spawnSync('pdfinfo', [f], { encoding: 'utf8' }).stdout.match(/Pages:\s+(\d+)/) || [])[1];
+  const src = path.join(out, 'latex', `${slug}-1bit.pdf`);
+  if (pagesOf(src) !== pagesOf(path.join(out, `${slug}.pdf`))) {
+    console.log('  ERROR the 1-bit edition does not have the same page count as the colour edition');
+    return false;
+  }
+  const t0 = Date.now();
+  const s = spawnSync('python3', [path.join(root, 'tools', 'onebit', 'onebit.py'), src, path.join(out, `${slug}-1bit.pdf`)], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'] });
+  if (s.status !== 0) {
+    console.log('  ERROR 1-bit screening failed (needs python3 with numpy + Pillow, cc, poppler-utils)');
+    return false;
+  }
+  const list = spawnSync('pdfimages', ['-list', path.join(out, `${slug}-1bit.pdf`)], { encoding: 'utf8' }).stdout.split('\n').slice(2).filter(Boolean);
+  const notOneBit = list.filter((l) => l.trim().split(/\s+/)[7] !== '1');
+  if (!list.length || notOneBit.length) {
+    console.log(`  ERROR 1-bit edition contains ${notOneBit.length} image(s) that are not 1 bit per pixel`);
+    return false;
+  }
+  console.log(`  1-bit edition: dist/${slug}/${slug}-1bit.pdf (${list.length} pages, all 1 bpp, ${((Date.now() - t0) / 1000).toFixed(0)} s)`);
+  return true;
+}
+
 function compilePdf(out, slug, book) {
   // Two passes so running heads and PDF bookmarks settle.
   const build = path.join(out, 'latex');
@@ -191,7 +236,7 @@ ${books
   .map(
     (b) => `<article class="book-card"><h2><a href="${b.slug}/">${esc(b.meta.title)}</a></h2><p class="subtitle">${esc(b.meta.subtitle || '')}</p>
 <div class="blurb">${renderMarkdown(b.meta.blurb || '')}</div>
-<p class="muted">${b.sessions} sessions · <a href="${b.slug}/">Read online</a>${b.pdf ? ` · <a href="${b.slug}/${b.slug}.pdf">Print edition (PDF)</a>` : ''}</p></article>`
+<p class="muted">${b.sessions} sessions · <a href="${b.slug}/">Read online</a>${b.pdf ? ` · <a href="${b.slug}/${b.slug}.pdf">Print edition (PDF)</a>` : ''}${b.onebit ? ` · <a href="${b.slug}/${b.slug}-1bit.pdf">1-bit print master</a>` : ''}</p></article>`
   )
   .join('\n')}</main>`,
   });
