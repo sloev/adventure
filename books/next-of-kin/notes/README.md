@@ -1,18 +1,18 @@
 # Hand-off notes
 
-One file per session, `sNN.md`, written by the session's author in the same PR as the chapter (see `AGENTS.md` §4). The next writer reads these instead of the whole chapter.
+One file per chapter, `NN.md` (matching `chapters/NN-name.md`), written by the chapter's author in the same PR as the chapter (see `AGENTS.md` §4). The next writer reads these instead of the whole chapter.
 
 Template:
 
 ```markdown
-# sNN: <title>
+# NN: <title>
 
 ## Where everyone is at the end
 ## Codewords
-- set: `X` (passage `sN-…`), …
+- set: `X` (passage `cN-…`), …
 - cleared: …
 - checked: …
-## Facts established (now canon for later sessions)
+## Facts established (now canon for later chapters)
 ## Threads opened, not closed
-## Left for later sessions to decide
+## Left for later chapters to decide
 ```

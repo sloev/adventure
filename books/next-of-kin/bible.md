@@ -2,15 +2,16 @@
 
 Working document for writers. Not part of the book. Spoilers are in `canon.md`; read it before writing anything. The book is inspired by a real Danish family-history project; `inspiration.md` lists the patterns we borrow from it (patterns, never people).
 
-Proposed `book.md` front matter (to be added in the same PR as session 1, which is when the book goes live in the build):
+Proposed `book.md` front matter (to be added in the same PR as chapter 1, which is when the book goes live in the build):
 
 ```
 ---
 title: Next of Kin
 subtitle: A year in the family archive
 author: Adventure
-target: 14 sessions × ~60 min
-sessions_planned: 14
+target: about two weeks at an hour a day
+target_hours: 14
+chapters_planned: 14
 codeword_sheet: 36
 wpm: 230
 ---
@@ -33,12 +34,12 @@ The second promise: **the past is fixed; only what you learn and what you do wit
 2. **English prose, Danish texture.** Danish words where an English reader can follow them from context or where translation would lose something (*kirkebog*, *folketælling*, *mindekaffe*, *dødsbo*, *plejehjem*, *hygge* only if ironic). Gloss once, naturally, then use freely. Quoted records are given in the original Danish (or German, Latin) with Søren's working translation, exactly as an amateur would scribble it.
 3. **Show the documents.** Church-book entries, census transcriptions, DNA match lists, emails from archives, Facebook group threads, text messages with family, web pages, scanned letters, probate notices. They carry at least a third of the information and are where the reader does the actual detective work. Use the fenced blocks (see `docs/FORMAT.md` and "Artifacts" below).
 4. **Real mechanics, done right.** Patronymic naming (until it was fixed by law in the 1800s and actually stuck much later in the countryside); Gothic handwriting (*gotisk skrift*) and the letters that fool beginners; *faddere* (godparents) as evidence; census years; *lægdsruller* (military levying rolls); *skifteprotokoller* (probate); *fæsteprotokoller* (tenancy); the 75/100-year access rules at Rigsarkivet and how to apply for dispensation; CPR (since 1968); centimorgans and what ranges actually mean; the Leeds method; why MyHeritage "Smart Matches" merge the wrong Jens Christensen; consent and DNA of people who can't consent. Get them right; track uncertain claims in `FACTCHECK.md`.
-5. **Research takes real time.** DNA results take 4–8 weeks. An archive email gets an auto-reply and an answer three weeks later. The reading room is open Tuesday to Friday and needs a booking. The reader feels the waiting; sessions cover the days when something happens, and the gaps are honest about the weeks in between.
+5. **Research takes real time.** DNA results take 4–8 weeks. An archive email gets an auto-reply and an answer three weeks later. The reading room is open Tuesday to Friday and needs a booking. The reader feels the waiting; chapters cover the days when something happens, and the gaps are honest about the weeks in between.
 6. **Time is real.** Dates are 2026 (1 January is a Thursday) and January 2027. Weather is West Jutland weather: wind first, then everything else.
-7. **Choices are small and personal, not heroic.** Which record to order, whose doorbell to ring, whether to ask Bent at the mindekaffe or later, whether to swab your mother, whether to answer a match's message, what to write in a Facebook post, what to tell your daughter. Branches rejoin quickly (branch and bottleneck). Consequences surface sessions later through codewords.
+7. **Choices are small and personal, not heroic.** Which record to order, whose doorbell to ring, whether to ask Bent at the mindekaffe or later, whether to swab your mother, whether to answer a match's message, what to write in a Facebook post, what to tell your daughter. Branches rejoin quickly (branch and bottleneck). Consequences surface chapters later through codewords.
 8. **Research costs something.** Evenings, money (subscriptions, train tickets, a flight), and patience at home. The book tracks it lightly: choices that put the research ahead of the family are marked and add up (see the `LATE` codewords in the ledger). Nobody delivers a lecture about it; Mette just stops asking how it's going.
 9. **Nobody is a villain.** Bent protects his father's memory because he loved him. The heir-hunting firm is legal and does real work. Your mother's silence was a promise. The doctor is dead. Everyone is reasonable from where they stand, including the people who did bad things in 1942.
-10. **Each session ≈ 13–14k words on a single path** (~60 min at 230 wpm). Every real choice gets print wording (`| If you …`), concrete, second person, never revealing what follows.
+10. **Length belongs to the whole book, not to chapters.** The book as a whole aims at about two weeks for someone reading an hour a day (≈ 14 hours, ≈ 190k words on an average path at 230 wpm). Chapters are as long as their story: the funeral weekend may be long, the day the DNA email arrives may be four pages. Nothing in the book mentions sessions, reading time or stopping for the day. Every real choice gets print wording (`| If you …`), concrete, second person, never revealing what follows.
 11. **Real institutions and sites as props, invented people and firms.** Rigsarkivet and its reading rooms (Copenhagen, Viborg, Odense, Aabenraa), Arkivalieronline, Danish Family Search, the Danish Demographic Database, Politiets Registerblade, arkiv.dk, Det Danske Udvandrerarkiv (Aalborg), FamilySearch, MyHeritage, Ancestry, GEDmatch, Find a Grave, the Museum of Danish America in Elk Horn: fine, shown accurately and neutrally, never accused of anything. The heir-hunting firm, the fertility clinic, the Facebook groups, the lokalarkiv volunteers and every private person are invented.
 12. **Not everything gets solved.** Real research ends with open questions: the 1798 child's father, the 1898 paternity case, a photo nobody can identify. Leave them open, visibly, and let Søren learn to write "unresolved" without shame.
 13. **Family story is evidence too, labelled as such.** Bent's version, Karen's fragments, Holger's legend: record them, test them, keep them visible next to what the records say. Never let the prose quietly upgrade a family story to fact, or quietly sneer at it.
@@ -87,7 +88,7 @@ The second promise: **the past is fixed; only what you learn and what you do wit
 
 ## The binder (method as mechanic)
 
-Søren is a surveyor: he documents. From session 2 he keeps a research binder (later a folder of Markdown files, if `AIHELPER`). Each finding becomes a **claim** with four headings: *Claim, Evidence, Missing, Next*, and a validation level: *lead, low, moderate, high, confirmed*. He writes down what a source does **not** prove and records negative searches ("searched Hansted burials 1860–65, no Peder Jensen"). Legal father, biological father, foster parents and household are never merged into one line.
+Søren is a surveyor: he documents. From chapter 2 he keeps a research binder (later a folder of Markdown files, if `AIHELPER`). Each finding becomes a **claim** with four headings: *Claim, Evidence, Missing, Next*, and a validation level: *lead, low, moderate, high, confirmed*. He writes down what a source does **not** prove and records negative searches ("searched Hansted burials 1860–65, no Peder Jensen"). Legal father, biological father, foster parents and household are never merged into one line.
 
 This is the book's quiet game: readers who keep claims honest (check the church book behind the MyHeritage hint, read the image instead of trusting the transcription, audit the noble line) are rewarded later with stronger evidence, better conversations, and a tree nobody can embarrass in public. Shown with the `claim` block (see Artifacts).
 
@@ -107,9 +108,11 @@ A sixth, lighter thread runs through all of them: **the legend** of "Kaptajn Tho
 
 The threads cross: the match list makes the Kjær threads "not your blood" without making them less your family; the Iowa inheritance makes Søren's mother's legal capacity a practical problem; the dunes thread is the only one where nothing terrible is found, and that matters too.
 
-## The year (session plan)
+## The year (chapter plan)
 
-| # | Session | Dates | Core events | Key choices → codewords |
+Fourteen chapters, following the year's months; that number comes from the story, not from reading time. Lengths in the table are rough story weight, not minutes: *long*, *medium*, *short*. Passage IDs use the `c<N>-` prefix (`c1-funeral`), hand-off notes are `notes/01.md` …
+
+| # | Chapter | Dates | Core events | Key choices → codewords |
 |---|---|---|---|---|
 | 1 | **Mindekaffe** | Fri 9 – Sun 11 Jan | Poul's funeral at Struer Kirke; the mindekaffe at the harbour hotel; Bent's speech; Lene wants the house cleared by March. Clearing the rækkehus over the weekend: the shed, the drawer with the unopened DNA kit, the shoebox (photos, the scratched uniform photo, a 1962 airmail letter from Iowa, Inger's hymn book). Karen at the plejehjem on Sunday morning, a good morning. | Ask Bent about the photo at the mindekaffe → `ASKEDBENT`; take the shoebox home → `SHOEBOX` (or leave it for Lene); keep Poul's DNA kit → `KIT`; ask Karen about Iowa / about Poul → `KARENIOWA` / `KARENPOUL`. |
 | 2 | **Gothic** | late Jan | First evenings on Arkivalieronline. Learning to read gotisk; the 1801/1834/1845 censuses; patronymics. MyHeritage merges the wrong Jens Christensen. First post in Birthe's group. Getting the Kjærs back to 1787 and the Overgaards to 1700, or getting stuck. | Post in the group → `BIRTHE`; pay for a MyHeritage subscription → `MYHERITAGE`; let Ida set up an AI assistant to transcribe and draft claims → `AIHELPER`; accept a MyHeritage Smart Match without checking the church book → `MERGED` (a wrong death year, a line moved to the wrong parish; corrected later by Birthe or not); stay up past 2 a.m. twice → `LATE1`. |
@@ -126,9 +129,9 @@ The threads cross: the match list makes the Kjær threads "not your blood" witho
 | 13 | **Jul** | December | Christmas Eve in Viby with Bent, Lene's family, perhaps Camilla, perhaps nobody new. Ida's history project, finished. What you say at the table. | Final conversations. |
 | 14 | **Lørdag** | Sat 9 Jan 2027 | Epilogue: one year after the funeral. One morning. | Endings resolve from codewords. |
 
-The `@tbc` rule applies: until session 14 exists, every session ends with `@tbc` after its bookmark passage.
+The `@tbc` rule applies: until chapter 14 exists, the last written chapter ends with `@tbc`.
 
-## Endings (resolved in session 14)
+## Endings (resolved in chapter 14)
 
 - **The Archivist** (`PUBLISHED` + three threads followed): the tree is public, footnoted and correct. Two relatives no longer speak to you; four new ones do.
 - **The Keeper** (`DRAWER`): you know; nobody else does. The binder sits in the office. Mette asks once, in January, whether you're going to do anything with it.
@@ -139,7 +142,7 @@ The `@tbc` rule applies: until session 14 exists, every session ends with `@tbc`
 
 ## Artifacts
 
-Existing blocks to use now: `email`, `phone` (texts), `dm` (Messenger), `doc` (record transcriptions, tables, web pages), `calendar`, `terminal` (no; not this book). Proposed new block types, to be added as a separate **tooling PR** per `AGENTS.md` §8 before or alongside session 2:
+Existing blocks to use now: `email`, `phone` (texts), `dm` (Messenger), `doc` (record transcriptions, tables, web pages), `calendar`, `terminal` (no; not this book). Proposed new block types, to be added as a separate **tooling PR** per `AGENTS.md` §8 before or alongside chapter 2:
 
 | Block | For | Notes |
 |---|---|---|
