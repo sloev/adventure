@@ -28,7 +28,7 @@
     return;
   }
   document.title = book.meta.title;
-  const total = book.meta.sessionsPlanned || book.chapters.length;
+  const total = book.meta.chaptersPlanned || book.meta.sessionsPlanned || book.chapters.length;
   const chapterIndex = Object.fromEntries(book.chapters.map((c, i) => [c.id, i]));
 
   let state = store.get(KEY, null);
@@ -56,7 +56,7 @@
   function sessionHeader(ci) {
     const c = book.chapters[ci];
     const h = el('header', 'session-head');
-    h.innerHTML = `<p class="session">Session ${ci + 1} of ${total}</p><h1>${c.title}</h1>${c.subtitle ? `<p class="subtitle">${c.subtitle}</p>` : ''}`;
+    h.innerHTML = `<p class="session">Chapter ${ci + 1}</p><h1>${c.title}</h1>${c.subtitle ? `<p class="subtitle">${c.subtitle}</p>` : ''}`;
     return h;
   }
 
@@ -67,18 +67,6 @@
     const ci = chapterIndex[book.passages[last].c];
     document.querySelector('.progress-fill').style.width = `${((ci + 0.5) / total) * 100}%`;
 
-    if (state.breakAt === log.length - 1) {
-      const prev = book.chapters[ci - 1];
-      const card = el('section', 'session-break');
-      card.innerHTML = `<p class="session">End of session ${ci} of ${total}</p><h1>${prev ? prev.title : ''}</h1>
-<p>That was about an hour of reading. This is a good place to stop for today — the book will remember where you are.</p>`;
-      const btn = el('button', 'primary', `Begin session ${ci + 1}: ${book.chapters[ci].title}`);
-      btn.onclick = () => { state.breakAt = null; save(); render({ scroll: 'top' }); };
-      card.append(btn);
-      story.append(card);
-      window.scrollTo({ top: 0 });
-      return;
-    }
 
     // Show this session so far: from the first log entry in the current chapter.
     let from = log.length - 1;
@@ -102,7 +90,7 @@
           sec.append(again);
         } else if (p.tbc) {
           sec.append(el('p', 'ending', 'To be continued'));
-          sec.append(el('p', 'muted', `You have reached the end of session ${book.chapters.length} of ${total}. The rest of this book is still being written; your place and your codewords are saved.`));
+          sec.append(el('p', 'muted', `You have reached the end of what has been written so far (chapter ${book.chapters.length} of ${total}). Your place and your codewords are saved.`));
         } else {
           const opts = p.ch.filter((c) => available(c, cw));
           const ul = el('div', 'choices');
@@ -124,7 +112,8 @@
   function choose(to) {
     const cur = book.passages[state.log[state.log.length - 1]];
     state.log.push(to);
-    if (book.passages[to].c !== cur.c) state.breakAt = state.log.length - 1;
+    // A new chapter just starts at the top of the page; no reading-time prompts.
+    if (book.passages[to].c !== cur.c) { save(); render({ scroll: 'top' }); return; }
     save();
     render();
   }

@@ -7,11 +7,11 @@ books/<slug>/
   book.md          metadata (front matter) + blurb (body)
   bible.md         writers' notes, never published
   chapters/
-    01-kickoff.md  one file per reading session (~1 hour)
+    01-kickoff.md  one file per chapter
     02-....md
 ```
 
-Chapters are read in filename order. A chapter is one **session**: the reader is told when one ends and invited to stop for the day. Aim for about an hour on a single path through each session; `npm run stats` measures it.
+Chapters are read in filename order. A chapter is a unit of story and of ownership (one writer at a time), not a reading session: the books never tell the reader how long to read or when to stop. What matters is the length of the **whole book**: about 14 hours on a single path (the intended experience is "an hour a day for two weeks", but that is a hint about total length, never structure). Set `target_hours` in `book.md`; `npm run check` reports a read-through's length against it, and per-chapter minutes for information.
 
 ## Chapter files
 
@@ -32,8 +32,8 @@ The alarm goes at 06:40. ...
 * [Continue](s1-office)
 ```
 
-- `:: passage-id` starts a passage. IDs are global to the book, so prefix them by session (`s1-`, `s2-` …).
-- The first passage of the first chapter is where the book begins. The first passage of each chapter is that session's start.
+- `:: passage-id` starts a passage. IDs are global to the book, so prefix them by chapter (`s1-`, `s2-` …).
+- The first passage of the first chapter is where the book begins. The first passage of each chapter is that chapter's start.
 - Passage text is Markdown. `---` on its own line becomes a scene break (⁂).
 
 ### Choices
@@ -159,7 +159,7 @@ The print edition is a **page-based gamebook** in the classic choose-your-path t
 - **Every passage that can be jumped to starts at the top of a new page.** A passage flows on from the previous one only when that is its single way in, so a reader never reads into a branch they didn't choose.
 - Choices sit at the end of a passage as full sentences: *If you …, turn to page N.*
 - Codewords are written on a codeword sheet in the front matter (as in Fabled Lands or Lone Wolf); conditional choices ask *If you have the codeword X …*.
-- Each session ends with a box telling the reader which page to write down as a bookmark.
+- Chapters open on a new right-hand page ("Chapter N"); the last passage of a chapter simply says which page to turn to. There is a bookmark line on the codeword sheet. No reading-time prompts.
 - Endings print *The End*; unfinished books print *To be continued …*.
 - The front matter tells the reader not to read straight through.
 - `npm run pdf` **proof-reads the PDF**: it extracts the text of every page and checks that each passage really starts on the page it is referenced as. A wrong page reference fails the build.
