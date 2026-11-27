@@ -215,7 +215,8 @@ function compilePdf(out, slug, book) {
     if (pass >= 2 && !/Rerun to get|Label\(s\) may have changed/.test(fs.readFileSync(path.join(build, `${slug}.log`), 'utf8'))) break;
   }
   fs.copyFileSync(path.join(build, `${slug}.pdf`), path.join(out, `${slug}.pdf`));
-  const pages = (fs.readFileSync(path.join(build, `${slug}.log`), 'utf8').match(/Output written on [\s\S]*?\((\d+)\s/) || [])[1];
+  // pdfinfo, not the TeX log: the log wraps lines at 79 chars, sometimes mid-number.
+  const pages = (spawnSync('pdfinfo', [path.join(out, `${slug}.pdf`)], { encoding: 'utf8' }).stdout.match(/Pages:\s+(\d+)/) || [])[1];
   console.log(`  print edition: dist/${slug}/${slug}.pdf (${pages} pages, A5)`);
   const v = verifyPdf(book, path.join(out, `${slug}.pdf`), path.join(build, `${slug}.aux`));
   if (v.skipped) console.log(`  warn  page references not verified: ${v.skipped}`);
