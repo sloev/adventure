@@ -706,8 +706,3 @@ On the hall-cupboard shelf, downstairs, above the coats, is a small white box wi
 Ida's results, she tells you at breakfast on Sunday, refreshing the app for the fourth time that morning, have changed from *Received at lab* to *DNA extraction in progress*. Four to six weeks, it says. Maybe sooner.
 
 * [Continue](c3-open)
-
-:: c3-open
-*Chapter 3, “Spit”, February, is still being written.*
-
-@tbc
