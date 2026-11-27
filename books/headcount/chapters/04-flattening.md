@@ -1087,8 +1087,3 @@ Outside, Kreuzberg is still going: a sound system somewhere towards Kottbusser T
 Eleven days.
 
 * [Continue](s5-open)
-
-:: s5-open
-*Session 5, “Reduction”, Tuesday 12 May, is still being written.*
-
-@tbc
