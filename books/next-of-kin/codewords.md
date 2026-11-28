@@ -12,13 +12,13 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `ASKEDBENT` | live | Asked Bent about the uniform photo at the mindekaffe | Ch5: Bent knows you're digging when you ring him from Viborg; Ch11 |
 | `SHOEBOX` | live | Took the shoebox home (instead of leaving it for Lene to sort) | Ch2 onward: the 1962 letter and the hymn book are at hand; without it you must ask Lene for items (Ch6, Ch9) |
 | `KIT` | live | Kept Poul's unopened DNA kit | Ch4/Ch8: Søren understands why it was never opened; Ch14 variant |
-| `KARENIOWA` | live | Asked Karen about the Iowa letter on her good morning | Ch6: you recognise Elk Horn and Dorothy at once; DIY route easier |
+| `KARENIOWA` | live; cleared in ch06 on the DIY route | Asked Karen about the Iowa letter on her good morning | Ch6: you recognise Elk Horn and Dorothy at once; DIY route easier |
 | `KARENPOUL` | live | Asked Karen about Poul's young years (she mentions "the doctor in Holstebro") | Ch8: the name rings a bell; Ch8 `ASKEDKAREN` scene changes |
 | `BIRTHE` | live | Joined the gothic-script group and posted | Ch2–Ch12: Birthe helps read records; Ch9 she knows about adoption files |
 | `MYHERITAGE` | live | Paid for the subscription | Ch4: you see full match details and trees; Ch12 publishing options |
 | `AIHELPER` | live | Let Ida set up an AI assistant for transcription and claim drafts | Ch5: it misreads a word in Aksel's file (or a church entry); Ch12: it endorses the noble line unless audited |
 | `MERGED` | live | Accepted a MyHeritage Smart Match unchecked in Ch2 | Ch4/Ch7: the wrong death year resurfaces; Birthe (if `BIRTHE`) or Kurt corrects it; Ch12 publishing |
-| `LATE1` | live | Put research ahead of family (Ch2) | Ending *The Long Evening*; Ch7 Mette remarks |
+| `LATE1` | live; cleared in ch06 if Søren gives May to home (c6-home) | Put research ahead of family (Ch2) | Ending *The Long Evening*; Ch7 Mette remarks |
 | `TESTED` | live | Took a DNA test yourself | Ch4: your own list (otherwise only Ida's) |
 | `KARENDNA` | live | Swabbed Karen at the plejehjem | Ch4: proves Karen's side is intact, narrows the question to Poul; Ch12 the ethics come back |
 | `BENTDNA` | live | Persuaded Bent to test | Ch9: Bent's list shows Hans-Jørgen's daughter; Ch11: Bent sees he doesn't match you |
@@ -33,10 +33,10 @@ Status: **planned** = reserved, not yet in any chapter; **live** = used in a mer
 | `SUSANNE` | live | Told Bent (ch5) that a Susanne Nielsen in Sønderborg is on his list at half-niece level | Ch9: Bent has already written to her / wants to go; Hans-Jørgen found faster |
 | `BENTKNOWS` | live | Told Bent (ch5) that he and Søren share no DNA, i.e. Poul was not Søren's biological father | Ch11 changes from revelation to aftermath; Ch13 Christmas |
 | `AIWRONG` | live | Accepted the AI's summary of Aksel's file ("admitted taking part in shooting partisans") without checking the image; the file says he admitted *witnessing* it and denied taking part | Ch11: what Søren tells Bent is wrong; Ch12: published unless corrected |
-| `SIGNED` | planned | Signed the heir-research firm's 33 % agreement | Ch10 payout; ending *The Heir* variant |
-| `DIY` | planned | Traced the Iowa estate yourself | Ch10; ending *The Heir* |
-| `LENEHEIR` | planned | Told Lene about the inheritance | Ch13 |
-| `VAERGE` | planned | Applied to Familieretshuset to be Karen's guardian | Ch10, Ch12 |
+| `SIGNED` | live | Signed the heir-research firm's 33 % agreement | Ch10 payout; ending *The Heir* variant |
+| `DIY` | live | Traced the Iowa estate yourself | Ch10; ending *The Heir* |
+| `LENEHEIR` | live | Told Lene about the inheritance | Ch13 |
+| `VAERGE` | live | Applied to Familieretshuset to be Karen's guardian | Ch10, Ch12 |
 | `KNOCKED` | planned | Knocked at the old Overgaard farm | Ch12 yearbook article; Ch14 |
 | `HOLGER` | planned | Told Holger about the 150 cM | Ch10 (Holger and the estate), Ch13 |
 | `LATE2` | planned | Put research ahead of family (Ch7) | Ending *The Long Evening* |

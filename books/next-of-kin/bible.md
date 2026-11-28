@@ -131,7 +131,16 @@ Fourteen chapters, following the year's months; that number comes from the story
 
 The `@tbc` rule applies: until chapter 14 exists, the last written chapter ends with `@tbc`.
 
+## How the reader is in charge
+
+- **Evenings are a budget.** From chapter 6 each chapter has a *hub*: a list of what the evenings could go to (a research thread, a person, home, or stopping). The reader picks one. The others happen offstage, or don't, and that has consequences (a deadline passes, Bent waits, Mette notices). Keep the hub honest: every option must cost something and give something.
+- **Stopping is always a real option.** At least one hub per act offers *putting the lid on*: a full early ending (`@end`), written as a respectable choice, never a punishment. Chapter 6 has the first (*The Lid*). Plan one more around chapter 10 (*The Settlement*: take the money, sell the house, stop) and one in chapter 12 (*The Drawer*, already planned).
+- **Information has owners.** Søren often knows something only he can see (Bent's list, the attorney's numbers). Whether and when he tells people is a choice; the codewords for *telling* (`TOLD…`, `BENTKNOWS`, `LENEHEIR`, `SUSANNE`) drive later chapters more than the codewords for *finding*.
+- **Wrong is possible.** Readers can carry a false belief (`MERGED`, `AIWRONG`) for chapters and act on it. Later chapters must let them discover the error, or not, and must show what acting on it cost.
+
 ## Endings (resolved in chapter 14)
+
+- **The Lid** (early, ch6): Søren stops in May. Signs what needs signing, puts the box on the top shelf, sleeps.
 
 - **The Archivist** (`PUBLISHED` + three threads followed): the tree is public, footnoted and correct. Two relatives no longer speak to you; four new ones do.
 - **The Keeper** (`DRAWER`): you know; nobody else does. The binder sits in the office. Mette asks once, in January, whether you're going to do anything with it.
