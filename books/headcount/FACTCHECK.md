@@ -46,3 +46,7 @@ The book's credibility depends on its technical and legal detail. This is what i
 | 22 | Berlin Einschulung on a **Saturday** before the first school week (we use Sat 22 Aug, school from Mon 24 Aug). | ch08 | Medium | 2026/27 Berlin school calendar. |
 | 23 | Employer's written notification to the council before a mass dismissal (**§17(2) KSchG**) and the council's right to an external adviser in larger companies (**§111 S. 2 BetrVG**, >300 employees). | ch10 | High | — |
 | 24 | Hip fracture in an elderly patient → **Hüft-TEP** the same day; then **Anschlussheilbehandlung** (rehab, e.g. in Bad Wildungen), **Kurzzeitpflege** if needed, **Pflegegrad** application and assessment by the Medizinischer Dienst. | ch10 | High | Typical timings in Hesse. |
+| 25 | Each dismissal requires a prior **council hearing (§102 BetrVG)**, one week to object; objections on listed grounds (§102(3)). | ch12 | High | — |
+| 26 | **Transfergesellschaft** (beE) for up to 12 months with Transferkurzarbeitergeld; we say 6 months at 80 % net. | ch12 | Medium | Typical top-up levels. |
+| 27 | **Ringtausch** clauses in Interessenausgleich / Freiwilligenprogramm. | ch11–12 | Medium | How common, and whether "must offer" is enforceable as written. |
+| 28 | **Krankschreibung** (AU) never states the diagnosis to the employer. | ch14 | High | — |

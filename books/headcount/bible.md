@@ -97,7 +97,11 @@ Threads opened in session 2 for later: Jakob's `notes.md` (Jens's advice: keep a
 - **Rebecca** stays ambiguous and honest.
 - Specialist fact-checks are tracked in `FACTCHECK.md`.
 
-## Endings (resolved in session 14)
+## Endings as written (chapter 14)
+
+Resolved by a chain in ch14, first match wins: `VOLUNTEER` → *The Package*; `EXIT` → *The Exit*; `DIRECTOR` → *The Orchestrator*; `CANDIDATE` → *The Council*; `ALWAYSON` → *The Burnout*; otherwise *The Engineer*. The plans below were the original sketch.
+
+## Endings (original plan)
 
 - **The Orchestrator** (`CHAMPION`, no `COUNCIL`): you stayed and now "supervise" agent workflows for three former teams. Well paid. The Kantine contract was not renewed; you eat at your desk.
 - **The Package** (`VOLUNTEER`): you took the Aufhebungsvertrag. Seven months' salary, a Sperrzeit question with the Arbeitsagentur, a spring of taking Mila to school and fixing the bike brakes.
