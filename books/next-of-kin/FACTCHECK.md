@@ -63,6 +63,13 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | 66 | Adoption files closed long (often 100 years); the adoptee has the strongest right of access; birth relatives usually refused while the adoptee may be alive. | Ch5 | Medium | Current rules (Familieretshuset/Ankestyrelsen vs Rigsarkivet). |
 | 67 | Easter 2026: Maundy Thursday 2 April, Easter Sunday 5 April, Easter Monday 6 April. | Ch5 | High | — |
 
+| 68 | Iowa probate cases are searchable statewide online (Iowa Courts Online), with case IDs like ESPR…; "Notice to Unknown Heirs" by publication. | Ch6 | Medium | Search interface name in 2026; notice practice. |
+| 69 | A court-appointed administrator (often a local attorney) deals with heirs directly at no fee to them; heir-hunter contracts include no-contact and "regardless of other knowledge" clauses. | Ch6 | Medium | Typical contract terms in Denmark. |
+| 70 | Proof for a foreign probate court: certified copies of Danish church-book entries (from Rigsarkivet), certified translations, apostille from the Danish Ministry of Foreign Affairs. | Ch6 | Medium-high | Whether Rigsarkivet issues certified transcripts and the apostille route. |
+| 71 | Familieretshuset asks the proposed guardian to accept the office in writing; the office is unpaid and accountable; otherwise a lawyer is appointed. | Ch6 | Medium | Procedure and wording. |
+| 72 | Kristi Himmelfart 2026: Thursday 14 May; the Friday after is a common bridge day. | Ch6 | High | — |
+| 73 | Iowa farmland at ~$11,000/acre in 2026 (240 acres ≈ $2.7M). | Ch6 | Medium | 2025–26 Shelby County values. |
+
 ## History
 
 | # | Claim | Where | Confidence | Please verify |
@@ -88,7 +95,7 @@ What the plan and the book claim, how sure the authors are, and what a specialis
 | # | Claim | Where | Confidence | Please verify |
 |---|---|---|---|---|
 | 17 | Heir-research firms commonly ask heirs to sign a percentage agreement (~20–40 %) before revealing the estate; legal in Denmark and the US. | Ch6 | High | — |
-| 18 | **Iowa intestate succession** reaches descendants of the decedent's great-grandparents when nearer kin are absent; how shares are divided. | Ch6, Ch10 | **Low: must be checked before Ch6** | Iowa Code ch. 633 rules on remote kin, per stirpes vs per capita, any "laughing heir" cutoff, escheat. If Iowa stops before great-grandparents, move Dot's last domicile to a state that doesn't (and update canon via a canon PR). |
+| 18 | **Iowa intestate succession**: absent closer kin, the estate passes equally to each set of great-grandparents (or their issue), per stirpes; then issue of a deceased spouse; then escheat. | Ch6, Ch10 | **Verified (Nov 2026)** against Iowa Code § 633.219 (legis.iowa.gov, 2021 and 2025 texts) | That the current subsection wording is unchanged in 2026; how Iowa applies per stirpes (division at the children's generation). **Changed:** the plan first assumed the Overgaard couple took everything; they take one of three sets. |
 | 19 | Iowa's inheritance tax has been repealed for deaths from 2025. | Ch10 | Medium | — |
 | 20 | Danish tax on a US inheritance received by a Danish resident heir. | Ch10 | Low | Whether *bo-/tillægsboafgift* or income-tax treatment applies; double-taxation treaty. |
 | 21 | Acting for an incapacitated parent requires a *værgemål* through Familieretshuset unless a *fremtidsfuldmagt* exists. | Ch6 | High | Typical processing time in 2026. |
